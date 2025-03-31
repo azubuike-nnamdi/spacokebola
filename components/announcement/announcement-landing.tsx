@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { announcements2, categories } from "@/data";
 import { Bell, CalendarIcon } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 export default function AnnouncementLanding() {
@@ -36,7 +37,7 @@ export default function AnnouncementLanding() {
             <h1 className="text-white">Announcements</h1>
           </div>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
-            Stay informed about what's happening in our church community
+            Stay informed about what&apos;s happening in our church community
           </p>
         </div>
       </section>
@@ -77,10 +78,12 @@ export default function AnnouncementLanding() {
               filteredAnnouncements.map(announcement => (
                 <Card key={announcement.id} className="overflow-hidden border border-border/50 transition-all hover:shadow-md">
                   <div className="aspect-[16/9] overflow-hidden">
-                    <img
+                    <Image
                       src={announcement.image}
                       alt={announcement.title}
                       className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                      width={800}
+                      height={800}
                     />
                   </div>
                   <CardContent className="p-6">

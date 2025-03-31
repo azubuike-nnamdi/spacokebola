@@ -16,7 +16,7 @@ export default function AboutCTA() {
         <div className="container relative z-10 text-center">
           <h2 className="text-white dark:text-black text-3xl md:text-4xl mb-6">Join Our Community</h2>
           <p className="text-white/90 dark:text-black/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            We'd love to welcome you this Sunday. Experience the difference a church family can make in your life.
+            We&apos;d love to welcome you this Sunday. Experience the difference a church family can make in your life.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href={EVENTS_URL}>

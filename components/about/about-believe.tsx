@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 export default function AboutBelieve() {
   return (
@@ -15,7 +16,7 @@ export default function AboutBelieve() {
               <div className="space-y-4 mb-6">
                 <div>
                   <h4 className="font-medium mb-2">The Bible</h4>
-                  <p className="text-muted-foreground text-sm">We believe the Bible is God's Word, divinely inspired and without error, the final authority for all matters of faith and conduct.</p>
+                  <p className="text-muted-foreground text-sm">We believe the Bible is God&apos;s Word, divinely inspired and without error, the final authority for all matters of faith and conduct.</p>
                 </div>
                 <Separator />
                 <div>
@@ -31,10 +32,12 @@ export default function AboutBelieve() {
               <Button variant="outline" className="rounded-full">Read Our Full Statement of Faith</Button>
             </div>
             <div className="aspect-video lg:aspect-square bg-muted rounded-lg overflow-hidden order-1 lg:order-2">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1493804714600-6edb1cd93080?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 alt="Open Bible"
                 className="w-full h-full object-cover"
+                width={800}
+                height={800}
               />
             </div>
           </div>

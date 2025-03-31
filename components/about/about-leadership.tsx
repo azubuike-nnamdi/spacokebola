@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { leadershipTeam } from "@/data";
-
+import Image from "next/image";
 export default function AboutLeadership() {
   return (
     <div>
@@ -18,10 +18,12 @@ export default function AboutLeadership() {
             {leadershipTeam.map((leader) => (
               <Card key={leader.id} className="border border-border/50 overflow-hidden">
                 <div className="aspect-square bg-muted">
-                  <img
+                  <Image
                     src={leader.image}
                     alt={leader.name}
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={800}
                   />
                 </div>
                 <CardContent className="p-6 text-center">

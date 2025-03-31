@@ -45,7 +45,7 @@ export default function AboutValue() {
                 </div>
                 <h3 className="text-xl mb-4">Compassionate Service</h3>
                 <p className="text-muted-foreground">
-                  We actively seek ways to demonstrate God's love through serving our community and world.
+                  We actively seek ways to demonstrate God&apos;s love through serving our community and world.
                 </p>
               </CardContent>
             </Card>

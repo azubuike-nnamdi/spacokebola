@@ -1,6 +1,7 @@
 import { CONTACT_URL } from "@/config/routes";
 
 import { Link } from "lucide-react";
+import Image from "next/image";
 import { Button } from "../ui/button";
 
 export default function AboutStory() {
@@ -16,7 +17,7 @@ export default function AboutStory() {
                 Grace Church was founded in 1952 by a small group of families with a vision to create a place of worship that would serve the growing community of Faithville.
               </p>
               <p className="text-muted-foreground mb-4">
-                Over the decades, we've grown from a small congregation meeting in a renovated storefront to a thriving church family with multiple ministries and outreach programs serving our community and beyond.
+                Over the decades, we&apos;ve grown from a small congregation meeting in a renovated storefront to a thriving church family with multiple ministries and outreach programs serving our community and beyond.
               </p>
               <p className="text-muted-foreground mb-6">
                 While much has changed over the years, our commitment to sharing the love of Christ, building meaningful relationships, and making a positive impact in our world remains the same.
@@ -26,10 +27,12 @@ export default function AboutStory() {
               </Link>
             </div>
             <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 alt="Historic church building"
                 className="w-full h-full object-cover"
+                width={800}
+                height={800}
               />
             </div>
           </div>

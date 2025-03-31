@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { PageTransition } from "@/components/ui/page-transition";
 import { eventsData } from "@/data";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 export default function EventDashboard() {
 
@@ -48,7 +49,7 @@ export default function EventDashboard() {
                     <div className="flex flex-col md:flex-row">
                       <div className="md:w-2/5">
                         <div className="h-48 md:h-full bg-muted">
-                          <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
+                          <Image src={event.image} alt={event.title} className="w-full h-full object-cover" width={800} height={800} />
                         </div>
                       </div>
                       <div className="p-6 md:w-3/5">
@@ -82,7 +83,7 @@ export default function EventDashboard() {
             {regularEvents.map(event => (
               <Card key={event.id} className="overflow-hidden border border-border/50 hover:shadow-md transition-shadow">
                 <div className="aspect-video bg-muted">
-                  <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
+                  <Image src={event.image} alt={event.title} className="w-full h-full object-cover" width={800} height={800} />
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl mb-2">{event.title}</h3>
