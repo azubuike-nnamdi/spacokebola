@@ -1,9 +1,9 @@
+import { Footer } from "@/components/common/footer";
+import { Navbar } from "@/components/common/navbar";
+import { ThemeProvider } from "@/context/theme-provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/common/navbar";
-import { Footer } from "@/components/common/footer";
-import { ThemeProvider } from "@/context/theme-provider";
 
 
 const geistSans = Geist({
@@ -28,6 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Link to the favicon */}
+        <link rel="icon" href="/assets/img/spac-logo.png " />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
