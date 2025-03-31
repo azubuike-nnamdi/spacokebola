@@ -86,7 +86,7 @@ export default function NotFoundPage() {
                 </div>
 
                 <p
-                  className={`text-slate-600 transition-all duration-700 delay-600 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+                  className={`text-slate-600 dark:text-white transition-all duration-700 delay-600 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                     }`}
                 >
                   The page you&apos;re looking for doesn&apos;t exist or has been moved to another location. Let us guide you back
@@ -99,7 +99,7 @@ export default function NotFoundPage() {
                 />
 
                 <blockquote
-                  className={`border-l-2 border-amber-300 pl-4 italic text-slate-700 transition-all duration-700 delay-800 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+                  className={`border-l-2 border-amber-300 pl-4 italic text-slate-700 dark:text-white transition-all duration-700 delay-800 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                     }`}
                 >
                   &quot;I am the way, the truth, and the life.&quot; — John 14:6

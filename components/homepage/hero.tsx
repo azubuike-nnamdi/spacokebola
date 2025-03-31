@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDownIcon } from 'lucide-react';
+import React from 'react';
 
 export const Hero: React.FC = () => {
   const scrollToContent = () => {
@@ -22,17 +22,17 @@ export const Hero: React.FC = () => {
 
       {/* Hero Content */}
       <div className="container relative z-10 text-center max-w-4xl mx-auto px-6 animate-fade-in">
-        <h1 className="text-white mb-6 leading-tight text-4xl font-bold">
+        <h1 className="text-white mb-6 leading-tight text-4xl font-bold dark:text-black">
           Welcome to SPAC Oke Bola
         </h1>
-        <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+        <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto dark:text-black">
           A community of faith, hope, and love where everyone is welcome
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="min-w-[160px] rounded-full bg-white text-primary hover:bg-white/90 hover:text-primary/90">
+          <Button size="lg" className="min-w-[160px] rounded-full bg-white text-primary hover:bg-white/90 hover:text-primary/90 dark:bg-black dark:text-white dark:hover:bg-black/90 dark:hover:text-white/90">
             Join Us Sunday
           </Button>
-          <Button size="lg" variant="outline" className="min-w-[160px] rounded-full text-white border-white hover:bg-white/10 bg-transparent">
+          <Button size="lg" variant="outline" className="min-w-[160px] rounded-full text-white border-white hover:bg-white/10 bg-transparent dark:text-black dark:border-black dark:hover:bg-black/10">
             Watch Online
           </Button>
         </div>
