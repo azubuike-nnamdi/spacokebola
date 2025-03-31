@@ -219,5 +219,36 @@ const eventsData = [
   }
 ];
 
-export { announcements, announcements2, categories, events, eventsData, leadershipTeam, links };
+const galleryItems = [
+  {
+    id: 1,
+    category: 'Worship Services',
+    images: [
+      { url: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Sunday worship service' },
+      { url: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Congregation singing' },
+      { url: 'https://images.unsplash.com/photo-1574185649768-3a4a13c38f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Pastor preaching' },
+    ]
+  },
+  {
+    id: 2,
+    category: 'Community Events',
+    images: [
+      { url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Community gathering' },
+      { url: 'https://images.unsplash.com/photo-1546984575-757f4f7c13cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Food drive volunteers' },
+      { url: 'https://images.unsplash.com/photo-1505155485412-30b3a45080ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Family picnic' },
+    ]
+  },
+  {
+    id: 3,
+    category: 'Youth Activities',
+    images: [
+      { url: 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Youth group meeting' },
+      { url: 'https://images.unsplash.com/photo-1602873689523-b2c167e85522?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Youth retreat' },
+      { url: 'https://images.unsplash.com/photo-1528834342297-fdefb9a5a92b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', alt: 'Teen worship' },
+    ]
+  }
+];
+
+
+export { announcements, announcements2, categories, events, eventsData, galleryItems, leadershipTeam, links };
 
