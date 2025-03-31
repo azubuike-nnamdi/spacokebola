@@ -40,6 +40,88 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Contributing
+
+There are two ways to contribute to this project:
+
+### Option 1: Fork the Repository
+
+1. Fork the repository by clicking the "Fork" button at the top of this page
+2. Clone your fork locally:
+
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/okebola-archdeaconry.git
+   cd okebola-archdeaconry
+
+   ```
+
+3. Create a new branch for your feature:
+
+   ```bash
+
+   git checkout -b feature/your-feature-name
+   ```
+
+4. Make your changes and commit them:
+
+   ```bash
+
+   git add .
+   git commit -m "Description of your changes"
+   ```
+
+5. Push to your fork:
+
+   ```bash
+
+   git push origin feature/your-feature-name
+
+   ```
+6. Create a Pull Request from your fork to the main repository
+
+### Option 2: Direct Contributor Access
+
+1. Request to be added as a contributor by contacting the project maintainers
+2. Once added, clone the repository:
+
+   ```bash
+   git clone https://github.com/okebola-archdeaconry/okebola-archdeaconry.git
+   cd okebola-archdeaconry
+
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pnpm install
+
+   ```
+
+4. Create a new branch for your feature:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+
+   ```
+
+5. Make your changes and commit them:
+
+   ```bash
+   git add .
+   git commit -m "Description of your changes"
+
+   ```
+   
+6. Push your changes:
+
+   ```bash
+
+   git push origin feature/your-feature-name
+
+   ```
+
+7. Create a Pull Request for your changes
+
 ## Learn More
 
 To learn more about the technologies used in this project:
