@@ -16,13 +16,5 @@
          "mode": "auto"
       }
    ],
-   "prettier.configPath": ".prettierrc.json",
-   "prettier.useEditorConfig": true,
-   "tailwindCSS.experimental.classRegex": [
-      ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-      ["cva\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-   ],
-   "[typescriptreact]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-   }
+   "prettier.useEditorConfig": true
 }
