@@ -160,5 +160,64 @@ const categories = [
   "Administration"
 ];
 
-export { announcements, announcements2, categories, events, leadershipTeam, links };
+const eventsData = [
+  {
+    id: 1,
+    title: "Sunday Worship Service",
+    description: "Join us for our weekly worship service with inspiring music and a message from Pastor John Smith.",
+    date: "Every Sunday",
+    time: "9:00 AM & 11:00 AM",
+    location: "Main Sanctuary",
+    image: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Bible Study Group",
+    description: "Dive deeper into God's word with our community Bible study. This week we'll be exploring the book of James.",
+    date: "Every Wednesday",
+    time: "7:00 PM",
+    location: "Fellowship Hall",
+    image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 3,
+    title: "Fall Festival",
+    description: "Annual community festival with games, food, music, and activities for all ages. Invite your friends and neighbors!",
+    date: "October 22, 2023",
+    time: "4:00 PM - 8:00 PM",
+    location: "Church Grounds",
+    image: "https://images.unsplash.com/photo-1601600576337-c1d8a0d1373c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    featured: true
+  },
+  {
+    id: 4,
+    title: "Youth Group Meeting",
+    description: "Weekly gathering for teens to connect, worship, and grow in their faith together.",
+    date: "Every Friday",
+    time: "6:30 PM",
+    location: "Youth Center",
+    image: "https://images.unsplash.com/photo-1526976668912-1a811878dd37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 5,
+    title: "Prayer Meeting",
+    description: "Join us as we gather to pray for our church, community, and world needs.",
+    date: "Every Tuesday",
+    time: "6:00 AM",
+    location: "Prayer Chapel",
+    image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 6,
+    title: "Community Service Day",
+    description: "Help us serve our local community through various outreach projects and initiatives.",
+    date: "November 5, 2023",
+    time: "9:00 AM - 2:00 PM",
+    location: "Meet at Church Parking Lot",
+    image: "https://images.unsplash.com/photo-1593113598332-cd59a0c3a9a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+  }
+];
+
+export { announcements, announcements2, categories, events, eventsData, leadershipTeam, links };
 
