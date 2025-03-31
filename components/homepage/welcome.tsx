@@ -16,7 +16,7 @@ export const Welcome: React.FC = () => {
           <p className="text-muted-foreground mb-8">
             Grace Church is a place where people can meet Jesus, engage in life-giving community, and everyone is welcome.
             We believe in creating a space where people can have authentic encounters with Christ,
-            discover their gifts, and use them for God's glory.
+            discover their gifts, and use them for God&apos;s glory.
           </p>
           <Separator className="max-w-xs mx-auto my-8" />
           <Link href={ABOUT_URL}>
@@ -91,7 +91,7 @@ export const Welcome: React.FC = () => {
               <ul className="space-y-2 mb-4">
                 <li className="text-center">Small Groups</li>
                 <li className="text-center">Youth Ministry</li>
-                <li className="text-center">Children's Programs</li>
+                <li className="text-center">Children&apos;s Programs</li>
                 <li className="text-center">Outreach & Service</li>
               </ul>
               <div className="mt-4 text-center">

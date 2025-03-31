@@ -82,14 +82,14 @@ export default function NotFoundPage() {
                     }`}
                 >
                   <BookOpen className="mr-2 h-5 w-5 animate-gentle-bounce" />
-                  <span className="text-sm font-medium">We couldn't find this page</span>
+                  <span className="text-sm font-medium">We couldn&apos;t find this page</span>
                 </div>
 
                 <p
                   className={`text-slate-600 transition-all duration-700 delay-600 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                     }`}
                 >
-                  The page you're looking for doesn't exist or has been moved to another location. Let us guide you back
+                  The page you&apos;re looking for doesn&apos;t exist or has been moved to another location. Let us guide you back
                   to the right path.
                 </p>
 
@@ -102,7 +102,7 @@ export default function NotFoundPage() {
                   className={`border-l-2 border-amber-300 pl-4 italic text-slate-700 transition-all duration-700 delay-800 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                     }`}
                 >
-                  "I am the way, the truth, and the life." — John 14:6
+                  &quot;I am the way, the truth, and the life.&quot; — John 14:6
                 </blockquote>
 
                 <div

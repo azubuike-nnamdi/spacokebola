@@ -176,7 +176,7 @@ export default function Home() {
               <h3 className="text-2xl mb-4">Faith in Uncertain Times</h3>
               <p className="text-muted-foreground mb-4">
                 Pastor John Smith explores how we can maintain and grow
-                our faith even in the midst of life's uncertainties and
+                our faith even in the midst of life&apos;s uncertainties and
                 challenges.
               </p>
               <p className="text-sm text-muted-foreground mb-6">
