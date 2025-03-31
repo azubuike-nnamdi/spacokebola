@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { AnimatedLink } from '@/components/ui/animated-link';
+import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,13 +9,14 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
-import Link from 'next/link';
-import { HOME_URL } from '@/config/routes';
-import { AnimatedLink } from '@/components/ui/animated-link';
-import { links } from '@/data';
+} from "@/components/ui/navigation-menu";
 import { ModeToggle } from '@/components/ui/toogle-mode';
-import { Button } from '@/components/ui/button';
+import { links } from '@/data';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,11 +46,7 @@ export const Navbar: React.FC = () => {
     >
       <div className="container flex items-center justify-between">
         {/* Logo */}
-        <Link href={HOME_URL} className="flex items-center gap-2">
-          <h1 className="text-xl md:text-2xl font-serif font-semibold tracking-tight">
-            SPAC OKE BOLA
-          </h1>
-        </Link>
+        <Image src="/assets/img/spac-logo.png" alt="SPAC OKE BOLA" width={50} height={50} />
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">

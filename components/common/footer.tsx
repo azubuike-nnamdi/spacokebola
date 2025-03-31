@@ -1,8 +1,9 @@
-import React from 'react';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 import Link from 'next/link';
+import React from 'react';
 
 import { links } from '@/data';
+import Image from 'next/image';
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
@@ -12,7 +13,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-16">
           {/* Church Info */}
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-xl font-serif mb-4">SPAC OKE BOLA</h3>
+            <Image src="/assets/img/spac-logo.png" alt="SPAC OKE BOLA" width={100} height={100}  className='mb-4'/>
             <p className="text-muted-foreground mb-4">
               The Action Place of the Holy Spirit
             </p>
