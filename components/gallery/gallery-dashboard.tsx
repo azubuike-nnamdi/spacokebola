@@ -1,8 +1,10 @@
+'use client';
+
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageTransition } from "@/components/ui/page-transition";
 import { galleryItems } from "@/data";
 import React from "react";
-import { Button } from "../ui/button";
 
 export default function GalleryDashboard() {
   const [activeCategory, setActiveCategory] = React.useState<number | null>(null);
