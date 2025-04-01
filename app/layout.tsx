@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Oke Bola Archdeaconry",
-  description: "Oke Bola Archdeaconry",
+  title: "SPAC OKE BOLA",
+  description: "SPAC OKE BOLA",
 };
 
 export default function RootLayout({
