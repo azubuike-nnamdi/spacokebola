@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SPAC OKE BOLA",
+  title: { default: 'SPAC OKE BOLA', template: '%s - SPAC OKE BOLA' },
   description: "SPAC OKE BOLA",
 };
 
