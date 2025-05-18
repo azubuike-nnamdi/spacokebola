@@ -5,12 +5,11 @@ const EVENTS_URL = "/events";
 const GALLERY_URL = "/gallery";
 const CONTACT_URL = "/contact";
 const BRANCHES_URL = "/branches";
+
+// admin dashboard
+const DASHBOARD_URL = "/dashboard";
 export {
-  HOME_URL,
   ABOUT_URL,
-  ANNOUNCEMENTS_URL,
-  EVENTS_URL,
-  GALLERY_URL,
-  CONTACT_URL,
-  BRANCHES_URL,
+  ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_URL, EVENTS_URL,
+  GALLERY_URL, HOME_URL
 };
