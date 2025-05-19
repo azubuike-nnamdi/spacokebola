@@ -1,4 +1,5 @@
-import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, EVENTS_URL, GALLERY_URL, HOME_URL } from "@/config/routes";
+import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_URL, EVENTS_URL, GALLERY_URL, HOME_URL, SETTINGS_URL } from "@/config/routes";
+import { LayoutDashboard, Settings } from "lucide-react";
 
 const links = [
   { path: HOME_URL, label: 'Home' },
@@ -249,6 +250,26 @@ const galleryItems = [
   }
 ];
 
+const userData = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
 
-export { announcements, announcements2, categories, events, eventsData, galleryItems, leadershipTeam, links };
+}
+
+const sideItem = [
+  {
+    title: "Dashboard",
+    url: DASHBOARD_URL,
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Settings",
+    url: SETTINGS_URL,
+    icon: Settings,
+  },
+]
+export { announcements, announcements2, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData };
 

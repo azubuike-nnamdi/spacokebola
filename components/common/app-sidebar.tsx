@@ -1,64 +1,57 @@
 "use client"
-import { Calendar, Inbox, LayoutDashboard, Search, Settings } from "lucide-react"
+import { LucideIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
 
+import { NavUser } from "@/components/admin/nav-user"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/ui/sidebar"
-import { DASHBOARD_URL } from "@/config/routes"
+import { sideItem, userData } from "@/data"
+import Image from "next/image"
 import Link from "next/link"
 
-// Menu items.
-const items = [
-  {
-    title: "Dashboard",
-    url: DASHBOARD_URL,
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
+
 
 export function AppSidebar() {
   const pathname = usePathname()
+
+  // Find the sidebar item with the longest matching prefix
+  const activeItem = sideItem.reduce<{ title: string; url: string; icon: LucideIcon } | null>((prev, curr) => {
+    if (
+      pathname.startsWith(curr.url) &&
+      (pathname === curr.url || pathname[curr.url.length] === '/' || pathname[curr.url.length] === undefined)
+    ) {
+      if (!prev || curr.url.length > prev.url.length) {
+        return curr;
+      }
+    }
+    return prev;
+  }, null);
 
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <div className="flex items-center gap-2 py-2">
+            <Image src="/assets/img/spac-logo.png" alt="SPAC OKE BOLA" width={30} height={30} />
+            <SidebarGroupLabel className="text-lg font-bold">SPAC OKE BOLA</SidebarGroupLabel>
+          </div>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {sideItem.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === item.url}
+                    isActive={!!activeItem && activeItem.url === item.url}
                     className="data-[active=true]:bg-black data-[active=true]:text-white"
                   >
                     <Link href={item.url}>
@@ -72,6 +65,10 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={userData.user} />
+      </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   )
 }

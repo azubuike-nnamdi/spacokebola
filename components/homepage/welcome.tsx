@@ -14,9 +14,8 @@ export const Welcome: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-16 animate-slide-up">
           <h2 className="text-3xl md:text-4xl mb-6">Welcome to Our Community of Faith</h2>
           <p className="text-muted-foreground mb-8">
-            Grace Church is a place where people can meet Jesus, engage in life-giving community, and everyone is welcome.
-            We believe in creating a space where people can have authentic encounters with Christ,
-            discover their gifts, and use them for God&apos;s glory.
+            St. Paul&apos;s Anglican Church is a welcoming community rooted in the rich traditions of the Anglican faith.
+            We are a place where people can grow in their relationship with Jesus Christ, participate in meaningful worship, and find fellowship in a supportive, Christ-centered community. At St. Paul&apos;s, we believe in creating sacred space for reverent worship, spiritual formation, and service, where individuals can discover and use their God-given gifts for His glory and the good of His Church.
           </p>
           <Separator className="max-w-xs mx-auto my-8" />
           <Link href={ABOUT_URL}>
