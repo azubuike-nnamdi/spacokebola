@@ -5,5 +5,19 @@ interface AnimatedLinkProps {
   className?: string;
 }
 
+type User = {
+  id: string
+  name: string
+  email: string
+  role: "admin" | "user" | "editor"
+}
 
-export type { AnimatedLinkProps };
+type Announcement = {
+  id: string
+  title: string
+  date: string
+  author: string
+  status: "published" | "draft"
+}
+
+export type { AnimatedLinkProps, Announcement, User };
