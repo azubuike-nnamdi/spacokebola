@@ -1,5 +1,5 @@
-import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_URL, EVENTS_URL, GALLERY_URL, HOME_URL, SETTINGS_URL } from "@/config/routes";
-import { LayoutDashboard, Settings } from "lucide-react";
+import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_ANNOUNCEMENTS_URL, DASHBOARD_EVENTS_URL, DASHBOARD_URL, EVENTS_URL, GALLERY_URL, HOME_URL, SETTINGS_URL } from "@/config/routes";
+import { Bell, Calendar, LayoutDashboard, Settings } from "lucide-react";
 
 const links = [
   { path: HOME_URL, label: 'Home' },
@@ -264,6 +264,16 @@ const sideItem = [
     title: "Dashboard",
     url: DASHBOARD_URL,
     icon: LayoutDashboard,
+  },
+  {
+    title: "Announcements",
+    url: DASHBOARD_ANNOUNCEMENTS_URL,
+    icon: Bell,
+  },
+  {
+    title: "Events",
+    url: DASHBOARD_EVENTS_URL,
+    icon: Calendar,
   },
   {
     title: "Settings",
