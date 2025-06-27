@@ -1,8 +1,5 @@
-import { CONTACT_URL } from "@/config/routes";
 
-import { Link } from "lucide-react";
 import Image from "next/image";
-import { Button } from "../ui/button";
 
 export default function AboutStory() {
   return (
@@ -14,17 +11,14 @@ export default function AboutStory() {
             <div>
               <h2 className="text-3xl md:text-4xl mb-6">Our Story</h2>
               <p className="text-muted-foreground mb-4">
-                Grace Church was founded in 1952 by a small group of families with a vision to create a place of worship that would serve the growing community of Faithville.
+                As early as 1936 there were Igbos who worshipped with the Yoruba Congregation at St James&apos; Cathedral, Oke Bola, Ibadan. Due to an appeal made to Rev. Williams, they were allowed to worship in a Classroom at St. James Primary School as the Igbo section of the Cathedral. Church services were conducted by Volunteers.
               </p>
               <p className="text-muted-foreground mb-4">
-                Over the decades, we&apos;ve grown from a small congregation meeting in a renovated storefront to a thriving church family with multiple ministries and outreach programs serving our community and beyond.
+                This arrangement lasted til 1940 when the igbo congregation moved to a new Church in Ekoledo (Emmanuel Church) to worship, where the congregation was largely Sierra Leonians led by Mr. Lumpkin (of blessed memory). Later that year (1940) the Igbo Congregation reconvened at the classroom of St. James&apos; Primary School Oke-Bola under the leadership of Messrs Ben, Ifekwuna and V.O.Onyewotu, both of them were civil In 1942, they were variously affected by transfers out of Ibadan, therefore, Messis Chinedu Ukaonu and L.O. Ogbonna succeeded them as leaders. In 1952 Mr. S.0 Okolo was posted to the Church as the first Catechist, under a special arrangement with Diocese on the Niger.
               </p>
-              <p className="text-muted-foreground mb-6">
-                While much has changed over the years, our commitment to sharing the love of Christ, building meaningful relationships, and making a positive impact in our world remains the same.
-              </p>
-              <Link href={CONTACT_URL}>
+              {/* <Link href={CONTACT_URL}>
                 <Button className="rounded-full">Connect With Us</Button>
-              </Link>
+              </Link> */}
             </div>
             <div className="aspect-square bg-muted rounded-lg overflow-hidden">
               <Image
