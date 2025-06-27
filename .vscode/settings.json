@@ -1,5 +1,24 @@
 {
-   "cSpell.words": ["couldn", "Koyejo", "shadcn", "sonner", "SPAC", "toogle"],
+   "cSpell.words": [
+      "Chinedu",
+      "couldn",
+      "Ekoledo",
+      "Ezeike",
+      "Ifekwuna",
+      "Igbos",
+      "Koyejo",
+      "Leonians",
+      "Lumpkin",
+      "Messis",
+      "Ogbonna",
+      "Okolo",
+      "Onyewotu",
+      "shadcn",
+      "sonner",
+      "SPAC",
+      "toogle",
+      "Ukaonu"
+   ],
    "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
       "source.organizeImports": "explicit"
