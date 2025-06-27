@@ -8,7 +8,7 @@ import { PageTransition } from "@/components/ui/page-transition";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About The Church",
   description: "Learn more about our church and our mission",
 }
 

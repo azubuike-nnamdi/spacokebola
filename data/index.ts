@@ -1,3 +1,4 @@
+import { vicarImage } from "@/config/images";
 import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_ANNOUNCEMENTS_URL, DASHBOARD_EVENTS_URL, DASHBOARD_URL, EVENTS_URL, GALLERY_URL, HOME_URL, SETTINGS_URL } from "@/config/routes";
 import { Bell, Calendar, LayoutDashboard, Settings } from "lucide-react";
 
@@ -65,32 +66,12 @@ const events = [
 const leadershipTeam = [
   {
     id: 1,
-    name: "Pastor John Smith",
-    role: "Senior Pastor",
-    bio: "Pastor John has served our congregation for over 15 years. He is passionate about teaching God's word and helping people grow in their faith.",
-    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    name: "Ven. Sunday D. Ezeike",
+    role: "Venerable/Archdeacon",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    image: vicarImage
   },
-  {
-    id: 2,
-    name: "Sarah Johnson",
-    role: "Worship Director",
-    bio: "Sarah leads our worship ministry with creativity and devotion. She has been part of our church family for 8 years.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-  },
-  {
-    id: 3,
-    name: "Michael Davis",
-    role: "Youth Pastor",
-    bio: "Michael is dedicated to helping young people discover their purpose and grow in their relationship with God.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-  },
-  {
-    id: 4,
-    name: "Jennifer Wilson",
-    role: "Children's Ministry Director",
-    bio: "Jennifer brings joy and creativity to our children's programs, creating a safe and fun environment for kids to learn about God.",
-    image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-  }
+
 ];
 
 const announcements2 = [
