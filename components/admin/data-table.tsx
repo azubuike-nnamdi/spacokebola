@@ -26,7 +26,7 @@ export type Column<T> = {
 }
 
 interface DataTableProps<T> {
-  data: T[]
+  data?: T[]
   columns: Column<T>[]
   onEdit?: (row: T) => void
   onDelete?: (row: T) => void
@@ -34,7 +34,7 @@ interface DataTableProps<T> {
 }
 
 export function DataTable<T extends { id: string }>({
-  data,
+  data = [],
   columns,
   onEdit,
   onDelete,
@@ -54,7 +54,7 @@ export function DataTable<T extends { id: string }>({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((row) => (
+          {data?.map((row) => (
             <TableRow key={row.id}>
               {columns.map((column) => (
                 <TableCell key={String(column.accessorKey)}>
