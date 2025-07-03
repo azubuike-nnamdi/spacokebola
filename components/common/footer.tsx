@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-16">
           {/* Church Info */}
           <div className="col-span-1 md:col-span-1">
-            <Image src="/assets/img/spac-logo.png" alt="SPAC OKE BOLA" width={100} height={100}  className='mb-4'/>
+            <Image src="/assets/img/spac-logo.png" alt="SPAC OKE BOLA" width={100} height={100} className='mb-4' />
             <p className="text-muted-foreground mb-4">
               The Action Place of the Holy Spirit
             </p>
@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
 
         {/* Copyright */}
         <div className="border-t border-border py-6 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} SPAC OKE BOLA. All rights reserved.</p>
+          <p>&copy; {currentYear} SPAC OKE BOLA. All rights reserved.</p>
         </div>
       </div>
     </footer>
