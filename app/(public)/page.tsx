@@ -120,16 +120,16 @@ export default function Home() {
         </div>
 
         <div className="container relative z-10 text-center">
-          <h2 className="text-white text-3xl md:text-4xl mb-6">
+          <h2 className="text-white dark:text-black text-3xl md:text-4xl mb-6">
             Join Us This Sunday
           </h2>
-          <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+          <p className="text-white/90 dark:text-black/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
             Experience uplifting worship, meaningful messages, and a
             welcoming community.
           </p>
           <Button
             size="lg"
-            className="rounded-full bg-white text-primary hover:bg-white/90"
+            className="rounded-full bg-white text-primary dark:text-black hover:bg-white/90"
           >
             Plan Your Visit
           </Button>

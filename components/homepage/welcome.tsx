@@ -64,9 +64,7 @@ export const Welcome: React.FC = () => {
                 7 Koyejo Street, Oke Bola<br />
                 Ibadan, Oyo State, Nigeria
               </p>
-              <div className="h-32 bg-muted rounded-md overflow-hidden">
-                <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1553617881-43509311d8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center"></div>
-              </div>
+
               <div className="mt-4 text-center">
                 <Link href={CONTACT_URL}>
                   <Button variant="outline" size="sm">Get Directions</Button>
@@ -87,12 +85,6 @@ export const Welcome: React.FC = () => {
               <p className="text-center mb-4">
                 Join one of our many small groups and ministries to grow in faith and build lasting relationships.
               </p>
-              <ul className="space-y-2 mb-4">
-                <li className="text-center">Small Groups</li>
-                <li className="text-center">Youth Ministry</li>
-                <li className="text-center">Children&apos;s Programs</li>
-                <li className="text-center">Outreach & Service</li>
-              </ul>
               <div className="mt-4 text-center">
                 <Link href={EVENTS_URL}>
                   <Button variant="outline" size="sm">Find Your Place</Button>
