@@ -1,4 +1,3 @@
-import NotFoundPage from "@/components/common/not-found-page";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
-  return <NotFoundPage />;
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <h1>Not Found</h1>
+    </div>
+  );
 }
