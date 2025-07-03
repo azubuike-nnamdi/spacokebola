@@ -12,12 +12,14 @@ type User = {
   role: "admin" | "user" | "editor"
 }
 
-type Announcement = {
-  id: string
-  title: string
-  date: string
-  author: string
-  status: "published" | "draft"
-}
+export type Announcement = {
+  id: string;
+  title: string;
+  date: string;
+  category: string;
+  image: string;
+  excerpt: string;
+  content: string;
+};
 
-export type { AnimatedLinkProps, Announcement, User };
+export type { AnimatedLinkProps, User };

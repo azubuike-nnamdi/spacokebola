@@ -1,7 +1,9 @@
 import TanstackProvider from "@/context/tanstack-provider";
 import { ThemeProvider } from "@/context/theme-provider";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 
@@ -118,26 +120,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Link to the favicon */}
-        <link rel="icon" href="/assets/img/spac-logo.png " />
-      </head>
-      <body
-        className={`${montserrat.variable} ${openSans.variable} antialiased`}
-        suppressHydrationWarning
-      >
-        <TanstackProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </TanstackProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          {/* Link to the favicon */}
+          <link rel="icon" href="/assets/img/spac-logo.png " />
+        </head>
+        <body
+          className={`${montserrat.variable} ${openSans.variable} antialiased`}
+          suppressHydrationWarning
+        >
+          <TanstackProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </TanstackProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
