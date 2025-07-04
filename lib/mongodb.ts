@@ -1,4 +1,4 @@
-import 'dotenv/config'
+
 import { MongoClient } from "mongodb"
 
 console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET' : 'NOT SET')
