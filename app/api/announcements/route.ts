@@ -108,6 +108,10 @@ export async function PUT(req: NextRequest) {
       { $set: { title, date, category, image, excerpt, content, updated_at: new Date() } }
     );
 
+    if (result.matchedCount === 0) {
+      return new Response(JSON.stringify({ message: "Announcement not found" }), { status: 404 });
+    }
+
     return new Response(JSON.stringify({ message: "Announcement updated successfully" }), { status: 200 });
   } catch (error) {
     console.log(error);
@@ -148,6 +152,10 @@ export async function DELETE(req: NextRequest) {
 
     const { ObjectId } = await import('mongodb');
     const result = await announcements.deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 0) {
+      return new Response(JSON.stringify({ message: "Announcement not found" }), { status: 404 });
+    }
 
     return new Response(JSON.stringify({ message: "Announcement deleted" }), { status: 200 });
   } catch (error) {
