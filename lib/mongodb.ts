@@ -1,8 +1,6 @@
 
 import { MongoClient } from "mongodb"
 
-console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET' : 'NOT SET')
-console.log('MONGODB_DB:', process.env.MONGODB_DB || 'DEFAULT')
 
 if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
