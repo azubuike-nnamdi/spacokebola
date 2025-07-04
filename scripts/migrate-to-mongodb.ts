@@ -1,10 +1,11 @@
-import { getDb } from '../lib/mongodb';
+import clientPromise from '../lib/mongodb';
 
 async function migrateToMongoDB() {
   try {
     console.log('🚀 Starting MongoDB migration...');
 
-    const db = await getDb();
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB || 'spacokebola');
 
     // Create indexes for better performance
     console.log('📊 Creating indexes...');
