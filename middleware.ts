@@ -8,6 +8,10 @@ const isProtectedRoute = createRouteMatcher([
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
     await auth.protect();
+
+    // Basic authentication check only
+    // Authorization (email allowlist) will be handled in API routes
+    // This prevents Edge Runtime issues with MongoDB
   }
 });
 

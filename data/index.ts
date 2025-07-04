@@ -1,6 +1,6 @@
 import { vicarImage } from "@/config/images";
 import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_ANNOUNCEMENTS_URL, DASHBOARD_EVENTS_URL, DASHBOARD_URL, EVENTS_URL, GALLERY_URL, HOME_URL, SETTINGS_URL } from "@/config/routes";
-import { Bell, Calendar, LayoutDashboard, Settings, Users } from "lucide-react";
+import { Bell, Calendar, LayoutDashboard, Settings, ShieldX, Users } from "lucide-react";
 
 const links = [
   { path: HOME_URL, label: 'Home' },
@@ -266,6 +266,12 @@ const sideItem = [
     url: "/dashboard/settings/allowed-emails",
     icon: Users,
   },
+  {
+    title: "Blocked Users",
+    url: "/dashboard/settings/blocked-users",
+    icon: ShieldX,
+  },
 ]
+
 export { announcements, announcements2, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData };
 

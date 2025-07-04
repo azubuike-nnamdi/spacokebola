@@ -9,7 +9,7 @@ export const useGetWhitelistedEmail = () => {
   }
 
   const { data, isPending, error, refetch } = useQuery({
-    queryKey: ['allowed-emails'],
+    queryKey: ['authentication'],
     queryFn: getWhitelistedEmail
   })
 

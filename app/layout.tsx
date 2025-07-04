@@ -112,6 +112,9 @@ const openSans = localFont({
 export const metadata: Metadata = {
   title: { default: 'SPAC OKE BOLA', template: '%s - SPAC OKE BOLA' },
   description: "SPAC OKE BOLA",
+  icons: {
+    icon: '/assets/img/spac-logo.png',
+  },
 };
 
 export default function RootLayout({
