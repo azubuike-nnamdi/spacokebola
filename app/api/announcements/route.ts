@@ -1,101 +1,134 @@
-import { supabaseServer } from "@/lib/supabase-server";
-import { currentUser, getAuth } from "@clerk/nextjs/server";
-import { NextRequest, NextResponse } from "next/server";
-
-// Helper: Check Clerk session and allowlist
-async function isAllowed(request: NextRequest): Promise<string | null> {
-  const { userId } = getAuth(request);
-  if (!userId) return null;
-  const user = await currentUser();
-  const email = user?.emailAddresses?.[0]?.emailAddress?.toLowerCase();
-  if (!email) return null;
-  const { data, error } = await supabaseServer
-    .from("allowed_emails")
-    .select("email")
-    .eq("email", email)
-    .single();
-  if (error || !data) return null;
-  return email;
-}
+import {
+  authenticateAndAuthorize,
+  createErrorResponse,
+  validateRequiredFields
+} from "@/lib/auth-helpers";
+import clientPromise from "@/lib/mongodb";
+import { NextRequest } from "next/server";
 
 // GET: Publicly accessible
 export async function GET() {
-  const { data, error } = await supabaseServer
-    .from("announcements")
-    .select("*")
-    .order("date", { ascending: false });
-  if (error) {
-    return NextResponse.json({ error: "Failed to fetch announcements" }, { status: 500 });
-  }
+  try {
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB);
+    const announcements = db.collection("announcements");
 
-  return NextResponse.json(data);
+    const data = await announcements.find().sort({ date: -1 }).toArray();
+    return new Response(JSON.stringify(data), { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new Response(JSON.stringify({ message: "Something went wrong" }), { status: 500 });
+  }
 }
 
 // POST: Create announcement (allowlist only)
-export async function POST(request: NextRequest) {
-  const allowed = await isAllowed(request);
-  if (!allowed) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+export async function POST(req: NextRequest) {
+  const authResult = await authenticateAndAuthorize();
 
-  const body = await request.json();
-
-  const { title, date, category, image, excerpt, content } = body;
-
-  if (!title || !date || !category || !excerpt || !content) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  if ('status' in authResult) {
+    return createErrorResponse(authResult);
   }
 
-  const { data, error } = await supabaseServer
-    .from("announcements")
-    .insert([{ title, date, category, image, excerpt, content }])
-    .select()
-    .single();
+  try {
+    const body = await req.json();
+    const validationError = validateRequiredFields(body, ['title', 'date', 'category', 'excerpt', 'content']);
+    if (validationError) {
+      return createErrorResponse(validationError);
+    }
 
-  if (error) {
-    return NextResponse.json({ error: "Failed to create announcement" }, { status: 500 });
+    const { title, date, category, image, excerpt, content } = body;
+
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB);
+    const announcements = db.collection("announcements");
+
+    const doc = {
+      title,
+      date,
+      category,
+      image,
+      excerpt,
+      content,
+      created_at: new Date(),
+      updated_at: new Date()
+    };
+
+    const result = await announcements.insertOne(doc);
+    return new Response(JSON.stringify({ ...doc, _id: result.insertedId }), { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new Response(JSON.stringify({ message: "Something went wrong" }), { status: 500 });
   }
-
-  return NextResponse.json(data);
 }
 
 // PUT: Update announcement (allowlist only)
-export async function PUT(request: NextRequest) {
-  const allowed = await isAllowed(request);
-  if (!allowed) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+export async function PUT(req: NextRequest) {
+  const authResult = await authenticateAndAuthorize();
 
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id");
-  if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
-
-  const body = await request.json();
-  const { title, date, category, image, excerpt, content } = body;
-
-  const { data, error } = await supabaseServer
-    .from("announcements")
-    .update({ title, date, category, image, excerpt, content })
-    .eq("id", id)
-    .select()
-    .single();
-
-  if (error) {
-    return NextResponse.json({ error: "Failed to update announcement" }, { status: 500 });
+  if ('status' in authResult) {
+    return createErrorResponse(authResult);
   }
 
-  return NextResponse.json(data);
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  if (!id) {
+    return new Response(JSON.stringify({ message: "Missing id" }), { status: 400 });
+  }
+
+  try {
+    const body = await req.json();
+    const { title, date, category, image, excerpt, content } = body;
+
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB);
+    const announcements = db.collection("announcements");
+
+    const { ObjectId } = await import('mongodb');
+    const result = await announcements.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { title, date, category, image, excerpt, content, updated_at: new Date() } }
+    );
+
+    if (result.matchedCount === 0) {
+      return new Response(JSON.stringify({ message: "Announcement not found" }), { status: 404 });
+    }
+
+    return new Response(JSON.stringify({ message: "Announcement updated successfully" }), { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new Response(JSON.stringify({ message: "Something went wrong" }), { status: 500 });
+  }
 }
 
 // DELETE: Remove announcement (allowlist only)
-export async function DELETE(request: NextRequest) {
-  const allowed = await isAllowed(request);
-  if (!allowed) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id");
-  if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
-  const { error } = await supabaseServer
-    .from("announcements")
-    .delete()
-    .eq("id", id);
-  if (error) {
-    return NextResponse.json({ error: "Failed to delete announcement" }, { status: 500 });
+export async function DELETE(req: NextRequest) {
+  const authResult = await authenticateAndAuthorize();
+
+  if ('status' in authResult) {
+    return createErrorResponse(authResult);
   }
-  return NextResponse.json({ message: "Announcement deleted" });
+
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  if (!id) {
+    return new Response(JSON.stringify({ message: "Missing id" }), { status: 400 });
+  }
+
+  try {
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB);
+    const announcements = db.collection("announcements");
+
+    const { ObjectId } = await import('mongodb');
+    const result = await announcements.deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 0) {
+      return new Response(JSON.stringify({ message: "Announcement not found" }), { status: 404 });
+    }
+
+    return new Response(JSON.stringify({ message: "Announcement deleted" }), { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new Response(JSON.stringify({ message: "Something went wrong" }), { status: 500 });
+  }
 } 
