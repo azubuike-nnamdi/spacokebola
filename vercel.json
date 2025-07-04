@@ -1,0 +1,14 @@
+{
+   "functions": {
+      "app/api/auth/check-authorization/route.ts": {
+         "maxDuration": 10
+      }
+   },
+   "regions": ["iad1"],
+   "build": {
+      "env": {
+         "MONGODB_URI": "@mongodb_uri",
+         "MONGODB_DB": "@mongodb_db"
+      }
+   }
+}
