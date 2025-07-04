@@ -1,5 +1,9 @@
+import {
+  authenticateAndAuthorize,
+  createErrorResponse,
+  validateRequiredFields
+} from "@/lib/auth-helpers";
 import clientPromise from "@/lib/mongodb";
-import { currentUser, getAuth } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 
 // GET: Publicly accessible
@@ -19,35 +23,24 @@ export async function GET() {
 
 // POST: Create announcement (allowlist only)
 export async function POST(req: NextRequest) {
-  const { userId } = getAuth(req);
-  if (!userId) {
-    return new Response(JSON.stringify({ message: "Not authenticated" }), { status: 401 });
-  }
+  const authResult = await authenticateAndAuthorize();
 
-  const user = await currentUser();
-  const email = user?.emailAddresses?.[0]?.emailAddress?.toLowerCase();
-  if (!email) {
-    return new Response(JSON.stringify({ message: "No email found" }), { status: 400 });
+  if ('status' in authResult) {
+    return createErrorResponse(authResult);
   }
 
   try {
     const body = await req.json();
-    const { title, date, category, image, excerpt, content } = body;
-
-    if (!title || !date || !category || !excerpt || !content) {
-      return new Response(JSON.stringify({ message: "Missing required fields" }), { status: 400 });
+    const validationError = validateRequiredFields(body, ['title', 'date', 'category', 'excerpt', 'content']);
+    if (validationError) {
+      return createErrorResponse(validationError);
     }
+
+    const { title, date, category, image, excerpt, content } = body;
 
     const client = await clientPromise;
     const db = client.db(process.env.MONGODB_DB);
-    const allowedEmails = db.collection("allowed_emails");
     const announcements = db.collection("announcements");
-
-    // Check if user is allowed
-    const isAllowed = await allowedEmails.findOne({ email });
-    if (!isAllowed) {
-      return new Response(JSON.stringify({ message: "Not authorized" }), { status: 403 });
-    }
 
     const doc = {
       title,
@@ -70,15 +63,10 @@ export async function POST(req: NextRequest) {
 
 // PUT: Update announcement (allowlist only)
 export async function PUT(req: NextRequest) {
-  const { userId } = getAuth(req);
-  if (!userId) {
-    return new Response(JSON.stringify({ message: "Not authenticated" }), { status: 401 });
-  }
+  const authResult = await authenticateAndAuthorize();
 
-  const user = await currentUser();
-  const email = user?.emailAddresses?.[0]?.emailAddress?.toLowerCase();
-  if (!email) {
-    return new Response(JSON.stringify({ message: "No email found" }), { status: 400 });
+  if ('status' in authResult) {
+    return createErrorResponse(authResult);
   }
 
   const { searchParams } = new URL(req.url);
@@ -93,14 +81,7 @@ export async function PUT(req: NextRequest) {
 
     const client = await clientPromise;
     const db = client.db(process.env.MONGODB_DB);
-    const allowedEmails = db.collection("allowed_emails");
     const announcements = db.collection("announcements");
-
-    // Check if user is allowed
-    const isAllowed = await allowedEmails.findOne({ email });
-    if (!isAllowed) {
-      return new Response(JSON.stringify({ message: "Not authorized" }), { status: 403 });
-    }
 
     const { ObjectId } = await import('mongodb');
     const result = await announcements.updateOne(
@@ -121,15 +102,10 @@ export async function PUT(req: NextRequest) {
 
 // DELETE: Remove announcement (allowlist only)
 export async function DELETE(req: NextRequest) {
-  const { userId } = getAuth(req);
-  if (!userId) {
-    return new Response(JSON.stringify({ message: "Not authenticated" }), { status: 401 });
-  }
+  const authResult = await authenticateAndAuthorize();
 
-  const user = await currentUser();
-  const email = user?.emailAddresses?.[0]?.emailAddress?.toLowerCase();
-  if (!email) {
-    return new Response(JSON.stringify({ message: "No email found" }), { status: 400 });
+  if ('status' in authResult) {
+    return createErrorResponse(authResult);
   }
 
   const { searchParams } = new URL(req.url);
@@ -141,14 +117,7 @@ export async function DELETE(req: NextRequest) {
   try {
     const client = await clientPromise;
     const db = client.db(process.env.MONGODB_DB);
-    const allowedEmails = db.collection("allowed_emails");
     const announcements = db.collection("announcements");
-
-    // Check if user is allowed
-    const isAllowed = await allowedEmails.findOne({ email });
-    if (!isAllowed) {
-      return new Response(JSON.stringify({ message: "Not authorized" }), { status: 403 });
-    }
 
     const { ObjectId } = await import('mongodb');
     const result = await announcements.deleteOne({ _id: new ObjectId(id) });
