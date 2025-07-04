@@ -36,10 +36,11 @@ export async function checkAndTrackUnauthorizedAttempts(email: string, ip?: stri
     const now = new Date();
     const fifteenMinutesAgo = new Date(now.getTime() - 15 * 60 * 1000); // 15 minutes ago
 
-    // Clean up old attempts (older than 15 minutes)
+    // Clean up old attempts (older than 15 minutes) but keep permanent blocks
     await failedAttempts.deleteMany({
       email,
-      timestamp: { $lt: fifteenMinutesAgo }
+      timestamp: { $lt: fifteenMinutesAgo },
+      permanent: { $ne: true } // Don't delete permanent blocks
     });
 
     // Count recent failed attempts by email
@@ -60,20 +61,41 @@ export async function checkAndTrackUnauthorizedAttempts(email: string, ip?: stri
     // Use the higher count for blocking (protects against both email and IP-based attacks)
     const recentAttempts = Math.max(recentAttemptsByEmail, recentAttemptsByIP);
 
+    // Check for permanent block first
+    const permanentBlock = await failedAttempts.findOne({
+      email,
+      permanent: true
+    });
+
+    if (permanentBlock) {
+      return true; // Email is permanently blocked
+    }
+
     // Progressive blocking strategy:
     // 3 attempts = 5 minute block
-    // 5 attempts = 15 minute block  
-    // 7 attempts = 30 minute block
-    // 10+ attempts = 1 hour block
+    // 5 attempts = PERMANENT block (admin intervention required)
     let blockDuration = 0;
-    if (recentAttempts >= 10) {
-      blockDuration = 60; // 1 hour
-    } else if (recentAttempts >= 7) {
-      blockDuration = 30; // 30 minutes
-    } else if (recentAttempts >= 5) {
-      blockDuration = 15; // 15 minutes
+    let isPermanent = false;
+
+    if (recentAttempts >= 5) {
+      isPermanent = true; // Permanent block
     } else if (recentAttempts >= 3) {
       blockDuration = 5; // 5 minutes
+    }
+
+    if (isPermanent) {
+      // Mark user as permanently blocked
+      await failedAttempts.insertOne({
+        email,
+        ip: ip || "unknown",
+        timestamp: now,
+        blocked: true,
+        permanent: true,
+        attemptsCount: recentAttempts,
+        reason: "Exceeded 5 failed attempts"
+      });
+
+      return true;
     }
 
     if (blockDuration > 0) {
@@ -96,6 +118,7 @@ export async function checkAndTrackUnauthorizedAttempts(email: string, ip?: stri
         ip: ip || "unknown",
         timestamp: now,
         blocked: true,
+        permanent: false,
         blockDuration,
         attemptsCount: recentAttempts
       });
@@ -109,6 +132,7 @@ export async function checkAndTrackUnauthorizedAttempts(email: string, ip?: stri
       ip: ip || "unknown",
       timestamp: now,
       blocked: false,
+      permanent: false,
       attemptsCount: recentAttempts + 1
     });
 
