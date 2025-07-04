@@ -27,7 +27,13 @@ export async function GET() {
             _id: "$email",
             attempts: { $push: "$$ROOT" },
             count: { $sum: 1 },
-            lastAttempt: { $max: "$timestamp" }
+            lastAttempt: { $max: "$timestamp" },
+            isPermanentlyBlocked: { $max: "$permanent" },
+            blockedCount: {
+              $sum: {
+                $cond: [{ $eq: ["$blocked", true] }, 1, 0]
+              }
+            }
           }
         },
         { $sort: { lastAttempt: -1 } }
@@ -64,7 +70,8 @@ export async function DELETE(req: NextRequest) {
 
     return new Response(JSON.stringify({
       message: `Cleared ${result.deletedCount} failed attempts for ${body.email}`,
-      deletedCount: result.deletedCount
+      deletedCount: result.deletedCount,
+      email: body.email
     }), { status: 200 });
   } catch (error) {
     console.log(error);
