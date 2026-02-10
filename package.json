@@ -10,7 +10,7 @@
       "lint": "eslint",
       "prepare": "husky",
       "type-check": "tsc --noEmit",
-      "preinstall": "node scripts/enforce-bun.js"
+      "preinstall": "node scripts/enforce-pnpm.js"
    },
    "dependencies": {
       "@hookform/resolvers": "^4.1.3",
