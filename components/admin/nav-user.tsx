@@ -1,6 +1,5 @@
 "use client"
 
-import { useClerk, useUser } from "@clerk/nextjs"
 import {
   BadgeCheck,
   Bell,
@@ -29,11 +28,22 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useRouter } from "next/navigation"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
-  const { user, isLoaded } = useUser()
-  const { signOut } = useClerk()
+  const router = useRouter()
+
+  // TODO: Replace with actual user data from custom auth
+  const mockUser = {
+    firstName: "Admin",
+    lastName: "User",
+    fullName: "Admin User",
+    email: "admin@spacokebola.com",
+    imageUrl: "", // No image for now
+  }
+
+  const isLoaded = true // Mock loaded state
 
   if (!isLoaded) {
     return (
@@ -51,12 +61,10 @@ export function NavUser() {
     )
   }
 
-  if (!user) {
-    return null
-  }
-
   const handleSignOut = () => {
-    signOut()
+    // TODO: Implement actual logout when custom auth is ready
+    console.log("Logout clicked - will implement with custom auth")
+    router.push("/auth/login")
   }
 
   return (
@@ -69,14 +77,14 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.imageUrl} alt={user.fullName || user.emailAddresses[0]?.emailAddress || 'User'} />
+                <AvatarImage src={mockUser.imageUrl} alt={mockUser.fullName} />
                 <AvatarFallback className="rounded-lg">
-                  {user.firstName?.charAt(0)}{user.lastName?.charAt(0)}
+                  {mockUser.firstName?.charAt(0)}{mockUser.lastName?.charAt(0)}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user.fullName || 'User'}</span>
-                <span className="truncate text-xs">{user.emailAddresses[0]?.emailAddress}</span>
+                <span className="truncate font-semibold">{mockUser.fullName}</span>
+                <span className="truncate text-xs">{mockUser.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -90,14 +98,14 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.imageUrl} alt={user.fullName || user.emailAddresses[0]?.emailAddress || 'User'} />
+                  <AvatarImage src={mockUser.imageUrl} alt={mockUser.fullName} />
                   <AvatarFallback className="rounded-lg">
-                    {user.firstName?.charAt(0)}{user.lastName?.charAt(0)}
+                    {mockUser.firstName?.charAt(0)}{mockUser.lastName?.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user.fullName || 'User'}</span>
-                  <span className="truncate text-xs">{user.emailAddresses[0]?.emailAddress}</span>
+                  <span className="truncate font-semibold">{mockUser.fullName}</span>
+                  <span className="truncate text-xs">{mockUser.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
