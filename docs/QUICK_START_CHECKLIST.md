@@ -1,20 +1,22 @@
 # Quick Start Checklist
 
-## Custom Authentication Implementation
+## Custom Authentication Implementation with Neon PostgreSQL
 
 ---
 
 ## 🚀 Start Here (Day 1-2)
 
-### Step 1: Set Up PostgreSQL Database ⏱️ 15 minutes
+### Step 1: Set Up Neon PostgreSQL Database ⏱️ 15 minutes
 
-#### Option A: Neon.tech (Recommended - Free)
+#### Option A: Neon.tech (Recommended ⭐)
 
 ```bash
 # 1. Go to https://neon.tech
-# 2. Sign up with your email
+# 2. Sign up with GitHub or your email
 # 3. Create a new project: "spacokebola-church"
-# 4. Copy the connection string
+# 4. Go to Dashboard → Connection Details
+# 5. Copy the connection string (it starts with postgresql://)
+# 6. Select "Pooled connection" for better performance
 ```
 
 #### Option B: Supabase (Alternative - Free)
@@ -42,12 +44,8 @@ docker run --name church-postgres \
 Create/update `.env.local`:
 
 ```env
-# PostgreSQL (Add this)
-DATABASE_URL="postgresql://user:password@host:5432/spacokebola?sslmode=require"
-
-# MongoDB (Keep existing)
-MONGODB_URI="mongodb+srv://ctrlaltfix-softwares:iPAbS9lhtmN2LBXz@cluster0.urec7pi.mongodb.net/"
-MONGODB_DB=spacokebola
+# PostgreSQL (Neon)
+DATABASE_URL="postgresql://user:password@ep-xxx.region.neon.tech/spacokebola?sslmode=require"
 
 # JWT Secrets (Generate new ones)
 # Run: openssl rand -base64 32
@@ -60,10 +58,6 @@ SESSION_SECRET="another-secret-for-sessions"
 # App
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 APP_ENV="development"
-
-# Clerk (Keep for now, will remove later)
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_cXVpY2stdG91Y2FuLTQ5LmNsZXJrLmFjY291bnRzLmRldiQ
-CLERK_SECRET_KEY=sk_test_xTEY1kFRTWmvgPgW6V7fwkVqrXLPPnczyaqrSjzqnP
 ```
 
 **Generate secrets:**
@@ -226,11 +220,12 @@ npx prisma studio
 
 At this point you should have:
 
-- ✅ PostgreSQL database (Neon/Supabase/Local)
-- ✅ Prisma ORM installed
-- ✅ Database schema created
-- ✅ Tables created in database
+- ✅ Neon PostgreSQL database created
+- ✅ Prisma ORM installed and configured
+- ✅ Database schema designed
+- ✅ Tables created in Neon database
 - ✅ Prisma Client generated
+- ✅ No MongoDB or Clerk dependencies
 
 **Time spent**: ~45 minutes  
 **Status**: Ready for Day 2 🎉
@@ -799,25 +794,31 @@ npx prisma generate
 
 Once all checkboxes are ✅, you have:
 
-- Working custom authentication
-- PostgreSQL database with tables
-- JWT-based sessions
+- Complete Neon PostgreSQL database
+- Prisma ORM configured
+- JWT-based authentication system
+- Secure password hashing
+- Session management
 - Admin user created
-- API routes for login/logout
+- API routes for login/logout/session
+- Clean slate without MongoDB or Clerk
 
 **Next steps:**
 
-1. Create login UI
-2. Create onboarding flow
-3. Build admin user management
-4. Gradually migrate from Clerk
+1. Create login UI components
+2. Build onboarding flow for first-time users
+3. Create admin user management panel
+4. Add announcements/events/gallery APIs with Prisma
+5. Deploy to production
 
 **Need help?** Refer to:
 
 - `CUSTOM_AUTH_IMPLEMENTATION_PLAN.md` - Full implementation guide
 - `TECH_STACK_DECISION.md` - Technology decisions
 - `ARCHITECTURE_COMPARISON.md` - Architecture diagrams
+- `MONGODB_REMOVAL_COMPLETE.md` - What was cleaned up
 
-**Estimated time to complete**: 4-5 days
-**Difficulty**: Medium
+**Estimated time to complete**: 4-5 days  
+**Difficulty**: Medium  
+**Database**: Neon PostgreSQL ⭐  
 **Support**: You got this! 🚀
