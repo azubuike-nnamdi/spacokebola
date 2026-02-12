@@ -145,7 +145,7 @@ A custom authentication system to replace Clerk, with:
 #### Authentication: Custom JWT-based
 
 - **Tokens**: jsonwebtoken (JWT)
-- **Passwords**: bcrypt (12 rounds)
+- **Method**: One-Time Password (OTP)
 - **Sessions**: PostgreSQL-backed
 - **Cookies**: HTTP-only, secure
 
@@ -309,7 +309,7 @@ I've analyzed your codebase and created 4 comprehensive documents:
 
 ## 🔐 Security Features Included
 
-- ✅ Bcrypt password hashing (12 rounds)
+- ✅ OTP verification
 - ✅ JWT tokens (15-minute expiry)
 - ✅ Refresh tokens (7-day expiry)
 - ✅ HTTP-only cookies
@@ -443,9 +443,8 @@ Savings:            ~$36-456/year
 
 - Export users from Clerk
 - Create accounts in PostgreSQL
-- Mark as isFirstLogin = true
-- Send password reset emails
-- Users set their own passwords
+- Users login via OTP (email verification)
+- No password migration needed!
 
 ---
 

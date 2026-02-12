@@ -43,7 +43,11 @@ pnpm install
 
 ### 2. Configure Environment Variables
 
-Create a `.env` file in the root directory and add your database connection string and secrets.
+Create a `.env` file in the root directory with your configuration.
+
+> **📝 Note**: This project uses a standard `.env` file (not `.env.local`). See our [Environment Variables Guide](docs/ENV_SETUP.md) for detailed documentation.
+
+**Quick Setup:**
 
 ```bash
 # Database (Example for Neon)
@@ -61,6 +65,15 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 APP_ENV="development"
 ```
 
+**Generate secure secrets:**
+
+```bash
+# Generate 3 different secrets for JWT_SECRET, JWT_REFRESH_SECRET, and SESSION_SECRET
+openssl rand -base64 32
+```
+
+For a complete environment variables reference, security best practices, and troubleshooting, see [docs/ENV_SETUP.md](docs/ENV_SETUP.md).
+
 ### 3. Setup Database (Create & Seed)
 
 Run the following commands to generate the Prisma client, create the database schema, and seed the database with initial data (including the default admin user).
@@ -76,10 +89,9 @@ npx prisma migrate dev --name init
 npx prisma db seed
 ```
 
-Once seeded, you can log in with:
+Once seeded, the default admin user is `admin@spacokebola.com`.
 
-- **Email:** `admin@spacokebola.com`
-- **Password:** `Admin123!`
+The system uses **OTP-based authentication** (no passwords). In development, you can check the server logs for the OTP code when logging in.
 
 ### 4. Run Development Server
 
@@ -96,4 +108,5 @@ We welcome contributions from the community! If you'd like to contribute, please
 ## Checklists & Plans
 
 - [Quick Start Checklist](docs/QUICK_START_CHECKLIST.md)
+- [Environment Variables Setup Guide](docs/ENV_SETUP.md)
 - [Custom Auth Implementation Plan](docs/CUSTOM_AUTH_IMPLEMENTATION_PLAN.md)

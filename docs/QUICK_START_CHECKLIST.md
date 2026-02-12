@@ -41,7 +41,7 @@ docker run --name church-postgres \
 
 ### Step 2: Update Environment Variables ⏱️ 5 minutes
 
-Create/update `.env.local`:
+Create/update `.env`:
 
 ```env
 # PostgreSQL (Neon)
@@ -79,10 +79,10 @@ cd /Users/nnamdiazubuike/Desktop/projects/spacokebola
 pnpm add prisma @prisma/client
 
 # Install authentication packages
-pnpm add bcrypt jsonwebtoken zod
+pnpm add jsonwebtoken zod
 
 # Install TypeScript types
-pnpm add -D @types/bcrypt @types/jsonwebtoken
+pnpm add -D @types/jsonwebtoken
 
 # Install utilities
 pnpm add nanoid
@@ -99,7 +99,7 @@ npx prisma init
 
 # This creates:
 # ✅ prisma/schema.prisma
-# ✅ .env (with DATABASE_URL)
+# ✅ .env file with DATABASE_URL placeholder
 ```
 
 ### Step 5: Create Database Schema ⏱️ 10 minutes
@@ -119,13 +119,12 @@ datasource db {
 model User {
   id                String    @id @default(cuid())
   email             String    @unique
-  password          String
   firstName         String?
   lastName          String?
   phoneNumber       String?
 
-  isFirstLogin      Boolean   @default(true)
   emailVerified     Boolean   @default(false)
+  emailVerifiedAt   DateTime?
 
   role              UserRole  @default(MEMBER)
   isActive          Boolean   @default(true)
@@ -138,10 +137,35 @@ model User {
 
   sessions          Session[]
   loginAttempts     LoginAttempt[]
+  otpCodes          OtpCode[]
   auditLogs         AuditLog[]
 
   @@index([email])
   @@map("users")
+}
+
+model OtpCode {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code        String
+  purpose     OtpPurpose
+  expiresAt   DateTime
+  verified    Boolean  @default(false)
+  verifiedAt  DateTime?
+  attempts    Int      @default(0)
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([code])
+  @@map("otp_codes")
+}
+
+enum OtpPurpose {
+  LOGIN
+  EMAIL_VERIFICATION
+  INVITATION_ACCEPT
 }
 
 enum UserRole {
@@ -252,48 +276,15 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 ### Create Authentication Utilities
 
-**`lib/auth/password.ts`** (Create new file)
+**`lib/auth/otp.ts`** (Create new file)
 
 ```typescript
-import bcrypt from "bcrypt";
+import { prisma } from "@/lib/prisma";
+import type { OtpPurpose } from "@prisma/client";
+import crypto from "crypto";
 
-const SALT_ROUNDS = 12;
-
-export async function hashPassword(password: string): Promise<string> {
-   return bcrypt.hash(password, SALT_ROUNDS);
-}
-
-export async function verifyPassword(
-   password: string,
-   hashedPassword: string,
-): Promise<boolean> {
-   return bcrypt.compare(password, hashedPassword);
-}
-
-export function validatePasswordStrength(password: string): {
-   isValid: boolean;
-   errors: string[];
-} {
-   const errors: string[] = [];
-
-   if (password.length < 8) {
-      errors.push("Password must be at least 8 characters");
-   }
-   if (!/[A-Z]/.test(password)) {
-      errors.push("Must contain uppercase letter");
-   }
-   if (!/[a-z]/.test(password)) {
-      errors.push("Must contain lowercase letter");
-   }
-   if (!/[0-9]/.test(password)) {
-      errors.push("Must contain number");
-   }
-
-   return {
-      isValid: errors.length === 0,
-      errors,
-   };
-}
+// See full implementation in docs/CUSTOM_AUTH_IMPLEMENTATION_PLAN.md
+// or copy from lib/auth/otp.ts in the codebase
 ```
 
 **`lib/auth/jwt.ts`** (Create new file)
@@ -434,114 +425,34 @@ export async function destroySession() {
 
 ## 🚀 Day 3-4: Create First API Routes
 
-### Login API
+### OTP Auth APIs
 
-**`app/api/auth/custom/login/route.ts`** (Create new file)
+**`app/api/auth/otp/request/route.ts`** (Create new file)
 
 ```typescript
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { verifyPassword } from "@/lib/auth/password";
+import { createOtp } from "@/lib/auth/otp";
+import { z } from "zod";
+
+export async function POST(req: NextRequest) {
+   // Implementation for requesting OTP (sending email)
+   return NextResponse.json({ message: "OTP sent" });
+}
+```
+
+**`app/api/auth/otp/verify/route.ts`** (Create new file)
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { verifyOtp } from "@/lib/auth/otp";
 import { createSession } from "@/lib/auth/session";
 import { z } from "zod";
 
-const loginSchema = z.object({
-   email: z.string().email(),
-   password: z.string().min(1),
-});
-
 export async function POST(req: NextRequest) {
-   try {
-      const body = await req.json();
-      const { email, password } = loginSchema.parse(body);
-
-      const user = await prisma.user.findUnique({
-         where: { email: email.toLowerCase() },
-      });
-
-      if (!user) {
-         await prisma.loginAttempt.create({
-            data: {
-               email: email.toLowerCase(),
-               ipAddress: req.ip || "unknown",
-               success: false,
-               failReason: "User not found",
-            },
-         });
-
-         return NextResponse.json(
-            { message: "Invalid email or password" },
-            { status: 401 },
-         );
-      }
-
-      if (user.isBlocked) {
-         return NextResponse.json(
-            { message: "Account blocked. Contact administrator." },
-            { status: 403 },
-         );
-      }
-
-      const isValidPassword = await verifyPassword(password, user.password);
-
-      if (!isValidPassword) {
-         await prisma.loginAttempt.create({
-            data: {
-               userId: user.id,
-               email: user.email,
-               ipAddress: req.ip || "unknown",
-               success: false,
-               failReason: "Invalid password",
-            },
-         });
-
-         return NextResponse.json(
-            { message: "Invalid email or password" },
-            { status: 401 },
-         );
-      }
-
-      await prisma.loginAttempt.create({
-         data: {
-            userId: user.id,
-            email: user.email,
-            ipAddress: req.ip || "unknown",
-            success: true,
-         },
-      });
-
-      await prisma.user.update({
-         where: { id: user.id },
-         data: { lastLoginAt: new Date() },
-      });
-
-      await createSession(user.id);
-
-      return NextResponse.json({
-         message: "Login successful",
-         isFirstLogin: user.isFirstLogin,
-         user: {
-            id: user.id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            role: user.role,
-         },
-      });
-   } catch (error) {
-      if (error instanceof z.ZodError) {
-         return NextResponse.json(
-            { message: "Invalid input", errors: error.errors },
-            { status: 400 },
-         );
-      }
-
-      console.error("Login error:", error);
-      return NextResponse.json(
-         { message: "Internal server error" },
-         { status: 500 },
-      );
-   }
+   // Implementation for verifying OTP and creating session
+   return NextResponse.json({ message: "Login successful" });
 }
 ```
 
@@ -607,24 +518,19 @@ export async function GET() {
 
 ```typescript
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
 async function main() {
-   // Create super admin
-   const hashedPassword = await bcrypt.hash("Admin123!", 12);
-
+   // Create super admin (no password - use OTP)
    const admin = await prisma.user.upsert({
       where: { email: "admin@spacokebola.com" },
       update: {},
       create: {
          email: "admin@spacokebola.com",
-         password: hashedPassword,
          firstName: "Super",
          lastName: "Admin",
          role: "SUPER_ADMIN",
-         isFirstLogin: false,
          emailVerified: true,
          isActive: true,
       },
@@ -632,8 +538,7 @@ async function main() {
 
    console.log("✅ Created admin user:", admin.email);
    console.log("📧 Email: admin@spacokebola.com");
-   console.log("🔑 Password: Admin123!");
-   console.log("⚠️  Change this password after first login!");
+   console.log("� Authentication: OTP-based (passwordless)");
 }
 
 main()
@@ -743,7 +648,7 @@ npx prisma generate
 ### Issue: Database connection error
 
 ```bash
-# Check DATABASE_URL in .env.local
+# Check DATABASE_URL in .env
 # Make sure it includes ?sslmode=require for Neon/Supabase
 
 # Test connection:
@@ -756,7 +661,7 @@ npx prisma db pull
 # Generate secrets:
 openssl rand -base64 32
 
-# Add to .env.local:
+# Add to .env:
 JWT_SECRET="your-secret-here"
 JWT_REFRESH_SECRET="another-secret-here"
 ```

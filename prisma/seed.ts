@@ -1,22 +1,16 @@
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
-
-const prisma = new PrismaClient();
+import "dotenv/config";
+import { prisma } from "../lib/prisma";
 
 async function main() {
-  // Create super admin
-  const hashedPassword = await bcrypt.hash("Admin123@#!", 12);
-
+  // Create super admin (without password - uses OTP for login)
   const admin = await prisma.user.upsert({
     where: { email: "admin@spacokebola.com" },
     update: {},
     create: {
       email: "admin@spacokebola.com",
-      password: hashedPassword,
       firstName: "Super",
       lastName: "Admin",
       role: "SUPER_ADMIN",
-      isFirstLogin: false,
       emailVerified: true,
       isActive: true,
     },
@@ -24,8 +18,8 @@ async function main() {
 
   console.log("✅ Created admin user:", admin.email);
   console.log("📧 Email: admin@spacokebola.com");
-  console.log("🔑 Password: Admin123!");
-  console.log("⚠️  Change this password after first login!");
+  console.log("🔐 Authentication: OTP-based (passwordless)");
+  console.log("ℹ️  Request an OTP code via email to login");
 }
 
 main()
