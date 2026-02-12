@@ -1,3 +1,4 @@
+import { createAuditLog } from "@/lib/audit";
 import { verifyOtp } from "@/lib/auth/otp";
 import { createSession } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
@@ -106,6 +107,15 @@ export async function POST(req: NextRequest) {
         ipAddress: req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown",
         success: true,
       },
+    });
+
+    // Add Audit Log entry
+    await createAuditLog({
+      userId: user.id,
+      action: "LOGIN",
+      entityType: "USER",
+      entityId: user.id,
+      changes: { ip: req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown" },
     });
 
     return NextResponse.json({
