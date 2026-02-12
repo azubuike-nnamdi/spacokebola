@@ -10,8 +10,7 @@ import {
 
 import {
   Avatar,
-  AvatarFallback,
-  AvatarImage,
+  AvatarFallback
 } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -28,24 +27,16 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { useRouter } from "next/navigation"
+import { useLogout } from "@/hooks/mutation/useLogout"
+import useCurrentUser from "@/hooks/query/useCurrentUser"
+
 
 export function NavUser() {
   const { isMobile } = useSidebar()
-  const router = useRouter()
+  const { data, isPending } = useCurrentUser()
+  const logoutMutation = useLogout()
 
-  // TODO: Replace with actual user data from custom auth
-  const mockUser = {
-    firstName: "Admin",
-    lastName: "User",
-    fullName: "Admin User",
-    email: "admin@spacokebola.com",
-    imageUrl: "", // No image for now
-  }
-
-  const isLoaded = true // Mock loaded state
-
-  if (!isLoaded) {
+  if (isPending) {
     return (
       <SidebarMenu>
         <SidebarMenuItem>
@@ -61,10 +52,19 @@ export function NavUser() {
     )
   }
 
+  // Fallback if user is not found
+  const displayUser = data || {
+    firstName: "Guest",
+    lastName: "User",
+    email: "",
+    role: "MEMBER",
+  }
+
+  const fullName = `${displayUser.firstName || ""} ${displayUser.lastName || ""}`.trim() || displayUser.email || "Guest User"
+  const roleDisplay = (displayUser.role || "MEMBER").replace("_", " ")
+
   const handleSignOut = () => {
-    // TODO: Implement actual logout when custom auth is ready
-    console.log("Logout clicked - will implement with custom auth")
-    router.push("/auth/login")
+    logoutMutation.mutate()
   }
 
   return (
@@ -77,14 +77,13 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={mockUser.imageUrl} alt={mockUser.fullName} />
-                <AvatarFallback className="rounded-lg">
-                  {mockUser.firstName?.charAt(0)}{mockUser.lastName?.charAt(0)}
+                <AvatarFallback className="rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  {displayUser.firstName?.charAt(0)}{displayUser.lastName?.charAt(0)}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{mockUser.fullName}</span>
-                <span className="truncate text-xs">{mockUser.email}</span>
+                <span className="truncate font-semibold">{fullName}</span>
+                <span className="truncate text-xs opacity-70">{roleDisplay}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -98,14 +97,14 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={mockUser.imageUrl} alt={mockUser.fullName} />
-                  <AvatarFallback className="rounded-lg">
-                    {mockUser.firstName?.charAt(0)}{mockUser.lastName?.charAt(0)}
+                  <AvatarFallback className="rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                    {displayUser.firstName?.charAt(0)}{displayUser.lastName?.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{mockUser.fullName}</span>
-                  <span className="truncate text-xs">{mockUser.email}</span>
+                  <span className="truncate font-semibold">{fullName}</span>
+                  <span className="truncate text-xs">{displayUser.email}</span>
+                  <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground mt-0.5">{roleDisplay}</span>
                 </div>
               </div>
             </DropdownMenuLabel>

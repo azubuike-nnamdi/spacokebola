@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { email } = requestOtpSchema.parse(body);
 
+    console.log("email", email);
     // Find user by email
     const user = await prisma.user.findUnique({
       where: { email: email.toLowerCase() },
