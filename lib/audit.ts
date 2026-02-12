@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "./prisma";
 
 export async function createAuditLog({
@@ -11,7 +12,7 @@ export async function createAuditLog({
   action: string;
   entityType: string;
   entityId?: string;
-  changes?: unknown;
+  changes?: Prisma.InputJsonValue;
 }) {
   try {
     return await prisma.auditLog.create({
