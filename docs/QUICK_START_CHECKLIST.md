@@ -41,7 +41,7 @@ docker run --name church-postgres \
 
 ### Step 2: Update Environment Variables ⏱️ 5 minutes
 
-Create/update `.env.local`:
+Create/update `.env`:
 
 ```env
 # PostgreSQL (Neon)
@@ -99,7 +99,7 @@ npx prisma init
 
 # This creates:
 # ✅ prisma/schema.prisma
-# ✅ .env (with DATABASE_URL)
+# ✅ .env file with DATABASE_URL placeholder
 ```
 
 ### Step 5: Create Database Schema ⏱️ 10 minutes
@@ -743,7 +743,7 @@ npx prisma generate
 ### Issue: Database connection error
 
 ```bash
-# Check DATABASE_URL in .env.local
+# Check DATABASE_URL in .env
 # Make sure it includes ?sslmode=require for Neon/Supabase
 
 # Test connection:
@@ -756,7 +756,7 @@ npx prisma db pull
 # Generate secrets:
 openssl rand -base64 32
 
-# Add to .env.local:
+# Add to .env:
 JWT_SECRET="your-secret-here"
 JWT_REFRESH_SECRET="another-secret-here"
 ```
