@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -15,13 +16,12 @@ datasource db {
 model User {
   id                String    @id @default(cuid())
   email             String    @unique
-  password          String
   firstName         String?
   lastName          String?
   phoneNumber       String?
 
-  isFirstLogin      Boolean   @default(true)
   emailVerified     Boolean   @default(false)
+  emailVerifiedAt   DateTime?
 
   role              UserRole  @default(MEMBER)
   isActive          Boolean   @default(true)
@@ -34,6 +34,7 @@ model User {
 
   sessions          Session[]
   loginAttempts     LoginAttempt[]
+  otpCodes          OtpCode[]
   auditLogs         AuditLog[]
 
   // Content Creation Relations
@@ -89,6 +90,32 @@ model LoginAttempt {
   @@index([ipAddress])
   @@map("login_attempts")
 }
+
+model OtpCode {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code        String   // 6-digit OTP
+  purpose     OtpPurpose
+  expiresAt   DateTime
+  verified    Boolean  @default(false)
+  verifiedAt  DateTime?
+  attempts    Int      @default(0)
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([code])
+  @@index([expiresAt])
+  @@map("otp_codes")
+}
+
+enum OtpPurpose {
+  LOGIN
+  EMAIL_VERIFICATION
+  INVITATION_ACCEPT
+}
+
 
 model AuditLog {
   id          String   @id @default(cuid())

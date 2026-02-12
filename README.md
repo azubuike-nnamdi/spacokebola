@@ -89,10 +89,9 @@ npx prisma migrate dev --name init
 npx prisma db seed
 ```
 
-Once seeded, you can log in with:
+Once seeded, the default admin user is `admin@spacokebola.com`.
 
-- **Email:** `admin@spacokebola.com`
-- **Password:** `Admin123!`
+The system uses **OTP-based authentication** (no passwords). In development, you can check the server logs for the OTP code when logging in.
 
 ### 4. Run Development Server
 

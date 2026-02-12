@@ -1,0 +1,253 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String  @id @default(cuid())
+  email       String  @unique
+  firstName   String?
+  lastName    String?
+  phoneNumber String?
+
+  emailVerified   Boolean   @default(false)
+  emailVerifiedAt DateTime?
+
+  role          UserRole @default(MEMBER)
+  isActive      Boolean  @default(true)
+  isBlocked     Boolean  @default(false)
+  blockedReason String?
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  lastLoginAt DateTime?
+
+  sessions      Session[]
+  loginAttempts LoginAttempt[]
+  otpCodes      OtpCode[]
+  auditLogs     AuditLog[]
+
+  // Content Creation Relations
+  createdEvents  Event[] @relation("EventCreator")
+  approvedEvents Event[] @relation("EventApprover")
+
+  createdAnnouncements  Announcement[] @relation("AnnouncementCreator")
+  approvedAnnouncements Announcement[] @relation("AnnouncementApprover")
+
+  // Invitation Relations
+  sentInvitations Invitation[] @relation("Inviter")
+
+  @@index([email])
+  @@map("users")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  PASTOR
+  SECRETARY
+  TREASURER
+  VOLUNTEER
+  MEMBER
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token        String   @unique
+  refreshToken String?  @unique
+  expiresAt    DateTime
+  ipAddress    String?
+  createdAt    DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+  @@map("sessions")
+}
+
+model LoginAttempt {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email      String
+  ipAddress  String
+  success    Boolean
+  failReason String?
+  timestamp  DateTime @default(now())
+
+  @@index([email])
+  @@index([ipAddress])
+  @@map("login_attempts")
+}
+
+model OtpCode {
+  id         String     @id @default(cuid())
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code       String // 6-digit OTP
+  purpose    OtpPurpose
+  expiresAt  DateTime
+  verified   Boolean    @default(false)
+  verifiedAt DateTime?
+  attempts   Int        @default(0)
+  ipAddress  String?
+  createdAt  DateTime   @default(now())
+
+  @@index([userId])
+  @@index([code])
+  @@index([expiresAt])
+  @@map("otp_codes")
+}
+
+enum OtpPurpose {
+  LOGIN
+  EMAIL_VERIFICATION
+  INVITATION_ACCEPT
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String
+  entityId   String?
+  changes    Json?
+  timestamp  DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@map("audit_logs")
+}
+
+// ==========================================
+// New Models for Content & Approval Workflow
+// ==========================================
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum EventCategory {
+  SUNDAY_SERVICE
+  BIBLE_STUDY
+  PRAYER_MEETING
+  YOUTH_PROGRAM
+  WOMENS_FELLOWSHIP
+  MENS_FELLOWSHIP
+  SPECIAL_EVENT
+  OTHER
+}
+
+model Event {
+  id          String        @id @default(cuid())
+  title       String
+  description String?       @db.Text
+  slug        String        @unique
+  category    EventCategory
+
+  startDate   DateTime
+  endDate     DateTime?
+  location    String?
+  virtualLink String?
+  imageUrl    String?
+
+  isPublished Boolean @default(false)
+
+  // Creation Metadata
+  createdById String
+  createdBy   User     @relation("EventCreator", fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Approval Workflow
+  approvalStatus  ApprovalStatus @default(PENDING)
+  approvedById    String?
+  approvedBy      User?          @relation("EventApprover", fields: [approvedById], references: [id])
+  approvedAt      DateTime?
+  rejectionReason String?
+
+  @@index([createdById])
+  @@index([approvalStatus])
+  @@index([startDate])
+  @@map("events")
+}
+
+enum AnnouncementCategory {
+  GENERAL
+  URGENT
+  SERVICE_RELATED
+  COMMUNITY
+  OBITUARY
+  WEDDING
+  BIRTHDAY
+}
+
+model Announcement {
+  id       String               @id @default(cuid())
+  title    String
+  content  String               @db.Text
+  category AnnouncementCategory @default(GENERAL)
+
+  priority    String    @default("NORMAL") // LOW, NORMAL, HIGH
+  isPublished Boolean   @default(false)
+  expiresAt   DateTime?
+
+  // Creation Metadata
+  createdById String
+  createdBy   User     @relation("AnnouncementCreator", fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Approval Workflow
+  approvalStatus  ApprovalStatus @default(PENDING)
+  approvedById    String?
+  approvedBy      User?          @relation("AnnouncementApprover", fields: [approvedById], references: [id])
+  approvedAt      DateTime?
+  rejectionReason String?
+
+  @@index([createdById])
+  @@index([approvalStatus])
+  @@map("announcements")
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+  REVOKED
+}
+
+model Invitation {
+  id     String           @id @default(cuid())
+  email  String
+  role   UserRole
+  token  String           @unique
+  status InvitationStatus @default(PENDING)
+
+  expiresAt DateTime
+
+  invitedById String
+  invitedBy   User   @relation("Inviter", fields: [invitedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([token])
+  @@index([invitedById])
+  @@map("invitations")
+}

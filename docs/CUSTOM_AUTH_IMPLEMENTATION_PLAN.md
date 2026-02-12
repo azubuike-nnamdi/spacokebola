@@ -8,10 +8,10 @@
 
 This document outlines a comprehensive plan to replace Clerk authentication with a custom authentication system for the Oke Bola Archdeaconry church website. The custom system will manage:
 
-1. **User Authentication** - Login, registration, password management
-2. **User Onboarding** - First-time login flow with password setup
+1. **User Authentication** - OTP (One-Time Password) based login
+2. **User Onboarding** - Invitation system with email verification
 3. **Admin Operations** - Full CRUD operations on users and church data
-4. **Security** - JWT tokens, password hashing, rate limiting, and session management
+4. **Security** - JWT tokens, OTP verification, rate limiting, and session management
 
 ---
 
@@ -99,17 +99,13 @@ datasource db {
 model User {
   id                String    @id @default(cuid())
   email             String    @unique
-  password          String    // Hashed with bcrypt
   firstName         String?
   lastName          String?
   phoneNumber       String?
 
   // Authentication
-  isFirstLogin      Boolean   @default(true)
   emailVerified     Boolean   @default(false)
-  verificationToken String?
-  resetToken        String?
-  resetTokenExpiry  DateTime?
+  emailVerifiedAt   DateTime?
 
   // Authorization
   role              UserRole  @default(MEMBER)
@@ -126,6 +122,7 @@ model User {
   // Relations
   sessions          Session[]
   loginAttempts     LoginAttempt[]
+  otpCodes          OtpCode[]
   auditLogs         AuditLog[]
 
   @@index([email])
@@ -141,6 +138,30 @@ enum UserRole {
   TREASURER      // Financial management
   VOLUNTEER      // Limited access
   MEMBER         // Regular member
+}
+
+model OtpCode {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code        String
+  purpose     OtpPurpose
+  expiresAt   DateTime
+  verified    Boolean  @default(false)
+  verifiedAt  DateTime?
+  attempts    Int      @default(0)
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([code])
+  @@map("otp_codes")
+}
+
+enum OtpPurpose {
+  LOGIN
+  EMAIL_VERIFICATION
+  INVITATION_ACCEPT
 }
 
 // Session Management
@@ -423,48 +444,18 @@ npx prisma db seed
 
 #### 2.1 Create Authentication Library
 
-**File: `lib/auth/password.ts`**
+**File: `lib/auth/otp.ts`**
 
 ```typescript
-import bcrypt from "bcrypt";
+import { prisma } from "@/lib/prisma";
+import type { OtpPurpose } from "@prisma/client";
+import crypto from "crypto";
 
-const SALT_ROUNDS = 12;
-
-export async function hashPassword(password: string): Promise<string> {
-   return bcrypt.hash(password, SALT_ROUNDS);
-}
-
-export async function verifyPassword(
-   password: string,
-   hashedPassword: string,
-): Promise<boolean> {
-   return bcrypt.compare(password, hashedPassword);
-}
-
-export function validatePasswordStrength(password: string): {
-   isValid: boolean;
-   errors: string[];
-} {
-   const errors: string[] = [];
-
-   if (password.length < 8) {
-      errors.push("Password must be at least 8 characters");
-   }
-   if (!/[A-Z]/.test(password)) {
-      errors.push("Password must contain at least one uppercase letter");
-   }
-   if (!/[a-z]/.test(password)) {
-      errors.push("Password must contain at least one lowercase letter");
-   }
-   if (!/[0-9]/.test(password)) {
-      errors.push("Password must contain at least one number");
-   }
-
-   return {
-      isValid: errors.length === 0,
-      errors,
-   };
-}
+// See actual file for implementation details:
+// - createOtp({ userId, purpose })
+// - verifyOtp({ userId, code, purpose })
+// - cleanupExpiredOtps()
+// - canRequestNewOtp()
 ```
 
 **File: `lib/auth/jwt.ts`**
@@ -612,120 +603,41 @@ export async function destroySession() {
 
 #### 2.2 API Routes
 
-**File: `app/api/auth/login/route.ts`**
+#### 2.2 API Routes
+
+**File: `app/api/auth/otp/request/route.ts`**
 
 ```typescript
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { verifyPassword } from "@/lib/auth/password";
-import { createSession } from "@/lib/auth/session";
+import { createOtp, canRequestNewOtp } from "@/lib/auth/otp";
 import { z } from "zod";
 
-const loginSchema = z.object({
+const requestSchema = z.object({
    email: z.string().email(),
-   password: z.string().min(1),
 });
 
 export async function POST(req: NextRequest) {
-   try {
-      const body = await req.json();
-      const { email, password } = loginSchema.parse(body);
+   // ... implementation to check user, rate limit, create OTP, send email ...
+}
+```
 
-      // Find user
-      const user = await prisma.user.findUnique({
-         where: { email: email.toLowerCase() },
-      });
+**File: `app/api/auth/otp/verify/route.ts` (Login)**
 
-      if (!user) {
-         // Log failed attempt
-         await prisma.loginAttempt.create({
-            data: {
-               email: email.toLowerCase(),
-               ipAddress: req.ip || "unknown",
-               success: false,
-               failReason: "User not found",
-            },
-         });
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { verifyOtp } from "@/lib/auth/otp";
+import { createSession } from "@/lib/auth/session";
+import { z } from "zod";
 
-         return NextResponse.json(
-            { message: "Invalid email or password" },
-            { status: 401 },
-         );
-      }
+const verifySchema = z.object({
+   email: z.string().email(),
+   code: z.string().length(6),
+});
 
-      // Check if user is blocked
-      if (user.isBlocked) {
-         return NextResponse.json(
-            { message: "Account is blocked. Please contact administrator." },
-            { status: 403 },
-         );
-      }
-
-      // Verify password
-      const isValidPassword = await verifyPassword(password, user.password);
-
-      if (!isValidPassword) {
-         // Log failed attempt
-         await prisma.loginAttempt.create({
-            data: {
-               userId: user.id,
-               email: user.email,
-               ipAddress: req.ip || "unknown",
-               success: false,
-               failReason: "Invalid password",
-            },
-         });
-
-         return NextResponse.json(
-            { message: "Invalid email or password" },
-            { status: 401 },
-         );
-      }
-
-      // Log successful attempt
-      await prisma.loginAttempt.create({
-         data: {
-            userId: user.id,
-            email: user.email,
-            ipAddress: req.ip || "unknown",
-            success: true,
-         },
-      });
-
-      // Update last login
-      await prisma.user.update({
-         where: { id: user.id },
-         data: { lastLoginAt: new Date() },
-      });
-
-      // Create session
-      await createSession(user.id);
-
-      return NextResponse.json({
-         message: "Login successful",
-         isFirstLogin: user.isFirstLogin,
-         user: {
-            id: user.id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            role: user.role,
-         },
-      });
-   } catch (error) {
-      if (error instanceof z.ZodError) {
-         return NextResponse.json(
-            { message: "Invalid input", errors: error.errors },
-            { status: 400 },
-         );
-      }
-
-      console.error("Login error:", error);
-      return NextResponse.json(
-         { message: "Internal server error" },
-         { status: 500 },
-      );
-   }
+export async function POST(req: NextRequest) {
+   // ... implementation to verify OTP and create session ...
 }
 ```
 
@@ -749,103 +661,6 @@ export async function POST() {
 }
 ```
 
-**File: `app/api/auth/onboarding/route.ts`**
-
-```typescript
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/auth/session";
-import { hashPassword, validatePasswordStrength } from "@/lib/auth/password";
-import { z } from "zod";
-
-const onboardingSchema = z
-   .object({
-      password: z.string().min(8),
-      confirmPassword: z.string(),
-      firstName: z.string().min(1),
-      lastName: z.string().min(1),
-      phoneNumber: z.string().optional(),
-   })
-   .refine((data) => data.password === data.confirmPassword, {
-      message: "Passwords don't match",
-      path: ["confirmPassword"],
-   });
-
-export async function POST(req: NextRequest) {
-   try {
-      const currentUser = await getCurrentUser();
-
-      if (!currentUser) {
-         return NextResponse.json(
-            { message: "Not authenticated" },
-            { status: 401 },
-         );
-      }
-
-      if (!currentUser.isFirstLogin) {
-         return NextResponse.json(
-            { message: "Onboarding already completed" },
-            { status: 400 },
-         );
-      }
-
-      const body = await req.json();
-      const data = onboardingSchema.parse(body);
-
-      // Validate password strength
-      const passwordValidation = validatePasswordStrength(data.password);
-      if (!passwordValidation.isValid) {
-         return NextResponse.json(
-            { message: "Password too weak", errors: passwordValidation.errors },
-            { status: 400 },
-         );
-      }
-
-      // Hash password
-      const hashedPassword = await hashPassword(data.password);
-
-      // Update user
-      await prisma.user.update({
-         where: { id: currentUser.id },
-         data: {
-            password: hashedPassword,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            phoneNumber: data.phoneNumber,
-            isFirstLogin: false,
-         },
-      });
-
-      // Log audit
-      await prisma.auditLog.create({
-         data: {
-            userId: currentUser.id,
-            action: "ONBOARDING_COMPLETED",
-            entityType: "User",
-            entityId: currentUser.id,
-         },
-      });
-
-      return NextResponse.json({
-         message: "Onboarding completed successfully",
-      });
-   } catch (error) {
-      if (error instanceof z.ZodError) {
-         return NextResponse.json(
-            { message: "Invalid input", errors: error.errors },
-            { status: 400 },
-         );
-      }
-
-      console.error("Onboarding error:", error);
-      return NextResponse.json(
-         { message: "Internal server error" },
-         { status: 500 },
-      );
-   }
-}
-```
-
 ---
 
 ### **Phase 3: Admin Operations (Week 3)**
@@ -858,7 +673,7 @@ export async function POST(req: NextRequest) {
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/session";
-import { hashPassword } from "@/lib/auth/password";
+
 import { z } from "zod";
 
 const createUserSchema = z.object({
@@ -926,20 +741,15 @@ export async function POST(req: NextRequest) {
          );
       }
 
-      // Generate temporary password
-      const tempPassword = Math.random().toString(36).slice(-12);
-      const hashedPassword = await hashPassword(tempPassword);
-
-      // Create user
+      // Create user (OTP based, so no password needed)
       const user = await prisma.user.create({
          data: {
             email: data.email.toLowerCase(),
-            password: hashedPassword,
             firstName: data.firstName,
             lastName: data.lastName,
-            role: data.role,
+            role: data.role as any, // Cast to UserRole
             phoneNumber: data.phoneNumber,
-            isFirstLogin: true,
+            emailVerified: false,
          },
          select: {
             id: true,
@@ -957,16 +767,14 @@ export async function POST(req: NextRequest) {
             action: "USER_CREATED",
             entityType: "User",
             entityId: user.id,
-            changes: { createdUser: user },
          },
       });
 
-      // TODO: Send email with temporary password
+      // TODO: Send invitation email
 
       return NextResponse.json({
          message: "User created successfully",
          user,
-         tempPassword, // Remove in production, send via email instead
       });
    } catch (error) {
       if (error instanceof z.ZodError) {
