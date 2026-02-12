@@ -94,3 +94,14 @@ export async function destroySession() {
   cookieStore.delete(ACCESS_TOKEN_COOKIE);
   cookieStore.delete(REFRESH_TOKEN_COOKIE);
 }
+
+// Helper to strictly enforce Super Admin access
+export async function assertSuperAdmin() {
+  const user = await getCurrentUser();
+
+  if (user?.role !== "SUPER_ADMIN") {
+    throw new Error("Unauthorized: SUPER_ADMIN role required");
+  }
+
+  return user;
+}

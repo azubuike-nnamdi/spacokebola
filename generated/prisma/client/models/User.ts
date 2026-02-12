@@ -265,6 +265,11 @@ export type UserWhereInput = {
   sessions?: Prisma.SessionListRelationFilter
   loginAttempts?: Prisma.LoginAttemptListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  createdEvents?: Prisma.EventListRelationFilter
+  approvedEvents?: Prisma.EventListRelationFilter
+  createdAnnouncements?: Prisma.AnnouncementListRelationFilter
+  approvedAnnouncements?: Prisma.AnnouncementListRelationFilter
+  sentInvitations?: Prisma.InvitationListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -286,6 +291,11 @@ export type UserOrderByWithRelationInput = {
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   loginAttempts?: Prisma.LoginAttemptOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
+  createdEvents?: Prisma.EventOrderByRelationAggregateInput
+  approvedEvents?: Prisma.EventOrderByRelationAggregateInput
+  createdAnnouncements?: Prisma.AnnouncementOrderByRelationAggregateInput
+  approvedAnnouncements?: Prisma.AnnouncementOrderByRelationAggregateInput
+  sentInvitations?: Prisma.InvitationOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -310,6 +320,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   sessions?: Prisma.SessionListRelationFilter
   loginAttempts?: Prisma.LoginAttemptListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  createdEvents?: Prisma.EventListRelationFilter
+  approvedEvents?: Prisma.EventListRelationFilter
+  createdAnnouncements?: Prisma.AnnouncementListRelationFilter
+  approvedAnnouncements?: Prisma.AnnouncementListRelationFilter
+  sentInvitations?: Prisma.InvitationListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -373,6 +388,11 @@ export type UserCreateInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -394,6 +414,11 @@ export type UserUncheckedCreateInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserUpdateInput = {
@@ -415,6 +440,11 @@ export type UserUpdateInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -436,6 +466,11 @@ export type UserUncheckedUpdateInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -626,6 +661,80 @@ export type UserUpdateOneWithoutAuditLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedEventsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutApprovedEventsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovedEventsInput, Prisma.UserUncheckedCreateWithoutApprovedEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovedEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreatedEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedEventsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedEventsInput, Prisma.UserUpdateWithoutCreatedEventsInput>, Prisma.UserUncheckedUpdateWithoutCreatedEventsInput>
+}
+
+export type UserUpdateOneWithoutApprovedEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovedEventsInput, Prisma.UserUncheckedCreateWithoutApprovedEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovedEventsInput
+  upsert?: Prisma.UserUpsertWithoutApprovedEventsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApprovedEventsInput, Prisma.UserUpdateWithoutApprovedEventsInput>, Prisma.UserUncheckedUpdateWithoutApprovedEventsInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedAnnouncementsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutCreatedAnnouncementsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedAnnouncementsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutApprovedAnnouncementsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutApprovedAnnouncementsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovedAnnouncementsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreatedAnnouncementsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutCreatedAnnouncementsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedAnnouncementsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedAnnouncementsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedAnnouncementsInput, Prisma.UserUpdateWithoutCreatedAnnouncementsInput>, Prisma.UserUncheckedUpdateWithoutCreatedAnnouncementsInput>
+}
+
+export type UserUpdateOneWithoutApprovedAnnouncementsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutApprovedAnnouncementsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovedAnnouncementsInput
+  upsert?: Prisma.UserUpsertWithoutApprovedAnnouncementsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApprovedAnnouncementsInput, Prisma.UserUpdateWithoutApprovedAnnouncementsInput>, Prisma.UserUncheckedUpdateWithoutApprovedAnnouncementsInput>
+}
+
+export type UserCreateNestedOneWithoutSentInvitationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentInvitationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSentInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentInvitationsInput
+  upsert?: Prisma.UserUpsertWithoutSentInvitationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentInvitationsInput, Prisma.UserUpdateWithoutSentInvitationsInput>, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   id?: string
   email: string
@@ -644,6 +753,11 @@ export type UserCreateWithoutSessionsInput = {
   lastLoginAt?: Date | string | null
   loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -664,6 +778,11 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   lastLoginAt?: Date | string | null
   loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -700,6 +819,11 @@ export type UserUpdateWithoutSessionsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -720,6 +844,11 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
 }
 
 export type UserCreateWithoutLoginAttemptsInput = {
@@ -740,6 +869,11 @@ export type UserCreateWithoutLoginAttemptsInput = {
   lastLoginAt?: Date | string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserUncheckedCreateWithoutLoginAttemptsInput = {
@@ -760,6 +894,11 @@ export type UserUncheckedCreateWithoutLoginAttemptsInput = {
   lastLoginAt?: Date | string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserCreateOrConnectWithoutLoginAttemptsInput = {
@@ -796,6 +935,11 @@ export type UserUpdateWithoutLoginAttemptsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLoginAttemptsInput = {
@@ -816,6 +960,11 @@ export type UserUncheckedUpdateWithoutLoginAttemptsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -836,6 +985,11 @@ export type UserCreateWithoutAuditLogsInput = {
   lastLoginAt?: Date | string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -856,6 +1010,11 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   lastLoginAt?: Date | string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -892,6 +1051,11 @@ export type UserUpdateWithoutAuditLogsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -912,6 +1076,591 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserCreateWithoutCreatedEventsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserUncheckedCreateWithoutCreatedEventsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserCreateOrConnectWithoutCreatedEventsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+}
+
+export type UserCreateWithoutApprovedEventsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserUncheckedCreateWithoutApprovedEventsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserCreateOrConnectWithoutApprovedEventsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovedEventsInput, Prisma.UserUncheckedCreateWithoutApprovedEventsInput>
+}
+
+export type UserUpsertWithoutCreatedEventsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedEventsInput, Prisma.UserUncheckedUpdateWithoutCreatedEventsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedEventsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedEventsInput, Prisma.UserUncheckedUpdateWithoutCreatedEventsInput>
+}
+
+export type UserUpdateWithoutCreatedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserUpsertWithoutApprovedEventsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutApprovedEventsInput, Prisma.UserUncheckedUpdateWithoutApprovedEventsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovedEventsInput, Prisma.UserUncheckedCreateWithoutApprovedEventsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutApprovedEventsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutApprovedEventsInput, Prisma.UserUncheckedUpdateWithoutApprovedEventsInput>
+}
+
+export type UserUpdateWithoutApprovedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutApprovedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserCreateWithoutCreatedAnnouncementsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserUncheckedCreateWithoutCreatedAnnouncementsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserCreateOrConnectWithoutCreatedAnnouncementsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutCreatedAnnouncementsInput>
+}
+
+export type UserCreateWithoutApprovedAnnouncementsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  sentInvitations?: Prisma.InvitationCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserUncheckedCreateWithoutApprovedAnnouncementsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  sentInvitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutInvitedByInput
+}
+
+export type UserCreateOrConnectWithoutApprovedAnnouncementsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutApprovedAnnouncementsInput>
+}
+
+export type UserUpsertWithoutCreatedAnnouncementsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedAnnouncementsInput, Prisma.UserUncheckedUpdateWithoutCreatedAnnouncementsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutCreatedAnnouncementsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedAnnouncementsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedAnnouncementsInput, Prisma.UserUncheckedUpdateWithoutCreatedAnnouncementsInput>
+}
+
+export type UserUpdateWithoutCreatedAnnouncementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedAnnouncementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserUpsertWithoutApprovedAnnouncementsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutApprovedAnnouncementsInput, Prisma.UserUncheckedUpdateWithoutApprovedAnnouncementsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovedAnnouncementsInput, Prisma.UserUncheckedCreateWithoutApprovedAnnouncementsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutApprovedAnnouncementsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutApprovedAnnouncementsInput, Prisma.UserUncheckedUpdateWithoutApprovedAnnouncementsInput>
+}
+
+export type UserUpdateWithoutApprovedAnnouncementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  sentInvitations?: Prisma.InvitationUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutApprovedAnnouncementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  sentInvitations?: Prisma.InvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+}
+
+export type UserCreateWithoutSentInvitationsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserUncheckedCreateWithoutSentInvitationsInput = {
+  id?: string
+  email: string
+  password: string
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  isFirstLogin?: boolean
+  emailVerified?: boolean
+  role?: $Enums.UserRole
+  isActive?: boolean
+  isBlocked?: boolean
+  blockedReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutApprovedByInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserCreateOrConnectWithoutSentInvitationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+}
+
+export type UserUpsertWithoutSentInvitationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSentInvitationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+}
+
+export type UserUpdateWithoutSentInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSentInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFirstLogin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blockedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  loginAttempts?: Prisma.LoginAttemptUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedEvents?: Prisma.EventUncheckedUpdateManyWithoutApprovedByNestedInput
+  createdAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedAnnouncements?: Prisma.AnnouncementUncheckedUpdateManyWithoutApprovedByNestedInput
 }
 
 
@@ -923,12 +1672,22 @@ export type UserCountOutputType = {
   sessions: number
   loginAttempts: number
   auditLogs: number
+  createdEvents: number
+  approvedEvents: number
+  createdAnnouncements: number
+  approvedAnnouncements: number
+  sentInvitations: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   loginAttempts?: boolean | UserCountOutputTypeCountLoginAttemptsArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  createdEvents?: boolean | UserCountOutputTypeCountCreatedEventsArgs
+  approvedEvents?: boolean | UserCountOutputTypeCountApprovedEventsArgs
+  createdAnnouncements?: boolean | UserCountOutputTypeCountCreatedAnnouncementsArgs
+  approvedAnnouncements?: boolean | UserCountOutputTypeCountApprovedAnnouncementsArgs
+  sentInvitations?: boolean | UserCountOutputTypeCountSentInvitationsArgs
 }
 
 /**
@@ -962,6 +1721,41 @@ export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.AuditLogWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountApprovedEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedAnnouncementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AnnouncementWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountApprovedAnnouncementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AnnouncementWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvitationWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -982,6 +1776,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   loginAttempts?: boolean | Prisma.User$loginAttemptsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
+  approvedEvents?: boolean | Prisma.User$approvedEventsArgs<ExtArgs>
+  createdAnnouncements?: boolean | Prisma.User$createdAnnouncementsArgs<ExtArgs>
+  approvedAnnouncements?: boolean | Prisma.User$approvedAnnouncementsArgs<ExtArgs>
+  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1044,6 +1843,11 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   loginAttempts?: boolean | Prisma.User$loginAttemptsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
+  approvedEvents?: boolean | Prisma.User$approvedEventsArgs<ExtArgs>
+  createdAnnouncements?: boolean | Prisma.User$createdAnnouncementsArgs<ExtArgs>
+  approvedAnnouncements?: boolean | Prisma.User$approvedAnnouncementsArgs<ExtArgs>
+  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1055,6 +1859,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     loginAttempts: Prisma.$LoginAttemptPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+    createdEvents: Prisma.$EventPayload<ExtArgs>[]
+    approvedEvents: Prisma.$EventPayload<ExtArgs>[]
+    createdAnnouncements: Prisma.$AnnouncementPayload<ExtArgs>[]
+    approvedAnnouncements: Prisma.$AnnouncementPayload<ExtArgs>[]
+    sentInvitations: Prisma.$InvitationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1469,6 +2278,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   loginAttempts<T extends Prisma.User$loginAttemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$loginAttemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdEvents<T extends Prisma.User$createdEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  approvedEvents<T extends Prisma.User$approvedEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$approvedEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdAnnouncements<T extends Prisma.User$createdAnnouncementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdAnnouncementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  approvedAnnouncements<T extends Prisma.User$approvedAnnouncementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$approvedAnnouncementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sentInvitations<T extends Prisma.User$sentInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1970,6 +2784,126 @@ export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * User.createdEvents
+ */
+export type User$createdEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Event
+   */
+  select?: Prisma.EventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Event
+   */
+  omit?: Prisma.EventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventInclude<ExtArgs> | null
+  where?: Prisma.EventWhereInput
+  orderBy?: Prisma.EventOrderByWithRelationInput | Prisma.EventOrderByWithRelationInput[]
+  cursor?: Prisma.EventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventScalarFieldEnum | Prisma.EventScalarFieldEnum[]
+}
+
+/**
+ * User.approvedEvents
+ */
+export type User$approvedEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Event
+   */
+  select?: Prisma.EventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Event
+   */
+  omit?: Prisma.EventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventInclude<ExtArgs> | null
+  where?: Prisma.EventWhereInput
+  orderBy?: Prisma.EventOrderByWithRelationInput | Prisma.EventOrderByWithRelationInput[]
+  cursor?: Prisma.EventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventScalarFieldEnum | Prisma.EventScalarFieldEnum[]
+}
+
+/**
+ * User.createdAnnouncements
+ */
+export type User$createdAnnouncementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Announcement
+   */
+  select?: Prisma.AnnouncementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Announcement
+   */
+  omit?: Prisma.AnnouncementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AnnouncementInclude<ExtArgs> | null
+  where?: Prisma.AnnouncementWhereInput
+  orderBy?: Prisma.AnnouncementOrderByWithRelationInput | Prisma.AnnouncementOrderByWithRelationInput[]
+  cursor?: Prisma.AnnouncementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AnnouncementScalarFieldEnum | Prisma.AnnouncementScalarFieldEnum[]
+}
+
+/**
+ * User.approvedAnnouncements
+ */
+export type User$approvedAnnouncementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Announcement
+   */
+  select?: Prisma.AnnouncementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Announcement
+   */
+  omit?: Prisma.AnnouncementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AnnouncementInclude<ExtArgs> | null
+  where?: Prisma.AnnouncementWhereInput
+  orderBy?: Prisma.AnnouncementOrderByWithRelationInput | Prisma.AnnouncementOrderByWithRelationInput[]
+  cursor?: Prisma.AnnouncementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AnnouncementScalarFieldEnum | Prisma.AnnouncementScalarFieldEnum[]
+}
+
+/**
+ * User.sentInvitations
+ */
+export type User$sentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invitation
+   */
+  select?: Prisma.InvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invitation
+   */
+  omit?: Prisma.InvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvitationInclude<ExtArgs> | null
+  where?: Prisma.InvitationWhereInput
+  orderBy?: Prisma.InvitationOrderByWithRelationInput | Prisma.InvitationOrderByWithRelationInput[]
+  cursor?: Prisma.InvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvitationScalarFieldEnum | Prisma.InvitationScalarFieldEnum[]
 }
 
 /**

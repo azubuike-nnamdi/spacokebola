@@ -37,3 +37,18 @@ export type LoginAttempt = Prisma.LoginAttemptModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model Event
+ * 
+ */
+export type Event = Prisma.EventModel
+/**
+ * Model Announcement
+ * 
+ */
+export type Announcement = Prisma.AnnouncementModel
+/**
+ * Model Invitation
+ * 
+ */
+export type Invitation = Prisma.InvitationModel

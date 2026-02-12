@@ -216,6 +216,74 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>
 }
 
+export type EnumEventCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventCategory | Prisma.EnumEventCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventCategoryFilter<$PrismaModel> | $Enums.EventCategory
+}
+
+export type EnumApprovalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ApprovalStatus | Prisma.EnumApprovalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+}
+
+export type EnumEventCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventCategory | Prisma.EnumEventCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventCategoryWithAggregatesFilter<$PrismaModel> | $Enums.EventCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEventCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEventCategoryFilter<$PrismaModel>
+}
+
+export type EnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ApprovalStatus | Prisma.EnumApprovalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumApprovalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumApprovalStatusFilter<$PrismaModel>
+}
+
+export type EnumAnnouncementCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.AnnouncementCategory | Prisma.EnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAnnouncementCategoryFilter<$PrismaModel> | $Enums.AnnouncementCategory
+}
+
+export type EnumAnnouncementCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AnnouncementCategory | Prisma.EnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAnnouncementCategoryWithAggregatesFilter<$PrismaModel> | $Enums.AnnouncementCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAnnouncementCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAnnouncementCategoryFilter<$PrismaModel>
+}
+
+export type EnumInvitationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvitationStatus | Prisma.EnumInvitationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvitationStatusFilter<$PrismaModel> | $Enums.InvitationStatus
+}
+
+export type EnumInvitationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvitationStatus | Prisma.EnumInvitationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvitationStatusWithAggregatesFilter<$PrismaModel> | $Enums.InvitationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumInvitationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumInvitationStatusFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -402,6 +470,74 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumEventCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventCategory | Prisma.EnumEventCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventCategoryFilter<$PrismaModel> | $Enums.EventCategory
+}
+
+export type NestedEnumApprovalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ApprovalStatus | Prisma.EnumApprovalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+}
+
+export type NestedEnumEventCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventCategory | Prisma.EnumEventCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventCategory[] | Prisma.ListEnumEventCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventCategoryWithAggregatesFilter<$PrismaModel> | $Enums.EventCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEventCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEventCategoryFilter<$PrismaModel>
+}
+
+export type NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ApprovalStatus | Prisma.EnumApprovalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ApprovalStatus[] | Prisma.ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumApprovalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumApprovalStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumAnnouncementCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.AnnouncementCategory | Prisma.EnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAnnouncementCategoryFilter<$PrismaModel> | $Enums.AnnouncementCategory
+}
+
+export type NestedEnumAnnouncementCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AnnouncementCategory | Prisma.EnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AnnouncementCategory[] | Prisma.ListEnumAnnouncementCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAnnouncementCategoryWithAggregatesFilter<$PrismaModel> | $Enums.AnnouncementCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAnnouncementCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAnnouncementCategoryFilter<$PrismaModel>
+}
+
+export type NestedEnumInvitationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvitationStatus | Prisma.EnumInvitationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvitationStatusFilter<$PrismaModel> | $Enums.InvitationStatus
+}
+
+export type NestedEnumInvitationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.InvitationStatus | Prisma.EnumInvitationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.InvitationStatus[] | Prisma.ListEnumInvitationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumInvitationStatusWithAggregatesFilter<$PrismaModel> | $Enums.InvitationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumInvitationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumInvitationStatusFilter<$PrismaModel>
 }
 
 

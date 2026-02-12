@@ -20,3 +20,49 @@ export const UserRole = {
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const ApprovalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ApprovalStatus = (typeof ApprovalStatus)[keyof typeof ApprovalStatus]
+
+
+export const EventCategory = {
+  SUNDAY_SERVICE: 'SUNDAY_SERVICE',
+  BIBLE_STUDY: 'BIBLE_STUDY',
+  PRAYER_MEETING: 'PRAYER_MEETING',
+  YOUTH_PROGRAM: 'YOUTH_PROGRAM',
+  WOMENS_FELLOWSHIP: 'WOMENS_FELLOWSHIP',
+  MENS_FELLOWSHIP: 'MENS_FELLOWSHIP',
+  SPECIAL_EVENT: 'SPECIAL_EVENT',
+  OTHER: 'OTHER'
+} as const
+
+export type EventCategory = (typeof EventCategory)[keyof typeof EventCategory]
+
+
+export const AnnouncementCategory = {
+  GENERAL: 'GENERAL',
+  URGENT: 'URGENT',
+  SERVICE_RELATED: 'SERVICE_RELATED',
+  COMMUNITY: 'COMMUNITY',
+  OBITUARY: 'OBITUARY',
+  WEDDING: 'WEDDING',
+  BIRTHDAY: 'BIRTHDAY'
+} as const
+
+export type AnnouncementCategory = (typeof AnnouncementCategory)[keyof typeof AnnouncementCategory]
+
+
+export const InvitationStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  EXPIRED: 'EXPIRED',
+  REVOKED: 'REVOKED'
+} as const
+
+export type InvitationStatus = (typeof InvitationStatus)[keyof typeof InvitationStatus]

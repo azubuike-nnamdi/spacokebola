@@ -54,7 +54,10 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   LoginAttempt: 'LoginAttempt',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  Event: 'Event',
+  Announcement: 'Announcement',
+  Invitation: 'Invitation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -131,6 +134,65 @@ export const AuditLogScalarFieldEnum = {
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const EventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  slug: 'slug',
+  category: 'category',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  location: 'location',
+  virtualLink: 'virtualLink',
+  imageUrl: 'imageUrl',
+  isPublished: 'isPublished',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approvalStatus: 'approvalStatus',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason'
+} as const
+
+export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+export const AnnouncementScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  category: 'category',
+  priority: 'priority',
+  isPublished: 'isPublished',
+  expiresAt: 'expiresAt',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approvalStatus: 'approvalStatus',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason'
+} as const
+
+export type AnnouncementScalarFieldEnum = (typeof AnnouncementScalarFieldEnum)[keyof typeof AnnouncementScalarFieldEnum]
+
+
+export const InvitationScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  role: 'role',
+  token: 'token',
+  status: 'status',
+  expiresAt: 'expiresAt',
+  invitedById: 'invitedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
 
 
 export const SortOrder = {

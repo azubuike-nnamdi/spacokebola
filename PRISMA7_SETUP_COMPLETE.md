@@ -288,3 +288,48 @@ This will create your database tables in Neon!
 **Prisma Version**: 7.3.0  
 **Database**: Neon PostgreSQL  
 **Status**: ✅ Ready to migrate!
+
+---
+
+## 🚀 Schema Update: Content Approval & Invitations
+
+**Updated**: February 10, 2026
+
+We have enhanced the database schema to support:
+1.  **Content Approval Workflow**: Events and Announcements now have an `approvalStatus` (PENDING, APPROVED, REJECTED).
+2.  **Strict Invitation System**: Added `Invitation` model to enforce that only SUPER_ADMINs can invite new users.
+
+### New Models Added
+
+-   **Event**: Includes `approvalStatus`, `approvedBy`, `category`, and detailed event info.
+-   **Announcement**: Includes `approvalStatus`, `approvedBy`, `priority`, and expiration.
+-   **Invitation**: Tracks email invites with `token`, `role`, and `status`.
+
+### Logic Implementation Plan
+
+To fully enforce "Only Super Admin" rules, implementing the following logic is required (next steps):
+
+1.  **Invitations**:
+    -   API Endpoint: `POST /api/auth/invite`
+    -   Logic: Check if `req.user.role === 'SUPER_ADMIN'`. If yes, create `Invitation` record. Send email.
+    -   Signup: New users sign up via `POST /api/auth/signup?token=...` which validates the token against `Invitation`.
+
+2.  **Content Approval**:
+    -   Create: `POST /api/events` (Sets `approvalStatus: PENDING`)
+    -   Approve: `PATCH /api/events/:id/approve`
+    -   Logic: Check if `req.user.role === 'SUPER_ADMIN'`. If yes, update `approvalStatus: APPROVED`.
+
+### Apply Changes
+
+Since your schema is updated, apply changes to your Neon database:
+
+```bash
+# Apply schema changes (if migrate dev hangs, use db push)
+npx prisma db push
+```
+
+And regenerate the client:
+
+```bash
+npx prisma generate
+```
