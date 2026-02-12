@@ -1,6 +1,6 @@
+import type { OtpPurpose } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma";
-import type { OtpPurpose } from "@prisma/client";
-import crypto from "crypto";
+import * as crypto from "crypto";
 
 const OTP_EXPIRY_MINUTES = 10;
 const MAX_ATTEMPTS = 5;

@@ -72,7 +72,6 @@ export async function getCurrentUser() {
       role: true,
       isActive: true,
       isBlocked: true,
-      isFirstLogin: true,
     },
   });
 
