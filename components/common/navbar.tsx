@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from '@/components/ui/toogle-mode';
 import { links } from '@/data';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,6 +21,7 @@ import React, { useEffect, useState } from 'react';
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
   const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -86,7 +87,7 @@ export const Navbar: React.FC = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="p-2 rounded-md md:hidden focus:outline-none"
+          className="p-2 rounded-md md:hidden focus:outline-none relative z-50"
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -96,39 +97,62 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 z-30 bg-background/80 backdrop-blur-sm"
+          className="fixed inset-0 z-30 bg-black/30 backdrop-blur-sm"
           onClick={closeMenu}
         />
       )}
 
       {/* Mobile Menu - Fixed background */}
       <div
-        className={`fixed inset-0 z-40 bg-background bg-opacity-100 flex flex-col pt-24 px-6 pb-8 transition-transform duration-300 ease-in-out transform md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+        className={`fixed top-0 left-0 w-full h-[90vh] z-40 bg-background
+        flex flex-col pt-24 px-6 pb-8
+        transition-transform duration-300 ease-in-out transform md:hidden
+        ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
-        <nav className="flex flex-col space-y-6">
+        <nav className="flex flex-col space-y-6 w-full mb-3">
           {links.map((link) => (
             <React.Fragment key={link.path}>
               {link.children ? (
-                <div className="space-y-2">
-                  <div className="font-medium text-lg text-foreground">{link.label}</div>
-                  <div className="pl-4 space-y-2">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.path}
-                        href={child.path}
-                        className={`text-lg py-2 transition-colors ${pathname === child.path
-                          ? 'font-medium text-primary'
-                          : 'text-foreground hover:text-primary'
-                          }`}
-                        onClick={closeMenu}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  <div className="space-y-2">
+                    <button
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === link.label ? null : link.label)
+                      }
+                      className="flex justify-between items-center w-full font-medium text-lg text-foreground"
+                    >
+                      {link.label}
+                      <span className="text-sm">
+                        {openDropdown === link.label ? <ChevronUp /> : <ChevronDown />}
+                      </span>
+                    </button>
+
+                    <hr/>
+
+                    {/* Dropdown children */}
+                    {openDropdown === link.label && (
+                      <div className="pl-4 mt-2 flex flex-col space-y-3">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.path}
+                            href={child.path}
+                            className={`text-lg py-1 transition-colors ${
+                              pathname === child.path
+                                ? "font-medium text-primary"
+                                : "text-foreground hover:text-primary"
+                            }`}
+                            onClick={() => {
+                              closeMenu();
+                              setOpenDropdown(null);
+                            }}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                </div>
-              ) : (
+                ) : (
+
                 <Link
                   href={link.path}
                   className={`text-lg py-2 border-b border-border transition-colors ${pathname === link.path
@@ -143,9 +167,10 @@ export const Navbar: React.FC = () => {
             </React.Fragment>
           ))}
         </nav>
+
         <ModeToggle />
 
-        <div className="mt-auto pt-8">
+        <div className="mt-auto pt-4">
           <Button size="lg" className="w-full">
             Join Us Sunday
           </Button>
