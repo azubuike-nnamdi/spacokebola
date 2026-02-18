@@ -46,21 +46,21 @@ const announcements = [
 const events = [
   {
     id: 1,
-    title: "Sunday Worship Service",
-    date: "Every Sunday",
-    time: "9:00 AM & 11:00 AM"
+    title: "Combined Service",
+    date: "Last Sunday",
+    time: "9:00 AM"
   },
   {
     id: 2,
-    title: "Bible Study Group",
-    date: "Every Wednesday",
-    time: "7:00 PM"
+    title: "Ash Wednesday",
+    date: "Februrary 18",
+    time: "5:00 PM"
   },
   {
     id: 3,
-    title: "Fall Festival",
-    date: "October 22, 2023",
-    time: "4:00 PM - 8:00 PM"
+    title: "Easter",
+    date: "April 12, 2026",
+    time: "10:00 AM"
   }
 ];
 
@@ -73,6 +73,13 @@ const leadershipTeam = [
     image: vicarImage
   },
 
+];
+
+const message = [
+  {
+    id: 1,
+    path: "https://web.facebook.com/OKEBOLAARCHDEACONRY/videos/33533906146253329"
+  }
 ];
 
 const announcements2 = [
@@ -274,83 +281,4 @@ const sideItem = [
   },
 ]
 
-const branches = [
-  {
-    slug: "emmanuel",
-    name: "Emmanuel Anglican Church",
-    tagline: "A community of faith, hope, and love in the heart of Ibadan.",
-    address: "Ekoledo, Ibadan, Oyo State, Nigeria",
-    phone: "+234 803 000 0001",
-    email: "emmanuel@spacokebola.org",
-    heroImage: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    story: {
-      title: "The Emmanuel Story",
-      desc1: "As early as 1936 there were Igbos who worshipped with the Yoruba Congregation at St James' Cathedral, Oke Bola, Ibadan. Due to an appeal made to Rev. Williams, they were allowed to worship in a Classroom at St. James Primary School as the Igbo section of the Cathedral. Church services were conducted by Volunteers.",
-      desc2: "This arrangement lasted till 1940 when the Igbo congregation moved to a new Church in Ekoledo (Emmanuel Church) to worship, where the congregation was largely Sierra Leonians led by Mr. Lumpkin (of blessed memory). Later that year (1940) the Igbo Congregation reconvened at the classroom of St. James' Primary School Oke-Bola under the leadership of Messrs Ben, Ifekwuna and V.O. Onyewotu. In 1942, they were variously affected by transfers out of Ibadan, therefore, Messrs Chinedu Ukaonu and L.O. Ogbonna succeeded them as leaders. In 1952 Mr. S.O Okolo was posted to the Church as the first Catechist, under a special arrangement with Diocese on the Niger.",
-      img: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    serviceTimes: [
-      { day: "Sunday", time: "7:00 AM & 9:30 AM", type: "Holy Communion & Morning Prayer" },
-      { day: "Wednesday", time: "6:00 PM", type: "Bible Study" },
-      { day: "Friday", time: "6:00 AM", type: "Morning Prayer" }
-    ],
-    vicar: {
-      name: "Ven. Sunday D. Ezeike",
-      role: "Vicar, Emmanuel Anglican Church",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-    }
-  },
-  {
-    slug: "hosanna",
-    name: "Hosanna Anglican Church Joyce B",
-    tagline: "Lifting up praises to God in the Joyce B community of Ibadan.",
-    address: "Joyce B Road, Ibadan, Oyo State, Nigeria",
-    phone: "+234 803 000 0002",
-    email: "hosanna@spacokebola.org",
-    heroImage: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    story: {
-      title: "The Hosanna Story",
-      desc1: "Hosanna Anglican Church Joyce B was established to serve the growing Christian community in the Joyce B neighbourhood of Ibadan. Founded in the early 1980s, the church began as a small fellowship of believers who gathered in homes before eventually acquiring land and building a permanent place of worship.",
-      desc2: "Over the decades, Hosanna has grown into a vibrant congregation known for its passionate worship, strong youth ministry, and active community outreach programs. The church continues to be a beacon of hope and a centre of spiritual growth for families across the Joyce B community and beyond, staying true to its founding vision of lifting praises to God and serving the people.",
-      img: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    serviceTimes: [
-      { day: "Sunday", time: "8:00 AM & 10:00 AM", type: "Holy Communion & Praise Service" },
-      { day: "Tuesday", time: "6:00 PM", type: "Prayer Meeting" },
-      { day: "Thursday", time: "6:00 PM", type: "Bible Study" }
-    ],
-    vicar: {
-      name: "Rev. Emmanuel O. Chukwu",
-      role: "Vicar, Hosanna Anglican Church",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-    }
-  },
-  {
-    slug: "michael",
-    name: "ST. Michael & All Angles",
-    tagline: "Lifting up praises to God in the Joyce B community of Ibadan.",
-    address: "Joyce B Road, Ibadan, Oyo State, Nigeria",
-    phone: "+234 803 000 0002",
-    email: "hosanna@spacokebola.org",
-    heroImage: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    story: {
-      title: "The Hosanna Story",
-      desc1: "Hosanna Anglican Church Joyce B was established to serve the growing Christian community in the Joyce B neighbourhood of Ibadan. Founded in the early 1980s, the church began as a small fellowship of believers who gathered in homes before eventually acquiring land and building a permanent place of worship.",
-      desc2: "Over the decades, Hosanna has grown into a vibrant congregation known for its passionate worship, strong youth ministry, and active community outreach programs. The church continues to be a beacon of hope and a centre of spiritual growth for families across the Joyce B community and beyond, staying true to its founding vision of lifting praises to God and serving the people.",
-      img: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    serviceTimes: [
-      { day: "Sunday", time: "8:00 AM & 10:00 AM", type: "Holy Communion & Praise Service" },
-      { day: "Tuesday", time: "6:00 PM", type: "Prayer Meeting" },
-      { day: "Thursday", time: "6:00 PM", type: "Bible Study" }
-    ],
-    vicar: {
-      name: "Rev. Emmanuel O. Chukwu",
-      role: "Vicar, Hosanna Anglican Church",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-    }
-  }
-];
-
-
-export { announcements, announcements2, branches, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData };
+export { announcements, announcements2, branches, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData, message};
