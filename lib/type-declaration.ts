@@ -22,4 +22,12 @@ export type Announcement = {
   content: string;
 };
 
-export type { AnimatedLinkProps, User };
+type AboutStoryProps = {
+  title: string;
+  desc1: string;
+  desc2: string;
+  img: string
+}
+
+export type { AboutStoryProps, AnimatedLinkProps, User };
+
