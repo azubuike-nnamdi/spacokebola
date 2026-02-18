@@ -29,5 +29,18 @@ type AboutStoryProps = {
   img: string
 }
 
-export type { AboutStoryProps, AnimatedLinkProps, User };
+
+interface Branch {
+  slug: string;
+  name: string;
+  tagline: string;
+  story: {
+    title: string;
+    desc1: string;
+    desc2: string;
+    img: string;
+  };
+}
+
+export type { AboutStoryProps, AnimatedLinkProps, Branch, User };
 

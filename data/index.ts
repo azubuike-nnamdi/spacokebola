@@ -1,5 +1,6 @@
 import { vicarImage } from "@/config/images";
 import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_ANNOUNCEMENTS_URL, DASHBOARD_EVENTS_URL, DASHBOARD_URL, EVENTS_URL, GALLERY_URL, HOME_URL, SETTINGS_URL } from "@/config/routes";
+import { Branch } from "@/lib/type-declaration";
 import { Bell, Calendar, LayoutDashboard, Settings, ShieldX, Users } from "lucide-react";
 
 const links = [
@@ -281,4 +282,41 @@ const sideItem = [
   },
 ]
 
-export { announcements, announcements2, branches, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData, message};
+const branches: Branch[] = [
+  {
+    slug: "emmanuel",
+    name: "Emmanuel Anglican Church",
+    tagline: "A place of grace, worship, and community.",
+    story: {
+      title: "Our Story",
+      desc1: "Emmanuel Anglican Church was founded with a vision to bring the gospel to the heart of the community. Over the years, we have grown into a vibrant congregation committed to worship, discipleship, and service.",
+      desc2: "We are a family of believers dedicated to living out our faith in practical ways — loving our neighbours, serving the needy, and proclaiming the hope of Christ to all.",
+      img: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+  },
+  {
+    slug: "hosanna",
+    name: "Hosanna Anglican Church Joyce B",
+    tagline: "Praise, prayer, and purpose — together.",
+    story: {
+      title: "Our Story",
+      desc1: "Hosanna Anglican Church Joyce B began as a small prayer group and has since grown into a thriving congregation. Our name reflects our heart — a cry of praise and a declaration of faith.",
+      desc2: "We are passionate about equipping every member to discover their God-given purpose and to make a lasting impact in their community and beyond.",
+      img: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+  },
+  {
+    slug: "michael",
+    name: "St. Michael & All Angels",
+    tagline: "Standing firm in faith, serving with love.",
+    story: {
+      title: "Our Story",
+      desc1: "St. Michael & All Angels is a congregation rooted in the Anglican tradition, committed to sound doctrine and heartfelt worship. We draw inspiration from the heavenly host in our call to serve and glorify God.",
+      desc2: "Our community is a welcoming space for all who seek to grow in their relationship with God and with one another, grounded in scripture and moved by the Spirit.",
+      img: "https://images.unsplash.com/photo-1574185649768-3a4a13c38f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+  },
+];
+
+export { announcements, announcements2, branches, categories, events, eventsData, galleryItems, leadershipTeam, links, message, sideItem, userData };
+
