@@ -11,6 +11,7 @@ const links = [
     children: [
       { path: `${BRANCHES_URL}/emmanuel`, label: 'Emmanuel Anglican Church' },
       { path: `${BRANCHES_URL}/hosanna`, label: 'Hosanna Anglican Church Joyce B' },
+      { path: `${BRANCHES_URL}/michael`, label: 'St. Michael & All Angles' },
     ]
   },
   { path: ANNOUNCEMENTS_URL, label: 'Announcements' },
@@ -280,5 +281,4 @@ const sideItem = [
   },
 ]
 
-export { announcements, announcements2, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData, message };
-
+export { announcements, announcements2, branches, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData, message};

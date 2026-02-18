@@ -1,4 +1,9 @@
-export default function AboutHero() {
+
+type aboutHeroProps = {
+  title: string;
+  description: string;
+}
+export default function AboutHero({ title, description }: Readonly<aboutHeroProps>) {
   return (
     <div>
       {/* Hero Section */}
@@ -11,9 +16,9 @@ export default function AboutHero() {
         </div>
 
         <div className="container relative z-10 text-center">
-          <h1 className="text-white mb-6">About The Church</h1>
+          <h1 className="text-white mb-6">{title}</h1>
           <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            A community of faith, hope, and love in the city of Ibadan since 1936.
+            {description}
           </p>
         </div>
       </section>
