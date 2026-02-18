@@ -46,14 +46,19 @@ export const Welcome: React.FC = () => {
                     <span className="text-muted-foreground">Sunday Mornings</span>
                     <span>7:00 & 10:00 AM</span>
                   </li>
+                   <li className="flex justify-between">
+                    <span className="text-muted-foreground">EFAC Prayer</span>
+                    <span>Tuesdays 5:00 PM</span>
+                  </li>
                   <li className="flex justify-between">
-                    <span className="text-muted-foreground">Wednesday</span>
+                    <span className="text-muted-foreground">Wednesday Prayer</span>
                     <span>10:00 AM & 5:00 PM</span>
                   </li>
                   <li className="flex justify-between">
                     <span className="text-muted-foreground">Bible Study Group</span>
                     <span>Fridays 5:00 PM</span>
                   </li>
+
                 </ul>
               </CardContent>
             </Card>

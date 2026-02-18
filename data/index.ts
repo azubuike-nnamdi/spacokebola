@@ -45,21 +45,21 @@ const announcements = [
 const events = [
   {
     id: 1,
-    title: "Sunday Worship Service",
-    date: "Every Sunday",
-    time: "9:00 AM & 11:00 AM"
+    title: "Combined Service",
+    date: "Last Sunday",
+    time: "9:00 AM"
   },
   {
     id: 2,
-    title: "Bible Study Group",
-    date: "Every Wednesday",
-    time: "7:00 PM"
+    title: "Ash Wednesday",
+    date: "Februrary 18",
+    time: "5:00 PM"
   },
   {
     id: 3,
-    title: "Fall Festival",
-    date: "October 22, 2023",
-    time: "4:00 PM - 8:00 PM"
+    title: "Easter",
+    date: "April 12, 2026",
+    time: "10:00 AM"
   }
 ];
 
@@ -72,6 +72,13 @@ const leadershipTeam = [
     image: vicarImage
   },
 
+];
+
+const message = [
+  {
+    id: 1,
+    path: "https://web.facebook.com/OKEBOLAARCHDEACONRY/videos/33533906146253329"
+  }
 ];
 
 const announcements2 = [
@@ -273,5 +280,5 @@ const sideItem = [
   },
 ]
 
-export { announcements, announcements2, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData };
+export { announcements, announcements2, categories, events, eventsData, galleryItems, leadershipTeam, links, sideItem, userData, message };
 
