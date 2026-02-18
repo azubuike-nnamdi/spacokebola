@@ -3,7 +3,7 @@ import { Welcome } from "@/components/homepage/welcome";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ANNOUNCEMENTS_URL, EVENTS_URL } from "@/config/routes";
-import { announcements, events } from "@/data";
+import { announcements, events, message } from "@/data";
 import { ArrowRight, Bell, BookOpen, Calendar } from "lucide-react";
 import Link from "next/link";
 
@@ -182,9 +182,9 @@ export default function Home() {
               <p className="text-sm text-muted-foreground mb-6">
                 October 8, 2023
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Button>Watch Now</Button>
-                <Button variant="outline">All Messages</Button>
+              <div className="flex flex-wrap gap-4">          
+                <Button className="cursor-pointer">Watch Now</Button> 
+                <Button className="cursor-pointer" variant="outline">All Messages</Button>
               </div>
             </div>
           </div>
