@@ -2,8 +2,6 @@ import { EmailTemplate } from "@/components/ui/email-template";
 import * as React from "react";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY as string);
-
 interface SendEmailParams {
   to: string;
   subject: string;
@@ -42,6 +40,9 @@ export async function sendEmail({
     return { success: false, error: "Email service not configured" };
   }
 
+  // Instantiate lazily — only after confirming the API key exists
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const { data, error } = await resend.emails.send({
       from: process.env.FROM_EMAIL || "St. Paul's Anglican Church <onboarding@resend.dev>",
@@ -69,3 +70,4 @@ export async function sendEmail({
     return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 }
+
