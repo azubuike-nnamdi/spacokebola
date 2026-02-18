@@ -2,7 +2,7 @@ import { EmailTemplate } from "@/components/ui/email-template";
 import * as React from "react";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY ?? "");
 
 interface SendEmailParams {
   to: string;
