@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
+import { bibleImage } from "@/config/images";
 
 export default function AboutBelieve() {
   return (
@@ -33,7 +34,7 @@ export default function AboutBelieve() {
             </div>
             <div className="aspect-video lg:aspect-square bg-muted rounded-lg overflow-hidden order-1 lg:order-2">
               <Image
-                src="https://images.unsplash.com/photo-1493804714600-6edb1cd93080?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src={bibleImage}
                 alt="Open Bible"
                 className="w-full h-full object-cover"
                 width={800}

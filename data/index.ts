@@ -1,4 +1,4 @@
-import { vicarImage } from "@/config/images";
+import { vicarImage, bishopImage, curateImage, pastorwardenImage, peoplewardenImage } from "@/config/images";
 import { ABOUT_URL, ANNOUNCEMENTS_URL, BRANCHES_URL, CONTACT_URL, DASHBOARD_ANNOUNCEMENTS_URL, DASHBOARD_EVENTS_URL, DASHBOARD_URL, EVENTS_URL, GALLERY_URL, HOME_URL, SETTINGS_URL } from "@/config/routes";
 import { Branch } from "@/lib/type-declaration";
 import { Bell, Calendar, LayoutDashboard, Settings, ShieldX, Users } from "lucide-react";
@@ -68,11 +68,39 @@ const events = [
 const leadershipTeam = [
   {
     id: 1,
+    name: "The Most REVD. DR. J.O. Akinfenwa",
+    role: "Diocesan",
+    bio: "Bishop of Ibadan Anglican Diocese",
+    image: bishopImage
+  },
+   {
+    id: 2,
     name: "Ven. Sunday D. Ezeike",
     role: "Venerable/Archdeacon",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    bio: "Archdeacon of Oke-Bola Archdeaconry",
     image: vicarImage
   },
+    {
+    id: 3,
+    name: "The REVD. S. Gbetogo Ogunbge",
+    role: "Curate",
+    bio: "Assisting Priest of St. Paul's Anglican Church",
+    image: curateImage
+  },
+    {
+    id: 4,
+    name: "Mr. Kenneth Nwakaego",
+    role: "Pastor's Warden",
+    bio: "Pastor's Warden of St. Paul's Anglican Church",
+    image: pastorwardenImage
+  },
+    {
+    id: 5,
+    name: "Mr. Maduabuchi Umenze",
+    role: "People's Warden",
+    bio: "People's Warden of St. Paul's Anglican Church",
+    image: peoplewardenImage
+  }
 
 ];
 
