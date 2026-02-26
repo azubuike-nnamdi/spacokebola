@@ -19,7 +19,7 @@ export default function GalleryDashboard() {
             <h1 className="mb-4">Our Gallery</h1>
             <p className="text-muted-foreground">
               Capturing moments of worship, fellowship, and community service at
-              Grace Church.
+              St. Paul&apos;s Anglican Church
             </p>
           </div>
 
