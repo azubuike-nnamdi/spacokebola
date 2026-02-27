@@ -1,3 +1,4 @@
+import { vicarImage } from "@/config/images";
 import {
   communion1,
   communion2,
@@ -294,6 +295,9 @@ const galleryItems = [
         alt: "Congregation singing",
       },
       {
+        url: "https://images.unsplash.com/photo-1574185649768-3a4a13c38f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        alt: "Pastor preaching",
+      },
         url: worship1,
         alt: "Pastor preaching",
       },
@@ -329,6 +333,19 @@ const galleryItems = [
   },
   {
     id: 2,
+    category: "Community Events",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        alt: "Community gathering",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1546984575-757f4f7c13cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        alt: "Food drive volunteers",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1505155485412-30b3a45080ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        alt: "Family picnic",
     category: "Communion Service",
     images: [
       {
@@ -431,6 +448,12 @@ const branches: Branch[] = [
         "We are a family of believers dedicated to living out our faith in practical ways — loving our neighbours, serving the needy, and proclaiming the hope of Christ to all.",
       img: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     },
+    priestInCharge: {
+      name: "Rev. S.D Ezeike",
+      role: "Priest in Charge",
+      bio: "Rev. S.D Ezeike is a dedicated servant of Christ with over 15 years of pastoral experience. He is committed to leading our congregation with compassion and godly wisdom.",
+      image: vicarImage,
+    },
   },
   {
     slug: "hosanna",
@@ -442,6 +465,13 @@ const branches: Branch[] = [
         "Hosanna Anglican Church Joyce B began as a small prayer group and has since grown into a thriving congregation. Our name reflects our heart — a cry of praise and a declaration of faith.",
       desc2:
         "We are passionate about equipping every member to discover their God-given purpose and to make a lasting impact in their community and beyond.",
+      img: "https://images.unsplash.com/photo-1520763185298-1b434c919eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+    priestInCharge: {
+      name: "Rev. Fr. Samuel Adebayo",
+      role: "Priest in Charge",
+      bio: "Rev. Fr. Samuel Adebayo brings a heart of worship and a passion for discipleship. His ministry is marked by a deep commitment to prayer and spiritual growth for all believers.",
+      image: vicarImage,
       img: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     },
   },
@@ -455,6 +485,13 @@ const branches: Branch[] = [
         "St. Michael & All Angels is a congregation rooted in the Anglican tradition, committed to sound doctrine and heartfelt worship. We draw inspiration from the heavenly host in our call to serve and glorify God.",
       desc2:
         "Our community is a welcoming space for all who seek to grow in their relationship with God and with one another, grounded in scripture and moved by the Spirit.",
+      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+    priestInCharge: {
+      name: "Rev. Fr. Michael Ejiofor",
+      role: "Priest in Charge",
+      bio: "Rev. Fr. Michael Ejiofor is deeply rooted in the Anglican tradition and serves with integrity and pastoral care. His vision is to build a community that reflects Christ's love and grace.",
+      image: vicarImage,
       img: "https://images.unsplash.com/photo-1574185649768-3a4a13c38f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     },
   },
