@@ -1,4 +1,3 @@
-
 const bishopImage = "/assets/img/bishop.jpg";
 const curateImage = "/assets/img/curate2.jpg";
 const pastorwardenImage = "/assets/img/pastorwarden.jpg";
@@ -24,17 +23,16 @@ const communion6 = "/assets/img/Communion6.jpg";
 export {
   bibleImage,
   bishopImage,
-  curateImage,
-  pastorwardenImage,
-  peoplewardenImage,
-  spacbuildingImage,
-  vicarImage,
   communion1,
   communion2,
   communion3,
   communion4,
   communion5,
   communion6,
+  curateImage,
+  pastorwardenImage,
+  peoplewardenImage,
+  spacbuildingImage,
   vicarImage,
   worship1,
   worship2,
