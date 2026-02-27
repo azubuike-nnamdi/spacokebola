@@ -1,3 +1,10 @@
+
+const bishopImage = "/assets/img/bishop.jpg";
+const curateImage = "/assets/img/curate2.jpg";
+const pastorwardenImage = "/assets/img/pastorwarden.jpg";
+const peoplewardenImage = "/assets/img/peopleswarden.jpg";
+const spacbuildingImage = "/assets/img/spac-building.png";
+const bibleImage = "/assets/img/bible.png";
 const vicarImage = "/assets/img/vicar.png";
 const worship1 = "/assets/img/Worship1.jpg";
 const worship2 = "/assets/img/worship2.jpg";
@@ -15,6 +22,13 @@ const communion5 = "/assets/img/Communion5.jpg";
 const communion6 = "/assets/img/Communion6.jpg";
 
 export {
+  bibleImage,
+  bishopImage,
+  curateImage,
+  pastorwardenImage,
+  peoplewardenImage,
+  spacbuildingImage,
+  vicarImage,
   communion1,
   communion2,
   communion3,

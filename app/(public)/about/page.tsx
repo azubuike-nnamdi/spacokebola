@@ -8,6 +8,7 @@ import AboutValue from "@/components/about/about-value";
 import { PageTransition } from "@/components/ui/page-transition";
 import { vicarImage } from "@/config/images";
 import { Metadata } from "next";
+import { spacbuildingImage } from "@/config/images";
 
 export const metadata: Metadata = {
   title: "About The Church",

@@ -93,6 +93,13 @@ const events = [
 const leadershipTeam = [
   {
     id: 1,
+    name: "The Most REVD. DR. J.O. Akinfenwa",
+    role: "Diocesan",
+    bio: "Bishop of Ibadan Anglican Diocese",
+    image: bishopImage
+  },
+   {
+    id: 2,
     name: "Ven. Sunday D. Ezeike",
     role: "Venerable/Archdeacon",
     bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",

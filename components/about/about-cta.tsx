@@ -20,12 +20,12 @@ export default function AboutCTA() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href={EVENTS_URL}>
-              <Button size="lg" className="rounded-full bg-white dark:bg-black text-primary hover:bg-white/90 dark:hover:bg-black/90">
+              <Button size="lg" className="rounded-full bg-white dark:bg-black text-primary hover:bg-white/90 dark:hover:bg-black/90 cursor-pointer">
                 Join Us Sunday
               </Button>
             </Link>
             <Link href={CONTACT_URL}>
-              <Button size="lg" variant="outline" className="rounded-full text-white dark:text-black border-white dark:border-black hover:bg-white/10 dark:hover:bg-black/10">
+              <Button size="lg" variant="outline" className="rounded-full text-primary dark:text-black border-white dark:border-black hover:bg-white/10 dark:hover:bg-black/10 cursor-pointer">
                 Contact Us
               </Button>
             </Link>
