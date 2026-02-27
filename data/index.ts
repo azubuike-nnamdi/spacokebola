@@ -375,6 +375,12 @@ const branches: Branch[] = [
         "We are a family of believers dedicated to living out our faith in practical ways — loving our neighbours, serving the needy, and proclaiming the hope of Christ to all.",
       img: "https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     },
+    priestInCharge: {
+      name: "Rev. S.D Ezeike",
+      role: "Priest in Charge",
+      bio: "Rev. S.D Ezeike is a dedicated servant of Christ with over 15 years of pastoral experience. He is committed to leading our congregation with compassion and godly wisdom.",
+      image: vicarImage,
+    },
   },
   {
     slug: "hosanna",
