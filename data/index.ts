@@ -1,22 +1,5 @@
 import { vicarImage } from "@/config/images";
 import {
-  communion1,
-  communion2,
-  communion3,
-  communion4,
-  communion5,
-  communion6,
-  vicarImage,
-  worship1,
-  worship2,
-  worship3,
-  worship4,
-  worship5,
-  worship6,
-  worship7,
-  worship8,
-} from "@/config/images";
-import {
   ABOUT_URL,
   ANNOUNCEMENTS_URL,
   BRANCHES_URL,
@@ -298,37 +281,6 @@ const galleryItems = [
         url: "https://images.unsplash.com/photo-1574185649768-3a4a13c38f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
         alt: "Pastor preaching",
       },
-        url: worship1,
-        alt: "Pastor preaching",
-      },
-      {
-        url: worship2,
-        alt: "Prayer intercession",
-      },
-      {
-        url: worship3,
-        alt: "Pastor preaching",
-      },
-      {
-        url: worship4,
-        alt: "Prayer intercession",
-      },
-      {
-        url: worship5,
-        alt: "Pastor preaching",
-      },
-      {
-        url: worship6,
-        alt: "Prayer intercession",
-      },
-      {
-        url: worship7,
-        alt: "Pastor preaching",
-      },
-      {
-        url: worship8,
-        alt: "Prayer intercession",
-      },
     ],
   },
   {
@@ -346,31 +298,6 @@ const galleryItems = [
       {
         url: "https://images.unsplash.com/photo-1505155485412-30b3a45080ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
         alt: "Family picnic",
-    category: "Communion Service",
-    images: [
-      {
-        url: communion1,
-        alt: "Blessing of the consencration element",
-      },
-      {
-        url: communion2,
-        alt: "Blood of Chrit",
-      },
-      {
-        url: communion3,
-        alt: "Blood of Christ",
-      },
-      {
-        url: communion4,
-        alt: "Body of Christ",
-      },
-      {
-        url: communion5,
-        alt: "Body of Christ",
-      },
-      {
-        url: communion6,
-        alt: "Blood of Christ",
       },
     ],
   },
@@ -467,13 +394,6 @@ const branches: Branch[] = [
         "We are passionate about equipping every member to discover their God-given purpose and to make a lasting impact in their community and beyond.",
       img: "https://images.unsplash.com/photo-1520763185298-1b434c919eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     },
-    priestInCharge: {
-      name: "Rev. Fr. Samuel Adebayo",
-      role: "Priest in Charge",
-      bio: "Rev. Fr. Samuel Adebayo brings a heart of worship and a passion for discipleship. His ministry is marked by a deep commitment to prayer and spiritual growth for all believers.",
-      image: vicarImage,
-      img: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    },
   },
   {
     slug: "michael",
@@ -486,13 +406,6 @@ const branches: Branch[] = [
       desc2:
         "Our community is a welcoming space for all who seek to grow in their relationship with God and with one another, grounded in scripture and moved by the Spirit.",
       img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    },
-    priestInCharge: {
-      name: "Rev. Fr. Michael Ejiofor",
-      role: "Priest in Charge",
-      bio: "Rev. Fr. Michael Ejiofor is deeply rooted in the Anglican tradition and serves with integrity and pastoral care. His vision is to build a community that reflects Christ's love and grace.",
-      image: vicarImage,
-      img: "https://images.unsplash.com/photo-1574185649768-3a4a13c38f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     },
   },
 ];
