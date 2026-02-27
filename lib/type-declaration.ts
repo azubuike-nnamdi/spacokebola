@@ -6,11 +6,11 @@ interface AnimatedLinkProps {
 }
 
 type User = {
-  id: string
-  name: string
-  email: string
-  role: "admin" | "user" | "editor"
-}
+  id: string;
+  name: string;
+  email: string;
+  role: "admin" | "user" | "editor";
+};
 
 export type Announcement = {
   id: string;
@@ -26,9 +26,8 @@ type AboutStoryProps = {
   title: string;
   desc1: string;
   desc2: string;
-  img: string
-}
-
+  img: string;
+};
 
 interface Branch {
   slug: string;
@@ -40,7 +39,12 @@ interface Branch {
     desc2: string;
     img: string;
   };
+  priestInCharge: {
+    name: string;
+    role: string;
+    bio: string;
+    image: string;
+  };
 }
 
 export type { AboutStoryProps, AnimatedLinkProps, Branch, User };
-

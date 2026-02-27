@@ -1,42 +1,72 @@
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+import { links } from "@/data";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-import { links } from '@/data';
-import Image from 'next/image';
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary/50 border-t border-border">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-16">
+    <footer className="bg-secondary/50 border-t border-border text-foreground transition-colors duration-500 dark:bg-gray-950">
+      <div className="container px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-16">
           {/* Church Info */}
-          <div className="col-span-1 md:col-span-1">
-            <Image src="/assets/img/spac-logo.png" alt="SPAC OKE BOLA" width={100} height={100} className='mb-4' />
-            <p className="text-muted-foreground mb-4">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <Image
+              src="/assets/img/spac-logo.png"
+              alt="SPAC OKE BOLA"
+              width={100}
+              height={100}
+              className="mb-4"
+            />
+            <p className="text-muted-foreground mb-4 max-w-xs">
               The Action Place of the Holy Spirit
             </p>
-            <div className="flex space-x-4">
-              <Link href="https://facebook.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Facebook">
+            <div className="flex justify-center sm:justify-start gap-4">
+              <Link
+                href="https://facebook.com"
+                aria-label="Facebook"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Facebook size={20} />
               </Link>
-              <Link href="https://instagram.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Instagram">
+              <Link
+                href="https://instagram.com"
+                aria-label="Instagram"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Instagram size={20} />
               </Link>
-              <Link href="https://twitter.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
+              <Link
+                href="https://twitter.com"
+                aria-label="Twitter"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Twitter size={20} />
               </Link>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="col-span-1">
-            <h4 className="font-medium mb-4">Quick Links</h4>
+          <div className="text-center sm:text-left">
+            <h4 className="font-semibold text-lg mb-4 text-foreground dark:text-white">
+              Quick Links
+            </h4>
             <ul className="space-y-2">
               {links.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.path} className="text-muted-foreground hover:text-primary transition-colors">
+                  <Link
+                    href={link.path}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -45,38 +75,61 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="col-span-1">
-            <h4 className="font-medium mb-4">Contact Us</h4>
+          <div className="text-center sm:text-left">
+            <h4 className="font-semibold text-lg mb-4 text-foreground dark:text-white">
+              Contact Us
+            </h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-primary/80 mt-1 flex-shrink-0" />
-                <span className="text-muted-foreground">No 7, Koyejo Street, Oke Bola, Ibadan</span>
+              <li className="flex flex-col sm:flex-row sm:items-start sm:gap-3 justify-center sm:justify-start">
+                <MapPin
+                  size={18}
+                  className="text-primary/80 mb-1 sm:mb-0 mx-auto sm:mx-0 flex-shrink-0"
+                />
+                <span className="text-muted-foreground">
+                  No 7, Koyejo Street, Oke Bola, Ibadan
+                </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="text-primary/80 flex-shrink-0" />
+              <li className="flex flex-col sm:flex-row sm:items-center sm:gap-3 justify-center sm:justify-start">
+                <Phone
+                  size={18}
+                  className="text-primary/80 mb-1 sm:mb-0 mx-auto sm:mx-0 flex-shrink-0"
+                />
                 <span className="text-muted-foreground">+234 800 000 0000</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="text-primary/80 flex-shrink-0" />
-                <span className="text-muted-foreground">info@spacokebola.org</span>
+              <li className="flex flex-col sm:flex-row sm:items-center sm:gap-3 justify-center sm:justify-start">
+                <Mail
+                  size={18}
+                  className="text-primary/80 mb-1 sm:mb-0 mx-auto sm:mx-0 flex-shrink-0"
+                />
+                <span className="text-muted-foreground">
+                  info@spacokebola.org
+                </span>
               </li>
             </ul>
           </div>
 
           {/* Service Times */}
-          <div className="col-span-1">
-            <h4 className="font-medium mb-4">Service Times</h4>
-            <ul className="space-y-2">
+          <div className="text-center sm:text-left">
+            <h4 className="font-semibold text-lg mb-4 text-foreground dark:text-white">
+              Service Times
+            </h4>
+            <ul className="space-y-3">
               <li className="text-muted-foreground">
-                <span className="block font-medium text-primary">Sunday Services</span>
+                <span className="block font-medium text-primary">
+                  Sunday Services
+                </span>
                 9:00 AM & 11:00 AM
               </li>
               <li className="text-muted-foreground">
-                <span className="block font-medium text-primary">Wednesday Bible Study</span>
+                <span className="block font-medium text-primary">
+                  Wednesday Bible Study
+                </span>
                 7:00 PM
               </li>
               <li className="text-muted-foreground">
-                <span className="block font-medium text-primary">Youth Group</span>
+                <span className="block font-medium text-primary">
+                  Youth Group
+                </span>
                 Fridays at 6:30 PM
               </li>
             </ul>
