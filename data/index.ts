@@ -1,4 +1,10 @@
-import { vicarImage } from "@/config/images";
+import {
+  bishopImage,
+  curateImage,
+  pastorwardenImage,
+  peoplewardenImage,
+  vicarImage,
+} from "@/config/images";
 import {
   ABOUT_URL,
   ANNOUNCEMENTS_URL,
@@ -96,14 +102,35 @@ const leadershipTeam = [
     name: "The Most REVD. DR. J.O. Akinfenwa",
     role: "Diocesan",
     bio: "Bishop of Ibadan Anglican Diocese",
-    image: bishopImage
+    image: bishopImage,
   },
-   {
+  {
     id: 2,
     name: "Ven. Sunday D. Ezeike",
     role: "Venerable/Archdeacon",
-    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    bio: "Archdeacon of Okebola Archdeaconry",
     image: vicarImage,
+  },
+  {
+    id: 3,
+    name: "Revd. O.S Gbetogo",
+    role: "Curate",
+    bio: "Curate of St. Pauls Anglican Church",
+    image: curateImage,
+  },
+  {
+    id: 4,
+    name: "Mr Kenneth Nwakego",
+    role: "Pastor's Warden",
+    bio: "Pastor's Warden of St. Pauls Anglican Church",
+    image: pastorwardenImage,
+  },
+  {
+    id: 5,
+    name: "Mr Mmadabuchi Umeh",
+    role: "People's warden",
+    bio: "People' Warden of St. Pauls Anglican Church",
+    image: peoplewardenImage,
   },
 ];
 
@@ -399,7 +426,13 @@ const branches: Branch[] = [
         "Hosanna Anglican Church Joyce B began as a small prayer group and has since grown into a thriving congregation. Our name reflects our heart — a cry of praise and a declaration of faith.",
       desc2:
         "We are passionate about equipping every member to discover their God-given purpose and to make a lasting impact in their community and beyond.",
-      img: "https://images.unsplash.com/photo-1520763185298-1b434c919eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+    priestInCharge: {
+      name: "Rev. S.D Ezeike",
+      role: "Priest in Charge",
+      bio: "Rev. S.D Ezeike is a dedicated servant of Christ with over 15 years of pastoral experience. He is committed to leading our congregation with compassion and godly wisdom.",
+      image: vicarImage,
     },
   },
   {
@@ -413,6 +446,12 @@ const branches: Branch[] = [
       desc2:
         "Our community is a welcoming space for all who seek to grow in their relationship with God and with one another, grounded in scripture and moved by the Spirit.",
       img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+    priestInCharge: {
+      name: "Rev. S.D Ezeike",
+      role: "Priest in Charge",
+      bio: "Rev. S.D Ezeike is a dedicated servant of Christ with over 15 years of pastoral experience. He is committed to leading our congregation with compassion and godly wisdom.",
+      image: vicarImage,
     },
   },
 ];
