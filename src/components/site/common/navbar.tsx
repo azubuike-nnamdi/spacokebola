@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
         {/* Logo */}
         <Image
           src="/assets/img/spac-logo.png"
-          alt="SPAC OKE BOLA"
+          alt="Oke Bola Archdeaconry"
           width={50}
           height={50}
         />

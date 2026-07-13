@@ -108,7 +108,7 @@ const leadershipTeam = [
     id: 2,
     name: "Ven. Sunday D. Ezeike",
     role: "Venerable/Archdeacon",
-    bio: "Archdeacon of Okebola Archdeaconry",
+    bio: "Archdeacon of Oke Bola Archdeaconry",
     image: vicarImage,
   },
   {

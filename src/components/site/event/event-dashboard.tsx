@@ -32,8 +32,8 @@ export default function EventDashboard({ events }: Props) {
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h1 className="mb-4">Upcoming Events</h1>
             <p className="text-muted-foreground">
-              Join us for worship services, community gatherings, and special events at SPAC Oke
-              Bola.
+              Join us for worship services, community gatherings, and special events at Oke Bola
+              Archdeaconry.
             </p>
           </div>
 

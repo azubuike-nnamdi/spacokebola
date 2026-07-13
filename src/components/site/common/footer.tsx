@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
             <Image
               src="/assets/img/spac-logo.png"
-              alt="SPAC OKE BOLA"
+              alt="Oke Bola Archdeaconry"
               width={100}
               height={100}
               className="mb-4"
@@ -138,7 +138,7 @@ export const Footer: React.FC = () => {
 
         {/* Copyright */}
         <div className="border-t border-border py-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} SPAC OKE BOLA. All rights reserved.</p>
+          <p>&copy; {currentYear} Oke Bola Archdeaconry. All rights reserved.</p>
         </div>
       </div>
     </footer>

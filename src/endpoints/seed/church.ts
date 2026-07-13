@@ -10,7 +10,7 @@ function slugify(value: string): string {
 }
 
 export async function seedChurchContent(payload: Payload): Promise<void> {
-  payload.logger.info('Seeding SPAC Oke Bola content...')
+  payload.logger.info('Seeding Oke Bola Archdeaconry content...')
 
   for (const leader of leadershipTeam) {
     await payload.create({

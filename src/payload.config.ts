@@ -29,7 +29,7 @@ export default buildConfig({
     },
     user: Users.slug,
     meta: {
-      titleSuffix: '— SPAC Oke Bola',
+      titleSuffix: '— Oke Bola Archdeaconry',
     },
   },
   editor: defaultLexical,

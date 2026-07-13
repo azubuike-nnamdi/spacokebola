@@ -5,7 +5,7 @@ import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle = ({ doc }) => {
-  return doc?.title ? `${doc.title} | SPAC Oke Bola` : 'SPAC Oke Bola'
+  return doc?.title ? `${doc.title} | Oke Bola Archdeaconry` : 'Oke Bola Archdeaconry'
 }
 
 const generateURL: GenerateURL = ({ doc }) => {

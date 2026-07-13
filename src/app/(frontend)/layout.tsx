@@ -35,9 +35,9 @@ const openSans = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),
-  title: { default: 'SPAC OKE BOLA', template: '%s - SPAC OKE BOLA' },
+  title: { default: 'Oke Bola Archdeaconry', template: '%s - Oke Bola Archdeaconry' },
   description:
-    "The Action Place of the Holy Spirit — St. Paul's Anglican Church Oke Bola Archdeaconry, Ibadan.",
+    "The Action Place of the Holy Spirit — St. Paul's Anglican Church, Oke Bola Archdeaconry, Ibadan.",
   icons: {
     icon: '/assets/img/spac-logo.png',
   },

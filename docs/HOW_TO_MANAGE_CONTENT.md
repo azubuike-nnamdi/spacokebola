@@ -1,4 +1,4 @@
-# SPAC Oke Bola CMS — Content How-To
+# Oke Bola Archdeaconry CMS — Content How-To
 
 This guide explains how to create and publish content in the Payload admin panel so it appears on the public website.
 

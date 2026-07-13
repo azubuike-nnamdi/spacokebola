@@ -23,7 +23,7 @@ export const Hero: React.FC = () => {
       {/* Hero Content */}
       <div className="container relative z-10 text-center max-w-4xl mx-auto px-6 animate-fade-in">
         <h1 className="text-white mb-6 leading-tight text-4xl font-bold dark:text-black">
-          Welcome to SPAC Oke Bola
+          Welcome to Oke Bola Archdeaconry
         </h1>
         <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto dark:text-black">
           A community of faith, hope, and love where everyone is welcome

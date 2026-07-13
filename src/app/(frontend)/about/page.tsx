@@ -21,7 +21,7 @@ export default async function About() {
   return (
     <PageTransition>
       <AboutHero
-        title="About SPAC OKE BOLA"
+        title="About Oke Bola Archdeaconry"
         description="A community of faith, hope, and love in the city of Ibadan since 1936."
       />
 
