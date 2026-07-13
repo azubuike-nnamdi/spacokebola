@@ -1,53 +1,62 @@
 import type { Metadata } from 'next'
-
-import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import localFont from 'next/font/local'
 import React from 'react'
 
-import { AdminBar } from '@/components/AdminBar'
-import { Footer } from '@/Footer/Component'
-import { Header } from '@/Header/Component'
-import { Providers } from '@/providers'
-import { InitTheme } from '@/providers/Theme/InitTheme'
-import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
-import { draftMode } from 'next/headers'
-
-import './globals.css'
+import { Footer } from '@/components/site/common/footer'
+import { Navbar } from '@/components/site/common/navbar'
+import { ThemeProvider } from '@/context/theme-provider'
 import { getServerSideURL } from '@/utilities/getURL'
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { isEnabled } = await draftMode()
+import './globals.css'
 
-  return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
-      <head>
-        <InitTheme />
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-      </head>
-      <body>
-        <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
+const montserrat = localFont({
+  variable: '--montserrat',
+  src: [
+    { path: './fonts/Montserrat-ExtraLight.ttf', weight: '100', style: 'normal' },
+    { path: './fonts/Montserrat-Light.ttf', weight: '300' },
+    { path: './fonts/Montserrat-Regular.ttf', weight: '400' },
+    { path: './fonts/Montserrat-Medium.ttf', weight: '500' },
+    { path: './fonts/Montserrat-Bold.ttf', weight: '700' },
+    { path: './fonts/Montserrat-ExtraBold.ttf', weight: '900' },
+  ],
+})
 
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
-      </body>
-    </html>
-  )
-}
+const openSans = localFont({
+  variable: '--open-sans',
+  src: [
+    { path: './fonts/OpenSans-Light.ttf', weight: '300', style: 'normal' },
+    { path: './fonts/OpenSans-Regular.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/OpenSans-Medium.ttf', weight: '500', style: 'normal' },
+    { path: './fonts/OpenSans-SemiBold.ttf', weight: '600', style: 'normal' },
+    { path: './fonts/OpenSans-Bold.ttf', weight: '700', style: 'normal' },
+    { path: './fonts/OpenSans-ExtraBold.ttf', weight: '900', style: 'normal' },
+  ],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),
-  openGraph: mergeOpenGraph(),
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@payloadcms',
+  title: { default: 'SPAC OKE BOLA', template: '%s - SPAC OKE BOLA' },
+  description:
+    "The Action Place of the Holy Spirit — St. Paul's Anglican Church Oke Bola Archdeaconry, Ibadan.",
+  icons: {
+    icon: '/assets/img/spac-logo.png',
   },
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      className={`${montserrat.variable} ${openSans.variable}`}
+      lang="en"
+      suppressHydrationWarning
+    >
+      <body className="antialiased" suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
+  )
 }

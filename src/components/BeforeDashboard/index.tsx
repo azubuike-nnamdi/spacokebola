@@ -16,7 +16,7 @@ const BeforeDashboard: React.FC = () => {
       <ul className={`${baseClass}__instructions`}>
         <li>
           <SeedButton />
-          {' with a few pages, posts, and projects to jump-start your new site, then '}
+          {' with announcements, events, gallery, branches, and leadership to jump-start the church site, then '}
           <a href="/" target="_blank">
             visit your website
           </a>
