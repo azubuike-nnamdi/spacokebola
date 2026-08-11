@@ -3,19 +3,19 @@
 echo "🔍 Running pre-push hook..."
 
 # Compare against upstream if available, otherwise origin/main / origin/master
-upstream=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
-if [ -z "$upstream" ]; then
-  if git rev-parse --verify origin/main >/dev/null 2>&1; then
-    upstream="origin/main"
-  elif git rev-parse --verify origin/master >/dev/null 2>&1; then
-    upstream="origin/master"
-  fi
+upstream=""
+if git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1; then
+  upstream=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+elif git rev-parse --verify origin/main >/dev/null 2>&1; then
+  upstream="origin/main"
+elif git rev-parse --verify origin/master >/dev/null 2>&1; then
+  upstream="origin/master"
 fi
 
 if [ -n "$upstream" ]; then
-  files_changed=$(git diff --name-only "$upstream"...HEAD 2>/dev/null)
+  files_changed=$(git diff --name-only "$upstream"...HEAD 2>/dev/null || true)
 else
-  files_changed=$(git diff --name-only HEAD~1...HEAD 2>/dev/null)
+  files_changed=$(git diff --name-only HEAD~1...HEAD 2>/dev/null || true)
 fi
 
 if echo "$files_changed" | grep -Eq 'package\.json|pnpm-lock\.yaml'; then

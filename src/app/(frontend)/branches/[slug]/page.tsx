@@ -6,7 +6,7 @@ import AboutPriest from '@/components/site/about/about-priest'
 import AboutStory from '@/components/site/about/about-story'
 import AboutValue from '@/components/site/about/about-value'
 import { PageTransition } from '@/components/ui/page-transition'
-import { getBranchBySlug, getLeadership } from '@/utilities/churchContent'
+import { getAboutPage, getBranchBySlug, getLeadership } from '@/utilities/churchContent'
 import { notFound } from 'next/navigation'
 
 type Args = {
@@ -25,9 +25,10 @@ export async function generateMetadata({ params }: Args) {
 
 export default async function BranchPage({ params }: Args) {
   const { slug } = await params
-  const [branch, leadershipTeam] = await Promise.all([
+  const [branch, leadershipTeam, about] = await Promise.all([
     getBranchBySlug(slug),
     getLeadership(),
+    getAboutPage(),
   ])
 
   if (!branch) notFound()
@@ -43,20 +44,62 @@ export default async function BranchPage({ params }: Args) {
         img={branch.story.img}
       />
 
-      <AboutValue />
+      {about.values.items.length > 0 ? (
+        <AboutValue
+          eyebrow={about.values.eyebrow}
+          title={about.values.title}
+          description={about.values.description}
+          items={about.values.items}
+        />
+      ) : null}
 
-      <AboutPriest
-        name={branch.priestInCharge.name}
-        role={branch.priestInCharge.role}
-        bio={branch.priestInCharge.bio}
-        image={branch.priestInCharge.image}
-      />
+      {branch.priestInCharge.name ? (
+        <AboutPriest
+          eyebrow={about.priest.eyebrow || 'Clergy'}
+          sectionTitle={about.priest.sectionTitle || 'Priest in charge'}
+          sectionDescription={
+            about.priest.sectionDescription ||
+            'Meet the priest leading this congregation with dedication and faith.'
+          }
+          name={branch.priestInCharge.name}
+          role={branch.priestInCharge.role}
+          bio={branch.priestInCharge.bio}
+          image={branch.priestInCharge.image}
+        />
+      ) : null}
 
-      <AboutLeadership leadershipTeam={leadershipTeam} />
+      {leadershipTeam.length > 0 ? (
+        <AboutLeadership
+          eyebrow={about.leadership.eyebrow}
+          title={about.leadership.title}
+          description={about.leadership.description}
+          leadershipTeam={leadershipTeam}
+        />
+      ) : null}
 
-      <AboutBelieve />
+      {about.beliefs.title || about.beliefs.items.length > 0 ? (
+        <AboutBelieve
+          title={about.beliefs.title}
+          introduction={about.beliefs.introduction}
+          items={about.beliefs.items}
+          ctaLabel={about.beliefs.ctaLabel}
+          ctaUrl={about.beliefs.ctaUrl}
+          image={about.beliefs.image}
+        />
+      ) : null}
 
-      <AboutCTA />
+      {about.cta.title || about.cta.primaryUrl ? (
+        <AboutCTA
+          eyebrow={about.cta.eyebrow}
+          title={about.cta.title}
+          description={about.cta.description}
+          primaryLabel={about.cta.primaryLabel}
+          primaryUrl={about.cta.primaryUrl}
+          secondaryLabel={about.cta.secondaryLabel}
+          secondaryUrl={about.cta.secondaryUrl}
+          backgroundImageUrl={about.cta.backgroundImageUrl}
+        />
+      ) : null}
     </PageTransition>
   )
 }

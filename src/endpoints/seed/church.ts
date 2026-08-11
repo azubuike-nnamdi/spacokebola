@@ -93,7 +93,15 @@ export async function seedChurchContent(payload: Payload): Promise<void> {
       ? new Date().toISOString()
       : new Date(event.date).toISOString()
 
-    const categoryByTitle: Record<string, string> = {
+    const categoryByTitle: Record<
+      string,
+      | 'sunday_service'
+      | 'bible_study'
+      | 'prayer_meeting'
+      | 'youth_program'
+      | 'special_event'
+      | 'other'
+    > = {
       'Sunday Worship Service': 'sunday_service',
       'Bible Study Group': 'bible_study',
       'Fall Festival': 'special_event',
