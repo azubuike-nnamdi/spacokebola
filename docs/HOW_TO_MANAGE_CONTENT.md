@@ -53,8 +53,8 @@ Announcements appear on the homepage (“Latest Announcements”) and on `/annou
 | Field | Required | Meaning |
 | --- | --- | --- |
 | **Title** | Yes | Headline visitors see first |
-| **Excerpt** | Yes | Short teaser on cards/lists (1–2 sentences). Not the full story. |
-| **Content** | Yes | Full announcement text on the detail page |
+| **Excerpt** | Yes | Short teaser (rich text) shown on cards/lists |
+| **Content** | Yes | Full announcement body (rich text) |
 | **Category** | Yes | Used for filters (Worship, Youth, Outreach, etc.) |
 | **Image** | No | Upload from Media library |
 | **Image URL** | No | External image link if you prefer not to upload |
@@ -65,8 +65,10 @@ Announcements appear on the homepage (“Latest Announcements”) and on `/annou
 
 ### Excerpt vs content
 
-- **Excerpt** = short preview on the homepage and announcements list  
-- **Content** = full text when someone opens the announcement
+- **Excerpt** = short preview on the homepage and announcements list (supports rich text formatting)
+- **Content** = full text when someone opens the announcement (supports headings, bold, lists, links)
+
+All long-form fields (announcement excerpt/content, event description, branch story, leadership bios) use the **Lexical rich text** editor in admin.
 
 ---
 
@@ -95,6 +97,33 @@ Events appear on the homepage (“Upcoming Events”) and on `/events`.
 3. **Save as draft** or **Publish**.
 
 > If **Display Date** / **Display Time** are set, the site prefers those labels over the raw start date.
+
+---
+
+## Editing the About page
+
+The public `/about` page is managed under **Globals → About Page** (Site Content).
+
+There are no drafts — saving updates the live page.
+
+Tabs:
+
+| Tab | What it controls |
+| --- | --- |
+| **Hero** | Page title, intro, hero image |
+| **Our Story** | Story title, two rich-text paragraphs, image |
+| **Values** | Section copy + list of values (icon, title, description) |
+| **Priest in Charge** | Section headings + priest name, role, bio, photo |
+| **Leadership** | Section headings only (team members live in **Leadership**) |
+| **What We Believe** | Intro, belief items, CTA, image |
+| **CTA** | Bottom call-to-action copy and links |
+
+### Leadership team members
+
+1. Open **Leadership** → **Create New**.
+2. Fill in **Name**, **Role**, **Bio**, and optional photo.
+3. Set **Order** (sidebar) to control display order (lower numbers first).
+4. Save — they appear on `/about` automatically.
 
 ---
 
@@ -134,7 +163,8 @@ No drafts — saving makes the branch page public.
 
 ## Creating Leadership
 
-Leadership appears on the About page and branch pages.  
+Leadership entries appear on the About page under the Leadership section.  
+Section headings are edited in **Globals → About Page → Leadership**.  
 No drafts — saving makes entries public.
 
 1. Open **Leadership** → **Create New**.
