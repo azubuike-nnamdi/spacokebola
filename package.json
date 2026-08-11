@@ -16,10 +16,14 @@
     "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation eslint . --fix",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm pnpm-lock.yaml && pnpm --ignore-workspace install",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-db.ts",
+    "seed:about": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-about.ts",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
-    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
+    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "type-check": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@payloadcms/admin-bar": "3.84.1",
@@ -64,6 +68,8 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.1",
+    "@commitlint/config-conventional": "^21.2.0",
     "@eslint/eslintrc": "^3.2.0",
     "@playwright/test": "1.58.2",
     "@tailwindcss/postcss": "^4.1.18",
@@ -77,6 +83,7 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^9.16.0",
     "eslint-config-next": "16.2.6",
+    "husky": "^9.1.7",
     "jsdom": "28.0.0",
     "postcss": "^8.4.38",
     "prettier": "^3.4.2",
