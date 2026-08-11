@@ -1,6 +1,5 @@
 import type { CollectionConfig } from 'payload'
 
-import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { authenticatedOrPublished } from '../access/authenticatedOrPublished'
 import { slugField } from 'payload'
@@ -28,12 +27,12 @@ export const Announcements: CollectionConfig = {
     },
     {
       name: 'excerpt',
-      type: 'textarea',
+      type: 'richText',
       required: true,
     },
     {
       name: 'content',
-      type: 'textarea',
+      type: 'richText',
       required: true,
     },
     {

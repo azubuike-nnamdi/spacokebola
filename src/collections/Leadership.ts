@@ -33,7 +33,7 @@ export const Leadership: CollectionConfig = {
     },
     {
       name: 'bio',
-      type: 'textarea',
+      type: 'richText',
       required: true,
     },
     {

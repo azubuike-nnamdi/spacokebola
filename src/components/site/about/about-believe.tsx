@@ -1,64 +1,71 @@
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
-import { bibleImage } from "@/config/images";
+import { RichText } from '@/components/RichText'
+import { Button } from '@/components/ui/button'
+import type { RichTextData } from '@/utilities/churchContent'
+import Image from 'next/image'
+import Link from 'next/link'
 
-export default function AboutBelieve() {
+type BeliefItem = {
+  title: string
+  description: string
+}
+
+type Props = {
+  title: string
+  introduction: RichTextData | null
+  items: BeliefItem[]
+  ctaLabel: string
+  ctaUrl: string
+  image: string
+}
+
+export default function AboutBelieve({
+  title,
+  introduction,
+  items,
+  ctaLabel,
+  ctaUrl,
+  image,
+}: Readonly<Props>) {
   return (
-    <div>
-      <section className="section bg-secondary/30">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <h2 className="text-3xl md:text-4xl mb-6">What We Believe</h2>
-              <p className="text-muted-foreground mb-4">
-                At Grace Church, we affirm the historic Christian faith as
-                revealed in Scripture. Our beliefs are centered on the
-                gospel—the good news that God saves sinners through the life,
-                death, and resurrection of Jesus Christ.
-              </p>
-              <div className="space-y-4 mb-6">
-                <div>
-                  <h4 className="font-medium mb-2">The Bible</h4>
-                  <p className="text-muted-foreground text-sm">
-                    We believe the Bible is God&apos;s Word, divinely inspired
-                    and without error, the final authority for all matters of
-                    faith and conduct.
-                  </p>
-                </div>
-                <Separator />
-                <div>
-                  <h4 className="font-medium mb-2">God</h4>
-                  <p className="text-muted-foreground text-sm">
-                    We believe in one God who exists eternally in three persons:
-                    Father, Son, and Holy Spirit.
-                  </p>
-                </div>
-                <Separator />
-                <div>
-                  <h4 className="font-medium mb-2">Salvation</h4>
-                  <p className="text-muted-foreground text-sm">
-                    We believe salvation is by grace alone, through faith alone,
-                    in Christ alone.
-                  </p>
-                </div>
+    <section className="section bg-secondary/30">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="order-2 lg:order-1">
+            <p className="section-eyebrow mb-4">Faith</p>
+            <h2 className="text-3xl md:text-4xl mb-6">{title}</h2>
+            {introduction ? (
+              <div className="text-muted-foreground mb-6">
+                <RichText data={introduction} />
               </div>
-              <Button variant="outline" className="rounded-full">
-                Read Our Full Statement of Faith
-              </Button>
+            ) : null}
+            <div className="space-y-6 mb-8">
+              {items.map((item, index) => (
+                <div key={item.title}>
+                  {index > 0 ? <div className="h-px bg-border mb-6" /> : null}
+                  <h4 className="font-medium mb-2">{item.title}</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                </div>
+              ))}
             </div>
-            <div className="aspect-video lg:aspect-square bg-muted rounded-lg overflow-hidden order-1 lg:order-2">
+            {ctaUrl && ctaLabel ? (
+              <Button asChild variant="outline">
+                <Link href={ctaUrl}>{ctaLabel}</Link>
+              </Button>
+            ) : null}
+          </div>
+          <div className="aspect-video lg:aspect-square bg-muted overflow-hidden order-1 lg:order-2">
+            {image ? (
               <Image
-                src={bibleImage}
-                alt="Open Bible"
+                src={image}
+                alt={title}
                 className="w-full h-full object-cover"
                 width={800}
                 height={800}
               />
-            </div>
+            ) : null}
           </div>
         </div>
-      </section>
-    </div>
-  );
+      </div>
+    </section>
+  )
 }

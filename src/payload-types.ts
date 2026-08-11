@@ -103,8 +103,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    about: About;
+  };
+  globalsSelect: {
+    about: AboutSelect<false> | AboutSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -140,8 +144,36 @@ export interface UserAuthOperations {
 export interface Announcement {
   id: number;
   title: string;
-  excerpt: string;
-  content: string;
+  excerpt: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   category:
     | 'General'
     | 'Worship'
@@ -293,7 +325,21 @@ export interface FolderInterface {
 export interface Event {
   id: number;
   title: string;
-  description?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   category?:
     | (
         | 'sunday_service'
@@ -362,15 +408,57 @@ export interface Branch {
   tagline: string;
   story: {
     title: string;
-    desc1: string;
-    desc2: string;
+    desc1: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    desc2: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
     image?: (number | null) | Media;
     imageUrl?: string | null;
   };
   priestInCharge: {
     name: string;
     role: string;
-    bio: string;
+    bio: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
     image?: (number | null) | Media;
     imageUrl?: string | null;
   };
@@ -390,7 +478,21 @@ export interface Leadership {
   id: number;
   name: string;
   role: string;
-  bio: string;
+  bio: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   image?: (number | null) | Media;
   imageUrl?: string | null;
   order?: number | null;
@@ -791,6 +893,246 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Manage the public /about page content.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: number;
+  hero: {
+    title: string;
+    description: string;
+    image?: (number | null) | Media;
+    /**
+     * Optional external image URL if no Media upload is set.
+     */
+    imageUrl?: string | null;
+  };
+  story: {
+    title: string;
+    desc1: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    desc2?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    image?: (number | null) | Media;
+    /**
+     * Optional external image URL if no Media upload is set.
+     */
+    imageUrl?: string | null;
+  };
+  values: {
+    eyebrow?: string | null;
+    title: string;
+    description?: string | null;
+    items?:
+      | {
+          icon?: ('book' | 'users' | 'heart' | 'home' | 'cross' | 'hands') | null;
+          title: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  priest: {
+    eyebrow?: string | null;
+    sectionTitle?: string | null;
+    sectionDescription?: string | null;
+    name: string;
+    role: string;
+    bio: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    image?: (number | null) | Media;
+    /**
+     * Optional external image URL if no Media upload is set.
+     */
+    imageUrl?: string | null;
+  };
+  /**
+   * Section headings only. Team members are managed in the Leadership collection.
+   */
+  leadership?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  beliefs: {
+    title: string;
+    introduction: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    items?:
+      | {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+    ctaLabel?: string | null;
+    /**
+     * Optional link for the beliefs CTA button.
+     */
+    ctaUrl?: string | null;
+    image?: (number | null) | Media;
+    /**
+     * Optional external image URL if no Media upload is set.
+     */
+    imageUrl?: string | null;
+  };
+  cta?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    description?: string | null;
+    primaryLabel?: string | null;
+    primaryUrl?: string | null;
+    secondaryLabel?: string | null;
+    secondaryUrl?: string | null;
+    backgroundImageUrl?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        imageUrl?: T;
+      };
+  story?:
+    | T
+    | {
+        title?: T;
+        desc1?: T;
+        desc2?: T;
+        image?: T;
+        imageUrl?: T;
+      };
+  values?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              icon?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  priest?:
+    | T
+    | {
+        eyebrow?: T;
+        sectionTitle?: T;
+        sectionDescription?: T;
+        name?: T;
+        role?: T;
+        bio?: T;
+        image?: T;
+        imageUrl?: T;
+      };
+  leadership?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        description?: T;
+      };
+  beliefs?:
+    | T
+    | {
+        title?: T;
+        introduction?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+        ctaLabel?: T;
+        ctaUrl?: T;
+        image?: T;
+        imageUrl?: T;
+      };
+  cta?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        description?: T;
+        primaryLabel?: T;
+        primaryUrl?: T;
+        secondaryLabel?: T;
+        secondaryUrl?: T;
+        backgroundImageUrl?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
