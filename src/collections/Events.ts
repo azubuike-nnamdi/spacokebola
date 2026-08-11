@@ -27,7 +27,7 @@ export const Events: CollectionConfig = {
     },
     {
       name: 'description',
-      type: 'textarea',
+      type: 'richText',
     },
     {
       name: 'category',

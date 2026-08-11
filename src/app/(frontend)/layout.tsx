@@ -4,7 +4,6 @@ import React from 'react'
 
 import { Footer } from '@/components/site/common/footer'
 import { Navbar } from '@/components/site/common/navbar'
-import { ThemeProvider } from '@/context/theme-provider'
 import { getServerSideURL } from '@/utilities/getURL'
 
 import './globals.css'
@@ -51,11 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="antialiased" suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )

@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+
+echo "🔍 Running pre-push hook..."
+
+# Compare against upstream if available, otherwise origin/main / origin/master
+upstream=""
+if git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1; then
+  upstream=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+elif git rev-parse --verify origin/main >/dev/null 2>&1; then
+  upstream="origin/main"
+elif git rev-parse --verify origin/master >/dev/null 2>&1; then
+  upstream="origin/master"
+fi
+
+if [ -n "$upstream" ]; then
+  files_changed=$(git diff --name-only "$upstream"...HEAD 2>/dev/null || true)
+else
+  files_changed=$(git diff --name-only HEAD~1...HEAD 2>/dev/null || true)
+fi
+
+if echo "$files_changed" | grep -Eq 'package\.json|pnpm-lock\.yaml'; then
+  echo "📦 Dependencies changed. Running pnpm install..."
+  pnpm install
+  if [ $? -ne 0 ]; then
+    echo "❌ pnpm install failed. Push aborted."
+    exit 1
+  fi
+fi
+
+echo "➡️ Running type check..."
+pnpm run type-check
+if [ $? -ne 0 ]; then
+  echo "❌ Type check failed. Push aborted."
+  exit 1
+fi
+
+echo "🏗️ Running build..."
+pnpm run build
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed. Push aborted."
+  exit 1
+fi
+
+echo "✅ Checks passed. Proceeding with push..."

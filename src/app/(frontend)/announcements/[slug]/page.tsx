@@ -1,3 +1,4 @@
+import { RichText } from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import { getPublishedAnnouncements } from '@/utilities/churchContent'
 import { ANNOUNCEMENTS_URL } from '@/config/routes'
@@ -35,10 +36,10 @@ export default async function AnnouncementDetailPage({ params }: Args) {
             className="w-full h-full object-cover"
           />
         </div>
-        <p className="text-lg text-muted-foreground mb-6">{announcement.excerpt}</p>
-        <div className="prose prose-neutral dark:prose-invert max-w-none whitespace-pre-wrap">
-          {announcement.content}
+        <div className="text-lg text-muted-foreground mb-6">
+          <RichText data={announcement.excerpt} />
         </div>
+        <RichText data={announcement.content} />
         <div className="mt-10">
           <Button asChild variant="outline">
             <Link href={ANNOUNCEMENTS_URL}>Back to Announcements</Link>

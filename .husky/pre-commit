@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+echo "🔍 Running pre-commit hook..."
+
+files=$(git diff --cached --name-only --diff-filter=ACMR)
+
+if [ -n "$files" ]; then
+  echo "🚀 Running lint..."
+  pnpm run lint
+else
+  echo "✅ No files staged for commit."
+fi

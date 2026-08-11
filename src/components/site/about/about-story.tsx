@@ -1,27 +1,41 @@
+import { AboutStoryProps } from '@/lib/type-declaration'
+import { RichText } from '@/components/RichText'
+import type { RichTextData } from '@/utilities/churchContent'
+import Image from 'next/image'
 
-import { AboutStoryProps } from "@/lib/type-declaration";
-import Image from "next/image";
+type Props = {
+  title: string
+  desc1: string | RichTextData | null
+  desc2: string | RichTextData | null
+  img: string
+}
 
+function isRichText(value: string | RichTextData | null): value is RichTextData {
+  return typeof value === 'object' && value !== null && 'root' in value
+}
 
-
-export default function AboutStory({ title, desc1, desc2, img }: Readonly<AboutStoryProps>) {
+export default function AboutStory({ title, desc1, desc2, img }: Readonly<Props>) {
   return (
     <div>
-      {/* Our Story Section */}
       <section className="section">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl mb-6">{title}</h2>
-              <p className="text-muted-foreground mb-4">
-                {desc1}
-              </p>
-              <p className="text-muted-foreground mb-4">
-                {desc2}
-              </p>
-              {/* <Link href={CONTACT_URL}>
-                <Button className="rounded-full">Connect With Us</Button>
-              </Link> */}
+              <div className="text-muted-foreground mb-4">
+                {isRichText(desc1) ? (
+                  <RichText data={desc1} className="prose-p:text-muted-foreground" />
+                ) : (
+                  <p>{desc1}</p>
+                )}
+              </div>
+              <div className="text-muted-foreground mb-4">
+                {isRichText(desc2) ? (
+                  <RichText data={desc2} className="prose-p:text-muted-foreground" />
+                ) : (
+                  <p>{desc2}</p>
+                )}
+              </div>
             </div>
             <div className="aspect-square bg-muted rounded-lg overflow-hidden">
               <Image
@@ -38,3 +52,6 @@ export default function AboutStory({ title, desc1, desc2, img }: Readonly<AboutS
     </div>
   )
 }
+
+// Keep type export compatibility for static About page strings
+export type { AboutStoryProps }

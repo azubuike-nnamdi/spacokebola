@@ -6,47 +6,96 @@ import AboutPriest from '@/components/site/about/about-priest'
 import AboutStoryWithPriest from '@/components/site/about/about-story-with-priest'
 import AboutValue from '@/components/site/about/about-value'
 import { PageTransition } from '@/components/ui/page-transition'
-import { spacbuildingImage, vicarImage } from '@/config/images'
-import { getLeadership } from '@/utilities/churchContent'
+import { getAboutPage, getLeadership } from '@/utilities/churchContent'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'About The Church',
-  description: 'Learn more about our church and our mission',
+export async function generateMetadata(): Promise<Metadata> {
+  const about = await getAboutPage()
+  return {
+    title: about.hero.title || 'About',
+    description: about.hero.description || undefined,
+  }
 }
 
 export default async function About() {
-  const leadershipTeam = await getLeadership()
+  const [about, leadershipTeam] = await Promise.all([getAboutPage(), getLeadership()])
+
+  const showStory = Boolean(about.story.title || about.story.desc1 || about.story.desc2)
+  const showBeliefs = Boolean(
+    about.beliefs.title || about.beliefs.introduction || about.beliefs.items.length > 0,
+  )
+  const showCta = Boolean(about.cta.title || about.cta.description || about.cta.primaryUrl)
 
   return (
     <PageTransition>
       <AboutHero
-        title="About Oke Bola Archdeaconry"
-        description="A community of faith, hope, and love in the city of Ibadan since 1936."
+        title={about.hero.title}
+        description={about.hero.description}
+        image={about.hero.image}
       />
 
-      <AboutStoryWithPriest
-        title="Our Story"
-        desc1="As early as 1936 there were Igbos who worshipped with the Yoruba Congregation at St James' Cathedral, Oke Bola, Ibadan. Due to an appeal made to Rev. Williams, they were allowed to worship in a Classroom at St. James Primary School as the Igbo section of the Cathedral. Church services were conducted by Volunteers."
-        desc2="This arrangement lasted til 1940 when the igbo congregation moved to a new Church in Ekoledo (Emmanuel Church) to worship, where the congregation was largely Sierra Leonians led by Mr. Lumpkin (of blessed memory). Later that year (1940) the Igbo Congregation reconvened at the classroom of St. James' Primary School Oke-Bola under the leadership of Messrs Ben, Ifekwuna and V.O.Onyewotu, both of them were civil In 1942, they were variously affected by transfers out of Ibadan, therefore, Messis Chinedu Ukaonu and L.O. Ogbonna succeeded them as leaders. In 1952 Mr. S.0 Okolo was posted to the Church as the first Catechist, under a special arrangement with Diocese on the Niger."
-        img="https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-        priestImage={spacbuildingImage}
-      />
+      {showStory ? (
+        <AboutStoryWithPriest
+          title={about.story.title}
+          desc1={about.story.desc1}
+          desc2={about.story.desc2}
+          image={about.story.image}
+        />
+      ) : null}
 
-      <AboutValue />
+      {about.values.items.length > 0 ? (
+        <AboutValue
+          eyebrow={about.values.eyebrow}
+          title={about.values.title}
+          description={about.values.description}
+          items={about.values.items}
+        />
+      ) : null}
 
-      <AboutPriest
-        name="Ven. Sunday D. Ezeike"
-        role="Venerable/Archdeacon - Priest in Charge"
-        bio="Ven. Sunday D. Ezeike is a wise and compassionate spiritual leader dedicated to serving our church community. With deep commitment to the Anglican tradition, he leads our congregations with wisdom, pastoral care, and unwavering faith in Christ."
-        image={vicarImage}
-      />
+      {about.priest.name ? (
+        <AboutPriest
+          eyebrow={about.priest.eyebrow}
+          sectionTitle={about.priest.sectionTitle}
+          sectionDescription={about.priest.sectionDescription}
+          name={about.priest.name}
+          role={about.priest.role}
+          bio={about.priest.bio}
+          image={about.priest.image}
+        />
+      ) : null}
 
-      <AboutLeadership leadershipTeam={leadershipTeam} />
+      {leadershipTeam.length > 0 ? (
+        <AboutLeadership
+          eyebrow={about.leadership.eyebrow}
+          title={about.leadership.title}
+          description={about.leadership.description}
+          leadershipTeam={leadershipTeam}
+        />
+      ) : null}
 
-      <AboutBelieve />
+      {showBeliefs ? (
+        <AboutBelieve
+          title={about.beliefs.title}
+          introduction={about.beliefs.introduction}
+          items={about.beliefs.items}
+          ctaLabel={about.beliefs.ctaLabel}
+          ctaUrl={about.beliefs.ctaUrl}
+          image={about.beliefs.image}
+        />
+      ) : null}
 
-      <AboutCTA />
+      {showCta ? (
+        <AboutCTA
+          eyebrow={about.cta.eyebrow}
+          title={about.cta.title}
+          description={about.cta.description}
+          primaryLabel={about.cta.primaryLabel}
+          primaryUrl={about.cta.primaryUrl}
+          secondaryLabel={about.cta.secondaryLabel}
+          secondaryUrl={about.cta.secondaryUrl}
+          backgroundImageUrl={about.cta.backgroundImageUrl}
+        />
+      ) : null}
     </PageTransition>
   )
 }

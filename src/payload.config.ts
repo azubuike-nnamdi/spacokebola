@@ -11,12 +11,31 @@ import { Gallery } from './collections/Gallery'
 import { Leadership } from './collections/Leadership'
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
+import { About } from './globals/About'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+/** Keep current Node pg SSL behavior; avoid deprecation of sslmode=require as verify-full alias. */
+function postgresConnectionString(url: string): string {
+  if (!url) return url
+
+  try {
+    const parsed = new URL(url)
+    const sslmode = parsed.searchParams.get('sslmode')
+
+    if (sslmode === 'require' || sslmode === 'prefer' || sslmode === 'verify-ca') {
+      parsed.searchParams.set('sslmode', 'verify-full')
+    }
+
+    return parsed.toString()
+  } catch {
+    return url
+  }
+}
 
 export default buildConfig({
   admin: {
@@ -35,12 +54,12 @@ export default buildConfig({
   editor: defaultLexical,
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      connectionString: postgresConnectionString(process.env.DATABASE_URL || ''),
     },
   }),
   collections: [Announcements, Events, Gallery, Branches, Leadership, Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [],
+  globals: [About],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,

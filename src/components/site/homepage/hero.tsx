@@ -1,7 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { ABOUT_URL, EVENTS_URL } from '@/config/routes';
 import { ArrowDownIcon } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 export const Hero: React.FC = () => {
@@ -11,41 +13,50 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Hero Background */}
+    <section className="relative h-[92vh] flex items-end md:items-center overflow-hidden">
       <div
-        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80')] bg-cover bg-center"
         aria-hidden="true"
-      >
-        <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px]" />
-      </div>
+      />
+      <div
+        className="absolute inset-0 bg-linear-to-t from-ink via-ink/75 to-ink/35"
+        aria-hidden="true"
+      />
 
-      {/* Hero Content */}
-      <div className="container relative z-10 text-center max-w-4xl mx-auto px-6 animate-fade-in">
-        <h1 className="text-white mb-6 leading-tight text-4xl font-bold dark:text-black">
-          Welcome to Oke Bola Archdeaconry
-        </h1>
-        <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto dark:text-black">
-          A community of faith, hope, and love where everyone is welcome
+      <div className="container relative z-10 pb-20 pt-32 md:py-0 max-w-4xl animate-fade-in">
+        <p className="font-montserrat text-xs md:text-sm uppercase tracking-[0.28em] text-primary mb-5">
+          Oke Bola Archdeaconry
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="min-w-[160px] rounded-full bg-white text-primary hover:bg-white/90 hover:text-primary/90 dark:bg-black dark:text-white dark:hover:bg-black/90 dark:hover:text-white/90">
-            Join Us Sunday
+        <h1 className="text-white mb-5 leading-[1.05] text-4xl md:text-6xl lg:text-7xl font-semibold max-w-3xl">
+          Welcome home to faith, hope, and community
+        </h1>
+        <p className="text-white/80 text-base md:text-lg mb-9 max-w-xl">
+          The Action Place of the Holy Spirit — a welcoming Anglican family in Oke Bola, Ibadan.
+        </p>
+        <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+          <Button asChild size="lg">
+            <Link href={EVENTS_URL}>Join Us Sunday</Link>
           </Button>
-          <Button size="lg" variant="outline" className="min-w-[160px] rounded-full text-white border-white hover:bg-white/10 bg-transparent dark:text-black dark:border-black dark:hover:bg-black/10">
-            Watch Online
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-white/40 text-white hover:border-primary hover:text-primary bg-transparent"
+          >
+            <Link href={ABOUT_URL}>About Us</Link>
           </Button>
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
       <button
         onClick={scrollToContent}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white flex flex-col items-center animate-pulse cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-primary flex flex-col items-center transition-colors cursor-pointer"
         aria-label="Scroll down"
       >
-        <span className="text-sm mb-2">Scroll Down</span>
-        <ArrowDownIcon size={20} />
+        <span className="text-[10px] uppercase tracking-[0.2em] mb-2 font-montserrat">
+          Scroll
+        </span>
+        <ArrowDownIcon size={18} />
       </button>
     </section>
   );

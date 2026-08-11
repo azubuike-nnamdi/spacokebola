@@ -39,12 +39,12 @@ export const Branches: CollectionConfig = {
         },
         {
           name: 'desc1',
-          type: 'textarea',
+          type: 'richText',
           required: true,
         },
         {
           name: 'desc2',
-          type: 'textarea',
+          type: 'richText',
           required: true,
         },
         {
@@ -75,7 +75,7 @@ export const Branches: CollectionConfig = {
         },
         {
           name: 'bio',
-          type: 'textarea',
+          type: 'richText',
           required: true,
         },
         {

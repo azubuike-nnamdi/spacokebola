@@ -1,71 +1,51 @@
-"use client";
+import type { AboutValueIcon } from '@/utilities/churchContent'
+import { Book, Cross, HandHeart, Heart, Home, Users, type LucideIcon } from 'lucide-react'
 
-import { Book, Heart, Home, Users } from "lucide-react";
-import { Card, CardContent } from "../ui/card";
+const iconMap: Record<AboutValueIcon, LucideIcon> = {
+  book: Book,
+  users: Users,
+  heart: Heart,
+  home: Home,
+  cross: Cross,
+  hands: HandHeart,
+}
 
-export default function AboutValue() {
+type ValueItem = {
+  icon: AboutValueIcon
+  title: string
+  description: string
+}
+
+type Props = {
+  eyebrow: string
+  title: string
+  description: string
+  items: ValueItem[]
+}
+
+export default function AboutValue({ eyebrow, title, description, items }: Readonly<Props>) {
   return (
-    <section className="py-20 bg-secondary/30 transition-colors duration-500 dark:bg-gray-950">
-      <div className="container px-4 mx-auto">
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground dark:text-white">
-            Our Values
-          </h2>
-          <p className="text-muted-foreground dark:text-gray-400 text-base md:text-lg">
-            These core values guide everything we do as a church family.
-          </p>
+    <section className="section bg-secondary/40">
+      <div className="container">
+        <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <p className="section-eyebrow mb-4">{eyebrow}</p>
+          <h2 className="text-3xl md:text-4xl mb-5">{title}</h2>
+          <p className="text-muted-foreground text-base md:text-lg">{description}</p>
         </div>
 
-        {/* Value Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <ValueCard
-            icon={<Book className="h-8 w-8 text-primary" />}
-            title="Biblical Teaching"
-            desc="We are committed to the authority of Scripture and teaching the whole counsel of God."
-          />
-          <ValueCard
-            icon={<Users className="h-8 w-8 text-primary" />}
-            title="Authentic Community"
-            desc="We foster genuine relationships where people can be known, loved, and supported."
-          />
-          <ValueCard
-            icon={<Heart className="h-8 w-8 text-primary" />}
-            title="Compassionate Service"
-            desc="We actively seek ways to demonstrate God’s love through serving our community and world."
-          />
-          <ValueCard
-            icon={<Home className="h-8 w-8 text-primary" />}
-            title="Welcoming Environment"
-            desc="We strive to create a place where everyone feels welcome, regardless of background or life stage."
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+          {items.map((item) => {
+            const Icon = iconMap[item.icon] || Book
+            return (
+              <article key={item.title} className="border-t-2 border-primary pt-8">
+                <Icon className="text-primary mb-6" size={22} />
+                <h3 className="text-xl mb-4 leading-snug">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>
-  );
-}
-
-// Reusable Value Card component
-interface ValueCardProps {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}
-
-function ValueCard({ icon, title, desc }: ValueCardProps) {
-  return (
-    <Card className="border border-border/50 text-center shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all bg-background dark:bg-gray-900">
-      <CardContent className="pt-10 px-6 pb-8">
-        <div className="mb-6 mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-          {icon}
-        </div>
-        <h3 className="text-xl font-semibold mb-3 text-foreground dark:text-white">
-          {title}
-        </h3>
-        <p className="text-muted-foreground dark:text-gray-400 text-sm leading-relaxed">
-          {desc}
-        </p>
-      </CardContent>
-    </Card>
-  );
+  )
 }
