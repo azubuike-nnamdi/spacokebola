@@ -187,7 +187,7 @@ export default function PageNotFound() {
 
                     <motion.p
                       variants={itemVariants}
-                      className="text-slate-600 dark:text-white"
+                      className="text-slate-600"
                     >
                       The page you&apos;re looking for doesn&apos;t exist or has been moved to another location. Let us guide you back
                       to the right path.
@@ -199,7 +199,7 @@ export default function PageNotFound() {
 
                     <motion.blockquote
                       variants={itemVariants}
-                      className="border-l-2 border-amber-300 pl-4 italic text-slate-700 dark:text-white"
+                      className="border-l-2 border-amber-300 pl-4 italic text-slate-700"
                     >
                       &quot;I am the way, the truth, and the life.&quot; — John 14:6
                     </motion.blockquote>
