@@ -6,7 +6,7 @@ changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2>/d
 
 if echo "$changed_files" | grep -Eq 'package\.json|pnpm-lock\.yaml'; then
   echo "📦 Dependencies changed. Running pnpm install..."
-  pnpm install
+  CI=true pnpm install
   if [ $? -ne 0 ]; then
     echo "⚠️ pnpm install failed after merge. Please check your dependencies."
     exit 0

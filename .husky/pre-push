@@ -20,7 +20,7 @@ fi
 
 if echo "$files_changed" | grep -Eq 'package\.json|pnpm-lock\.yaml'; then
   echo "📦 Dependencies changed. Running pnpm install..."
-  pnpm install
+  CI=true pnpm install
   if [ $? -ne 0 ]; then
     echo "❌ pnpm install failed. Push aborted."
     exit 1
