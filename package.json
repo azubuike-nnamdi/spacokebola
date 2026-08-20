@@ -1,7 +1,7 @@
 {
   "name": "spac-cms",
   "version": "1.0.0",
-  "description": "Oke Bola Archdeaconry website and CMS (Payload + Next.js)",
+  "description": "SPAC Oke Bola website and CMS (Payload + Next.js)",
   "license": "MIT",
   "type": "module",
   "scripts": {

@@ -93,7 +93,7 @@ export default function AnnouncementLanding({ announcements }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...transitionEaseOut, delay: 0.15 }}
           >
-            Oke Bola Archdeaconry
+            SPAC Oke Bola
           </motion.p>
           <motion.h1
             className="font-montserrat text-white text-4xl md:text-6xl lg:text-7xl max-w-3xl"

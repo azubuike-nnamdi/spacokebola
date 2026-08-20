@@ -15,12 +15,12 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
             <Image
               src="/assets/img/spac-logo.png"
-              alt="Oke Bola Archdeaconry"
+              alt="SPAC Oke Bola"
               width={88}
               height={88}
             />
             <p className="font-montserrat text-sm uppercase tracking-[0.18em] text-primary mb-2">
-              Oke Bola Archdeaconry
+              SPAC Oke Bola
             </p>
             <p className="text-white/65 mb-5 max-w-xs text-sm leading-relaxed">
               The Action Place of the Holy Spirit
@@ -119,7 +119,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-white/10 py-6 text-center text-xs tracking-wide text-white/45">
-          <p>&copy; {currentYear} Oke Bola Archdeaconry. All rights reserved.</p>
+          <p>&copy; {currentYear} SPAC Oke Bola. All rights reserved.</p>
         </div>
       </div>
     </footer>

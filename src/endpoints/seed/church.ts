@@ -11,7 +11,7 @@ function slugify(value: string): string {
 }
 
 export async function seedChurchContent(payload: Payload): Promise<void> {
-  payload.logger.info('Seeding Oke Bola Archdeaconry content...')
+  payload.logger.info('Seeding SPAC Oke Bola content...')
 
   for (const leader of leadershipTeam) {
     await payload.create({
@@ -133,7 +133,7 @@ export async function seedChurchContent(payload: Payload): Promise<void> {
     slug: 'about',
     data: {
       hero: {
-        title: 'About Oke Bola Archdeaconry',
+        title: 'About SPAC Oke Bola',
         description:
           'A community of faith, hope, and love in the city of Ibadan since 1936.',
         imageUrl:
@@ -200,7 +200,7 @@ export async function seedChurchContent(payload: Payload): Promise<void> {
       beliefs: {
         title: 'What We Believe',
         introduction: lexicalFromText(
-          'At Oke Bola Archdeaconry, we affirm the historic Christian faith as revealed in Scripture. Our beliefs are centered on the gospel—the good news that God saves sinners through the life, death, and resurrection of Jesus Christ.',
+          'At SPAC Oke Bola, we affirm the historic Christian faith as revealed in Scripture. Our beliefs are centered on the gospel—the good news that God saves sinners through the life, death, and resurrection of Jesus Christ.',
         ),
         items: [
           {

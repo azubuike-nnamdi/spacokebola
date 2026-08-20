@@ -54,12 +54,12 @@ export const Navbar: React.FC = () => {
         <Link href="/" className="flex items-center gap-3 shrink-0">
           <Image
             src="/assets/img/spac-logo.png"
-            alt="Oke Bola Archdeaconry"
+            alt="SPAC Oke Bola"
             width={48}
             height={48}
           />
           {/* <span className="hidden lg:block font-montserrat text-sm font-semibold tracking-wide text-foreground">
-            Oke Bola Archdeaconry
+            SPAC Oke Bola
           </span> */}
         </Link>
 

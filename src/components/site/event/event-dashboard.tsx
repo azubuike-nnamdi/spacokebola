@@ -86,7 +86,7 @@ export default function EventDashboard({ events }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...transitionEaseOut, delay: 0.15 }}
           >
-            Oke Bola Archdeaconry
+            SPAC Oke Bola
           </motion.p>
           <motion.h1
             className="font-montserrat text-white text-4xl md:text-6xl lg:text-7xl max-w-3xl"
@@ -323,7 +323,7 @@ export default function EventDashboard({ events }: Props) {
             Plan your visit
           </h2>
           <p className="text-white/75 text-lg mb-8">
-            New to Oke Bola Archdeaconry? We would love to welcome you this Sunday.
+            New to SPAC Oke Bola? We would love to welcome you this Sunday.
           </p>
           <Button
             asChild

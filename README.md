@@ -1,6 +1,6 @@
-# Oke Bola Archdeaconry CMS
+# SPAC Oke Bola CMS
 
-Official website and CMS for **Oke Bola Archdeaconry** (St. Paul's Anglican Church, Oke Bola, Ibadan).
+Official website and CMS for **SPAC Oke Bola** (St. Paul's Anglican Church, Oke Bola, Ibadan).
 
 Motto: *The Action Place of the Holy Spirit*
 

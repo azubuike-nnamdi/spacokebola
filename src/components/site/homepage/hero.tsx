@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
 
       <div className="container relative z-10 pb-20 pt-32 md:py-0 max-w-4xl animate-fade-in">
         <p className="font-montserrat text-xs md:text-sm uppercase tracking-[0.28em] text-primary mb-5">
-          Oke Bola Archdeaconry
+          SPAC Oke Bola
         </p>
         <h1 className="text-white mb-5 leading-[1.05] text-4xl md:text-6xl lg:text-7xl font-semibold max-w-3xl">
           Welcome home to faith, hope, and community

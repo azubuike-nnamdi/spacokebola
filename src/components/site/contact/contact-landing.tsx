@@ -97,7 +97,7 @@ export default function ContactLanding() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...transitionEaseOut, delay: 0.15 }}
           >
-            Oke Bola Archdeaconry
+            SPAC Oke Bola
           </motion.p>
           <motion.h1
             className="font-montserrat text-white text-4xl md:text-6xl lg:text-7xl max-w-3xl"
@@ -343,7 +343,7 @@ export default function ContactLanding() {
         </div>
         <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-muted">
           <iframe
-            title="Map to Oke Bola Archdeaconry"
+            title="Map to SPAC Oke Bola"
             src={`https://maps.google.com/maps?q=${MAP_QUERY}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
             className="absolute inset-0 h-full w-full border-0 grayscale-[30%] contrast-[1.05]"
             loading="lazy"
@@ -375,7 +375,7 @@ export default function ContactLanding() {
             Join us this Sunday
           </h2>
           <p className="text-white/75 text-lg mb-8">
-            Come as you are. We would be glad to welcome you to Oke Bola Archdeaconry.
+            Come as you are. We would be glad to welcome you to SPAC Oke Bola.
           </p>
           <Button asChild size="lg">
             <Link href={EVENTS_URL}>See upcoming services</Link>
